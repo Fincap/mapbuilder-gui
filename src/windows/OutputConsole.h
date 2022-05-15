@@ -36,6 +36,7 @@ private:
 
   // Window options
   bool _autoScroll = true;
+  bool _visibleLevels[3] = {true, true, true};
 
   // For converting message level to string
   const std::string MESSAGE_LEVELS[3] =

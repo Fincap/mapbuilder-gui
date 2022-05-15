@@ -44,7 +44,7 @@ OutputConsole::~OutputConsole()
 
 void OutputConsole::showWindow()
 {
-  ImGui::Begin("Console Output");
+  ImGui::Begin("Output");
 
   // Options bar
   ImGui::Checkbox("Auto-scroll", &_autoScroll);
@@ -52,15 +52,31 @@ void OutputConsole::showWindow()
   if (ImGui::Button("Clear"))
     _pastOutputs.clear();
 
+  // Filters menu
+  ImGui::SameLine();
+  if (ImGui::BeginPopup("Filters"))
+  {
+    ImGui::Checkbox("Info", &_visibleLevels[0]);
+    ImGui::Checkbox("Debug", &_visibleLevels[1]);
+    ImGui::Checkbox("Error", &_visibleLevels[2]);
+    ImGui::EndPopup();
+  }
+
+  if (ImGui::Button("Filters"))
+    ImGui::OpenPopup("Filters");
+
   ImGui::Separator();
 
   // Text output
   ImGui::BeginChild("scrolling", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
   for (auto& [line, level] :_pastOutputs)
   {
-    std::string levelText = MESSAGE_LEVELS[level];
-    std::string output = levelText += line;
-    ImGui::TextUnformatted(output.c_str());
+    if (_visibleLevels[level])
+    {
+      std::string levelText = MESSAGE_LEVELS[level];
+      std::string output = levelText += line;
+      ImGui::TextUnformatted(output.c_str());
+    }
   }
 
   // Auto-scroll to bottom
