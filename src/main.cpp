@@ -9,8 +9,8 @@
 #include <stdio.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
-#include <MapBuilderCore.h>
 
+#include "app\Application.h"
 
 // Data
 static ID3D11Device*            g_pd3dDevice = NULL;
@@ -67,6 +67,9 @@ int main(int argc, char** argv)
   bool showAnotherWindow = false;
   ImVec4 clearColour = ImVec4(0.45f, 0.55f, 0.60f, 1.f);
 
+  // Set up application
+  Application* app = new Application();
+
   // Main loop
   bool done = false;
   while (!done)
@@ -103,11 +106,7 @@ int main(int argc, char** argv)
       ImGui::ShowDemoWindow(&showDemoWindow);
 
     // Show MapBuilder window
-    {
-      ImGui::Begin("MapBuilder");
-      ImGui::Text("Sample text");
-      ImGui::End();
-    }
+    app->showWindow();
 
     // Rendering
     ImGui::Render();
@@ -126,6 +125,7 @@ int main(int argc, char** argv)
   }
 
   // Cleanup
+  delete app;
   ImGui_ImplDX11_Shutdown();
   ImGui_ImplSDL2_Shutdown();
   ImGui::DestroyContext();
