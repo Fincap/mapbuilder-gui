@@ -4,6 +4,8 @@
 
 #include <MapBuilderCore.h>
 
+#include "windows\OutputConsole.h"
+
 class Application
 {
 public:
@@ -21,5 +23,8 @@ private:
 
   // Main menu bar
   void showMainMenuBar();
+
+  // Output console
+  OutputConsole outputConsole;
 };
 

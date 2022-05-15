@@ -110,9 +110,12 @@ xcopy /y /d /s "..\deps\dlls-gui" "$(OutDir)"</Command>
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\windows\OutputConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\Application.h" />
+    <ClInclude Include="src\util\functionbuf.h" />
+    <ClInclude Include="src\windows\OutputConsole.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
