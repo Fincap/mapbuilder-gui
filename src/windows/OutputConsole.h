@@ -34,6 +34,9 @@ private:
   // Internal string log
   std::vector<std::pair<std::string, int>> _pastOutputs;
 
+  // Window options
+  bool _autoScroll = true;
+
   // For converting message level to string
   const std::string MESSAGE_LEVELS[3] =
   {
