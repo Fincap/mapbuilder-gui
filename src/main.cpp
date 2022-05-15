@@ -63,9 +63,7 @@ int main(int argc, char** argv)
   ImGui_ImplSDL2_InitForD3D(window);
   ImGui_ImplDX11_Init(g_pd3dDevice, g_pd3dDeviceContext);
 
-  // Our state
-  bool showDemoWindow = true;
-  bool showAnotherWindow = false;
+  // Clear colour
   ImVec4 clearColour = ImVec4(0.45f, 0.55f, 0.60f, 1.f);
 
   // Set up application
@@ -102,9 +100,8 @@ int main(int argc, char** argv)
     ImGui_ImplSDL2_NewFrame(window);
     ImGui::NewFrame();
 
-    // Show demo window
-    if (showDemoWindow)
-      ImGui::ShowDemoWindow(&showDemoWindow);
+    // Create docking space
+    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 
     // Show MapBuilder window
     app->showWindow();

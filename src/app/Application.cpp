@@ -6,6 +6,11 @@ void Application::showWindow()
 
   showMainMenuBar();
 
+#ifdef _DEBUG // Show demo window in Debug build
+  if (_showDemoWindow)
+    ImGui::ShowDemoWindow(&_showDemoWindow);
+#endif
+
   // Show placeholder if necessary
   if (_showPlaceholderModal)
     ImGui::OpenPopup("Placeholder");
@@ -44,6 +49,9 @@ void Application::showMainMenuBar()
     if (ImGui::BeginMenu("Help"))
     {
       if (ImGui::MenuItem("About MapBuilder")) { _showPlaceholderModal = true; }
+#ifdef _DEBUG // Only show menu option in Debug build
+      if (ImGui::MenuItem("Show ImGui Demo")) { _showDemoWindow = true; }
+#endif
       ImGui::EndMenu();
     }
     ImGui::EndMainMenuBar();
