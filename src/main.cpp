@@ -55,6 +55,7 @@ int main(int argc, char** argv)
   ImGui::CreateContext();
   ImGuiIO& io = ImGui::GetIO(); (void)io;
   io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+  io.Fonts->AddFontFromFileTTF("res/fonts/Roboto-Medium.ttf", 16.f);
   
   // Setup ImGui style
   ImGui::StyleColorsDark();
