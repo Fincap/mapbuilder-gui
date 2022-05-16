@@ -103,7 +103,6 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\modulehandles\ModuleHandle.cpp" />
     <ClCompile Include="src\app\Application.cpp" />
     <ClCompile Include="lib\imgui\imgui.cpp" />
     <ClCompile Include="lib\imgui\imgui_demo.cpp" />
