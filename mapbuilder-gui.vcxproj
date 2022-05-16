@@ -103,6 +103,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\modulehandles\ModuleHandle.cpp" />
     <ClCompile Include="src\app\Application.cpp" />
     <ClCompile Include="lib\imgui\imgui.cpp" />
     <ClCompile Include="lib\imgui\imgui_demo.cpp" />
@@ -115,6 +116,8 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClCompile Include="src\windows\OutputConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\modulehandles\ModuleHandle.h" />
+    <ClInclude Include="src\wrappers\ModuleWrapper.h" />
     <ClInclude Include="src\app\Application.h" />
     <ClInclude Include="src\app\ApplicationContext.h" />
     <ClInclude Include="src\util\functionbuf.h" />
