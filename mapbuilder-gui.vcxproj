@@ -116,6 +116,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\Application.h" />
+    <ClInclude Include="src\app\ApplicationContext.h" />
     <ClInclude Include="src\util\functionbuf.h" />
     <ClInclude Include="src\windows\OutputConsole.h" />
   </ItemGroup>

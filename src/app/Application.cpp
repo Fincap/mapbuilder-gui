@@ -1,5 +1,17 @@
 #include "Application.h"
 
+Application::Application()
+{
+  _context = new ApplicationContext();
+}
+
+
+Application::~Application()
+{
+  delete _context;
+}
+
+
 void Application::showWindow()
 {
   _showPlaceholderModal = false;

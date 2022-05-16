@@ -5,10 +5,14 @@
 #include <MapBuilderCore.h>
 
 #include "windows\OutputConsole.h"
+#include "app\ApplicationContext.h"
 
 class Application
 {
 public:
+  Application();
+  ~Application();
+
   void showWindow();
 
 private:
@@ -23,6 +27,9 @@ private:
 
   // Main menu bar
   void showMainMenuBar();
+
+  // Application context
+  ApplicationContext* _context;
 
   // Output console
   OutputConsole outputConsole;
