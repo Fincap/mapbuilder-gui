@@ -3,8 +3,10 @@
 
 #include <MapBuilderCore.h>
 
+#include "wrappers\ModuleWrapper.h"
+
 struct ApplicationContext
 {
   mbc::Pipeline pipeline;
-  std::vector<mbc::ModulePtr> modules;
+  std::vector<ModuleHandle> modules;
 };
