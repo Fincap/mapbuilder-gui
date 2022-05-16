@@ -111,12 +111,15 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClCompile Include="lib\imgui\imgui_impl_sdl.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\app\ModuleProvider.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\windows\OutputConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\Application.h" />
     <ClInclude Include="src\app\ApplicationContext.h" />
+    <ClInclude Include="src\app\ModuleInfo.h" />
+    <ClInclude Include="src\app\ModuleProvider.h" />
     <ClInclude Include="src\util\functionbuf.h" />
     <ClInclude Include="src\windows\OutputConsole.h" />
   </ItemGroup>
