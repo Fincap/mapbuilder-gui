@@ -3,7 +3,7 @@
 
 #include <MapBuilderCore.h>
 
-#include "modulehandles\ModuleHandle.h"
+#include "modules\ModuleHandle.h"
 
 /*
 ModuleWrapper wraps references to a Module and ModuleHandle window, both of

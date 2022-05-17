@@ -48,7 +48,7 @@
     <ClCompile Include="src\windows\PipelineView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\modulehandles\CanvasHandle.cpp">
+    <ClCompile Include="src\modules\CanvasHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\windows\AddModuleView.cpp">
@@ -71,13 +71,13 @@
     <ClInclude Include="src\wrappers\ModuleWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\modulehandles\ModuleHandle.h">
+    <ClInclude Include="src\modules\ModuleHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\windows\PipelineView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\modulehandles\CanvasHandle.h">
+    <ClInclude Include="src\modules\CanvasHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\windows\AddModuleView.h">

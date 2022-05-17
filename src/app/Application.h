@@ -8,7 +8,7 @@
 #include "windows\PipelineView.h"
 #include "app\ApplicationContext.h"
 
-#include "modulehandles\CanvasHandle.h"
+#include "modules\CanvasHandle.h"
 
 class Application
 {

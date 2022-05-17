@@ -3,7 +3,7 @@
 
 #include <imgui.h>
 
-#include "modulehandles\ModuleHandle.h"
+#include "modules\ModuleHandle.h"
 #include "wrappers\ModuleWrapper.h"
 
 class CanvasHandle : public ModuleHandle

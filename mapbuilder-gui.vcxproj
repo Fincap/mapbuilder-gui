@@ -104,7 +104,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\windows\AddModuleView.cpp" />
-    <ClCompile Include="src\modulehandles\CanvasHandle.cpp" />
+    <ClCompile Include="src\modules\CanvasHandle.cpp" />
     <ClCompile Include="src\windows\PipelineView.cpp" />
     <ClCompile Include="src\app\Application.cpp" />
     <ClCompile Include="lib\imgui\imgui.cpp" />
@@ -119,9 +119,9 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\windows\AddModuleView.h" />
-    <ClInclude Include="src\modulehandles\CanvasHandle.h" />
+    <ClInclude Include="src\modules\CanvasHandle.h" />
     <ClInclude Include="src\windows\PipelineView.h" />
-    <ClInclude Include="src\modulehandles\ModuleHandle.h" />
+    <ClInclude Include="src\modules\ModuleHandle.h" />
     <ClInclude Include="src\wrappers\ModuleWrapper.h" />
     <ClInclude Include="src\app\Application.h" />
     <ClInclude Include="src\app\ApplicationContext.h" />
