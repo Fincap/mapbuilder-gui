@@ -5,7 +5,10 @@
 #include <MapBuilderCore.h>
 
 #include "windows\OutputConsole.h"
+#include "windows\PipelineView.h"
 #include "app\ApplicationContext.h"
+
+#include "modulehandles\CanvasHandle.h"
 
 class Application
 {
@@ -31,7 +34,10 @@ private:
   // Application context
   ApplicationContext* _context;
 
+  // Pipeview view
+  PipelineView _pipelineView;
+
   // Output console
-  OutputConsole outputConsole;
+  OutputConsole _outputConsole;
 };
 
