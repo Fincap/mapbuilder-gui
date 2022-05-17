@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <functional>
 
 #include <MapBuilderCore.h>
 
@@ -13,10 +12,10 @@ enable the instantiation of relevent ModuleWrapper objects.
 struct ModuleInfo
 {
   // Convenience typing for a function that returns a pointer to a Module.
-  using fn_CreateModuleWrapper = std::function<ModuleWrapper>;
+  using fn_CreateModuleWrapper = ModuleWrapper (*)();
 
-  std::string name;               // Module name.
-  std::string description;        // Short description of module.
+  const char* name;               // Module name.
+  const char* description;        // Short description of module.
   mbc::PipelineStage stage;       // Module's PipelineStage.
   fn_CreateModuleWrapper create;  // Function to create Module Wrapper.
 
