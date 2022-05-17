@@ -3,15 +3,17 @@
 
 #include <MapBuilderCore.h>
 
+#include "modulehandles\ModuleHandle.h"
+
 /*
-ModuleWrapper points to a Module instance, and contains a list of references
-to the Module's processing parameters. It is up to the owner of the wrapper
-to correctly construct the references in params, as well as cast them to
-their correct types.
+ModuleWrapper wraps references to a Module and ModuleHandle window, both of
+which are instantiated by the AddModule window. The ModuleHandle class is
+responsible for ensuring that all references to the Module are casted
+and updated correctly.
 */
 struct ModuleWrapper
 {
   mbc::ModulePtr module;
-  std::vector<std::reference_wrapper<std::any>> params;
+  std::shared_ptr<ModuleHandle> handle;
 };
 
