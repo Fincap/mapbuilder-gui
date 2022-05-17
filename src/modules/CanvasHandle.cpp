@@ -1,8 +1,8 @@
 #include "CanvasHandle.h"
 
-CanvasHandle::CanvasHandle(ModuleWrapper wrapper) :
-  _width(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(wrapper.module)->width)),
-  _height(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(wrapper.module)->height))
+CanvasHandle::CanvasHandle(ModuleWrapper::Ptr wrapper) :
+  _width(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(wrapper->module)->width)),
+  _height(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(wrapper->module)->height))
 {}
 
 

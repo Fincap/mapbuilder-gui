@@ -1,6 +1,6 @@
 #include "PipelineView.h"
 
-void PipelineView::showWindow(std::vector<ModuleWrapper>& modules)
+void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
 {
   // TODO Add drag-and-drop reordering of Modules (ideally within their
   // respective Pipeline Stages).
@@ -9,7 +9,7 @@ void PipelineView::showWindow(std::vector<ModuleWrapper>& modules)
 
   for (auto mod = modules.begin(); mod != modules.end();)
   {
-    if (mod->handle->showHandle())
+    if (mod->get()->handle->showHandle())
       mod++;
     else
       // Delete module if handle returns false (no longer alive).

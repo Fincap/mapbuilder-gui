@@ -8,5 +8,5 @@
 struct ApplicationContext
 {
   mbc::Pipeline pipeline;
-  std::vector<ModuleWrapper> modules;
+  std::vector<ModuleWrapper::Ptr> modules;
 };

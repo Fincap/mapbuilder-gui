@@ -9,7 +9,7 @@
 class CanvasHandle : public ModuleHandle
 {
 public:
-  CanvasHandle(ModuleWrapper);
+  CanvasHandle(ModuleWrapper::Ptr);
 
   bool showHandle();
 

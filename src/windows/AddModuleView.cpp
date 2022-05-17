@@ -7,19 +7,19 @@ AddModuleView::AddModuleView()
 }
 
 
-void AddModuleView::showWindow(std::vector<ModuleWrapper>& modules)
+void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
 {
   ImGui::Begin("Add Module");
 
   for (auto& info : _loadedModules)
   {
-    if (ImGui::CollapsingHeader(info.name))
+    if (ImGui::CollapsingHeader(info->name))
     {
-      ImGui::TextWrapped(info.description);
-      ImGui::Text(std::to_string(pipelineStageToInt(info.stage)).c_str());
+      ImGui::TextWrapped(info->description);
+      ImGui::Text(std::to_string(pipelineStageToInt(info->stage)).c_str());
       ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 30);
       if (ImGui::Button("Add"))
-        modules.push_back(info.create());
+        modules.push_back(info->create());
     }
     ImGui::Separator();
   }
@@ -35,21 +35,26 @@ void AddModuleView::loadCoreModules()
   ////////////////
   
   // Canvas
-  _loadedModules.push_back(ModuleInfo
+  struct CanvasInfo : public ModuleInfo
+  {
+    ModuleWrapper::Ptr create()
     {
-      "Canvas",
-      "Specifies the map's width and height and generates a basic heightmap\
- of the given dimensions where each height value is set to the highest possible\
- (255)",
-    mbc::PipelineStage::GENERATION,
-    [](){
-      std::clog << "Added new Canvas module." << std::endl;
-      auto wrapper = ModuleWrapper();
-      wrapper.module = std::make_shared<mbc::Canvas>();;
-      wrapper.handle = std::make_shared<CanvasHandle>(wrapper);
+      auto wrapper = std::make_shared<ModuleWrapper>();
+      wrapper->module = std::make_shared<mbc::Canvas>();;
+      wrapper->handle = std::make_shared<CanvasHandle>(wrapper);
+      std::clog << "Canvas module address: " << &wrapper->module << std::endl;
+      std::clog << "Canvas handle address: " << &wrapper->handle << std::endl;
+      std::clog << "Finished adding Canvas." << std::endl;
       return wrapper;
     }
-  });
+  };
+  auto canvasInfo = new CanvasInfo();
+  canvasInfo->name = "Canvas";
+  canvasInfo->description = "Specifies the map's width and height and generates a basic heightmap\
+of the given dimensions where each height value is set to the highest possible\
+(255)";
+  canvasInfo->stage = mbc::PipelineStage::GENERATION;
+  _loadedModules.push_back(canvasInfo);
 
 
 }

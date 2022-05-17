@@ -23,13 +23,13 @@ class AddModuleView
 public:
   AddModuleView();
 
-  void showWindow(std::vector<ModuleWrapper>&);   // Display ImGui window.
+  void showWindow(std::vector<ModuleWrapper::Ptr>&);   // Display ImGui window.
 
 private:
   void loadCoreModules();     // Load Modules defined by mapbuilder-core.
   void loadAddonModules();    // Load Modules defined by user add-on.
 
-  std::vector<ModuleInfo> _loadedModules;   // Loaded-in Modules.
+  std::vector<ModuleInfo*> _loadedModules;   // Loaded-in Modules.
 
 };
 

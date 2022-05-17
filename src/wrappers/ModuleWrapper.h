@@ -14,6 +14,7 @@ and updated correctly.
 struct ModuleWrapper
 {
   mbc::ModulePtr module;
-  std::shared_ptr<ModuleHandle> handle;
-};
+  ModuleHandle::Ptr handle;
 
+  using Ptr = std::shared_ptr<ModuleWrapper>;
+};

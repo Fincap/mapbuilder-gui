@@ -6,17 +6,19 @@
 #include "wrappers\ModuleWrapper.h"
 
 /*
-This structure contains information about Modules, and function references to
-enable the instantiation of relevent ModuleWrapper objects.
+This structure contains information about Modules, and a virtual create
+function to instantiate the relevent ModuleWrapper, to be implemented by the
+derived class. Intended to be inherited by classes defined inline the Add
+Module View.
 */
 struct ModuleInfo
 {
-  // Convenience typing for a function that returns a pointer to a Module.
-  using fn_CreateModuleWrapper = ModuleWrapper (*)();
-
   const char* name;               // Module name.
   const char* description;        // Short description of module.
   mbc::PipelineStage stage;       // Module's PipelineStage.
-  fn_CreateModuleWrapper create;  // Function to create Module Wrapper.
+
+  // Returns a pointer to a new ModuleWrapper for the relevant Module. This
+  // must be implemented by the derived class.
+  virtual ModuleWrapper::Ptr create() = 0;
 
 };

@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 /*
 Interface for displaying module handles. Derived classes are responsible for
@@ -8,6 +9,8 @@ constructing a valid UI based on CollapsingHeader sections.
 class ModuleHandle
 {
 public:
+  using Ptr = std::shared_ptr<ModuleHandle>;
+
   // Return Handle's alive status. If false, then Wrapper should delete.
   virtual bool showHandle() = 0;  // Must be implemented by derived.
 
