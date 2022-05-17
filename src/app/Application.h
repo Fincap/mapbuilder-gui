@@ -4,6 +4,7 @@
 
 #include <MapBuilderCore.h>
 
+#include "windows\AddModuleView.h"
 #include "windows\OutputConsole.h"
 #include "windows\PipelineView.h"
 #include "app\ApplicationContext.h"
@@ -16,7 +17,7 @@ public:
   Application();
   ~Application();
 
-  void showWindow();
+  void showWindow();      // Show all active Application views.
 
 private:
 #ifdef _DEBUG
@@ -28,16 +29,13 @@ private:
   bool _showPlaceholderModal = false;
   void showPlaceholderModal();
 
-  // Main menu bar
-  void showMainMenuBar();
+  void showMainMenuBar();           // Main menu bar
 
-  // Application context
-  ApplicationContext* _context;
+  ApplicationContext* _context;     // Application context
 
-  // Pipeview view
-  PipelineView _pipelineView;
-
-  // Output console
-  OutputConsole _outputConsole;
+  // Windows
+  PipelineView _pipelineView;       // Pipeline view
+  AddModuleView _addModuleView;     // Add Module view
+  OutputConsole _outputConsole;     // Output console
 };
 

@@ -3,12 +3,6 @@
 Application::Application()
 {
   _context = new ApplicationContext();
-
-  // Temp ModuleWrapper instantiation for testing
-  auto wrapper = ModuleWrapper();
-  wrapper.module = std::make_shared<mbc::Canvas>();;
-  wrapper.handle = std::make_shared<CanvasHandle>(wrapper);
-  _context->modules.push_back(wrapper);
 }
 
 
@@ -23,8 +17,10 @@ void Application::showWindow()
   _showPlaceholderModal = false;
 
   showMainMenuBar();
-  _outputConsole.showWindow();
+
   _pipelineView.showWindow(_context->modules);
+  _addModuleView.showWindow(_context->modules);
+  _outputConsole.showWindow();
 
 #ifdef _DEBUG // Show demo window in Debug build
   if (_showDemoWindow)
