@@ -51,6 +51,9 @@
     <ClCompile Include="src\modulehandles\CanvasHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\windows\AddModuleView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\Application.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\modulehandles\CanvasHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\windows\AddModuleView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
