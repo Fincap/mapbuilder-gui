@@ -11,17 +11,31 @@ void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
 {
   ImGui::Begin("Add Module");
 
-  for (auto& info : _loadedModules)
+  // TODO properly sort this out by Pipeline Stage.
+  if (ImGui::CollapsingHeader("1 Generation", ImGuiTreeNodeFlags_DefaultOpen))
   {
-    if (ImGui::CollapsingHeader(info->name))
+    for (auto& info : _loadedModules)
     {
-      ImGui::TextWrapped(info->description);
-      ImGui::Text(std::to_string(pipelineStageToInt(info->stage)).c_str());
-      ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 30);
+      ImGui::BeginGroup();
+
+      ImGui::Text(info->name);
+
+      ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 50);
       if (ImGui::Button("Add"))
         modules.push_back(info->create());
+
+      ImGui::EndGroup();
+      if (ImGui::IsItemHovered())
+      {
+        ImGui::BeginTooltip();
+        ImGui::PushTextWrapPos(ImGui::GetFontSize() * 25.0f);
+        ImGui::TextUnformatted(info->description);
+        ImGui::PopTextWrapPos();
+        ImGui::EndTooltip();
+      }
+
+      ImGui::Separator();
     }
-    ImGui::Separator();
   }
 
   ImGui::End();
@@ -50,9 +64,10 @@ void AddModuleView::loadCoreModules()
   };
   auto canvasInfo = new CanvasInfo();
   canvasInfo->name = "Canvas";
-  canvasInfo->description = "Specifies the map's width and height and generates a basic heightmap\
-of the given dimensions where each height value is set to the highest possible\
-(255)";
+  canvasInfo->description = "Specifies the map's width and height and generates\
+ a basic heightmap of the given dimensions where each height value is set to\
+ the highest possible (255).\nNote that having more than one of these modules\
+ may lead to undefined behaviour.";
   canvasInfo->stage = mbc::PipelineStage::GENERATION;
   _loadedModules.push_back(canvasInfo);
 
