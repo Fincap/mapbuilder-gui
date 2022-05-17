@@ -11,7 +11,7 @@ bool CanvasHandle::showHandle(int pipelineNum)
   auto label = std::to_string(pipelineNum) + " Canvas";
 
   ImGui::PushID(pipelineNum);
-  if (ImGui::CollapsingHeader(label.c_str(), &_alive))
+  if (ImGui::CollapsingHeader(label.c_str(), &_alive, ImGuiTreeNodeFlags_DefaultOpen))
   {
     // Processing params
     ImGui::DragInt("Width", &_width, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
