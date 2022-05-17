@@ -10,7 +10,7 @@ void CanvasHandle::showHandle()
 {
   if (ImGui::CollapsingHeader("Canvas"))
   {
-    ImGui::DragInt("Width", &_width);
-    ImGui::DragInt("Height", &_height);
+    ImGui::DragInt("Width", &_width, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
+    ImGui::DragInt("Height", &_height, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
   }
 }
