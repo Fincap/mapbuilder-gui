@@ -51,6 +51,16 @@ void AddModuleView::loadCoreModules()
   // Canvas
   struct CanvasInfo : public ModuleInfo
   {
+    CanvasInfo()
+    {
+      name = "Canvas";
+      description = "Specifies the map's width and height and generates\
+ a basic heightmap of the given dimensions where each height value is set to\
+ the highest possible (255).\nNote that having more than one of these modules\
+ may lead to undefined behaviour.";
+      stage = mbc::PipelineStage::GENERATION;
+    }
+
     ModuleWrapper::Ptr create()
     {
       auto wrapper = std::make_shared<ModuleWrapper>();
@@ -62,15 +72,7 @@ void AddModuleView::loadCoreModules()
       return wrapper;
     }
   };
-  auto canvasInfo = new CanvasInfo();
-  canvasInfo->name = "Canvas";
-  canvasInfo->description = "Specifies the map's width and height and generates\
- a basic heightmap of the given dimensions where each height value is set to\
- the highest possible (255).\nNote that having more than one of these modules\
- may lead to undefined behaviour.";
-  canvasInfo->stage = mbc::PipelineStage::GENERATION;
-  _loadedModules.push_back(canvasInfo);
-
+  _loadedModules.push_back(new CanvasInfo());
 
 }
 
