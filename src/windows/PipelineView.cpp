@@ -7,13 +7,16 @@ void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
   // Refer to lines 2319 through 2343 in imgui_demo.cpp
   ImGui::Begin("Pipeline");
 
+  int count = 1;
   for (auto mod = modules.begin(); mod != modules.end();)
   {
-    if (mod->get()->handle->showHandle())
+    if ((*mod)->handle->showHandle(count))
       mod++;
     else
       // Delete module if handle returns false (no longer alive).
       mod = modules.erase(mod);
+
+    count++;
   }
 
   ImGui::End();

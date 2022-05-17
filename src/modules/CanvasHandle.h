@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <string>
 
 #include <imgui.h>
 
@@ -11,7 +12,7 @@ class CanvasHandle : public ModuleHandle
 public:
   CanvasHandle(ModuleWrapper::Ptr);
 
-  bool showHandle();
+  bool showHandle(int);
 
 private:
   int& _width;

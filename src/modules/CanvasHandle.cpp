@@ -6,14 +6,18 @@ CanvasHandle::CanvasHandle(ModuleWrapper::Ptr wrapper) :
 {}
 
 
-bool CanvasHandle::showHandle()
+bool CanvasHandle::showHandle(int pipelineNum)
 {
-  if (ImGui::CollapsingHeader("Canvas", &_alive))
+  auto label = std::to_string(pipelineNum) + " Canvas";
+
+  ImGui::PushID(pipelineNum);
+  if (ImGui::CollapsingHeader(label.c_str(), &_alive))
   {
     // Processing params
     ImGui::DragInt("Width", &_width, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
     ImGui::DragInt("Height", &_height, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
   }
+  ImGui::PopID();
 
   return _alive;
 }

@@ -12,7 +12,9 @@ public:
   using Ptr = std::shared_ptr<ModuleHandle>;
 
   // Return Handle's alive status. If false, then Wrapper should delete.
-  virtual bool showHandle() = 0;  // Must be implemented by derived.
+  // int parameter is a number representing the order which the related
+  // Module is executed in the Pipeline.
+  virtual bool showHandle(int) = 0;  // Must be implemented by derived.
 
 protected:
   bool _alive;    // Determines if the Module should be deleted.
