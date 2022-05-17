@@ -6,7 +6,7 @@
 #include "modules\ModuleHandle.h"
 
 /*
-ModuleWrapper wraps references to a Module and ModuleHandle window, both of
+ModuleWrapper is a handle to a Module and ModuleHandle window, both of
 which are instantiated by the AddModule window. The ModuleHandle class is
 responsible for ensuring that all references to the Module are casted
 and updated correctly.
