@@ -8,21 +8,12 @@ CanvasHandle::CanvasHandle(ModuleWrapper wrapper) :
 
 bool CanvasHandle::showHandle()
 {
-  bool willDelete = false;
-
-  if (ImGui::CollapsingHeader("Canvas"))
+  if (ImGui::CollapsingHeader("Canvas", &_alive))
   {
-    // Delete button
-    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.6f, 0.6f));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.0f, 0.7f, 0.7f));
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.0f, 0.8f, 0.8f));
-    if (ImGui::Button("X")) willDelete = true;
-    ImGui::PopStyleColor(3);
-
     // Processing params
     ImGui::DragInt("Width", &_width, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
     ImGui::DragInt("Height", &_height, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
   }
 
-  return willDelete;
+  return _alive;
 }

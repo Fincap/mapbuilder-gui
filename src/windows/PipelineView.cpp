@@ -7,9 +7,10 @@ void PipelineView::showWindow(std::vector<ModuleWrapper>& modules)
   for (auto mod = modules.begin(); mod != modules.end();)
   {
     if (mod->handle->showHandle())
-      mod = modules.erase(mod);   // Delete module if handle returns true.
-    else
       mod++;
+    else
+      // Delete module if handle returns false (no longer alive).
+      mod = modules.erase(mod);
   }
 
   ImGui::End();

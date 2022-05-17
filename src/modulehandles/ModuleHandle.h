@@ -8,6 +8,9 @@ constructing a valid UI based on CollapsingHeader sections.
 class ModuleHandle
 {
 public:
-  // If returns true, then flag the module for deletion.
+  // Return Handle's alive status. If false, then Wrapper should delete.
   virtual bool showHandle() = 0;  // Must be implemented by derived.
+
+protected:
+  bool _alive;    // Determines if the Module should be deleted.
 };
