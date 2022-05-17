@@ -83,5 +83,8 @@
     <ClInclude Include="src\windows\AddModuleView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\modules\ModuleInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

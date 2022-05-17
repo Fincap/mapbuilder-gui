@@ -118,6 +118,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClCompile Include="src\windows\OutputConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\modules\ModuleInfo.h" />
     <ClInclude Include="src\windows\AddModuleView.h" />
     <ClInclude Include="src\modules\CanvasHandle.h" />
     <ClInclude Include="src\windows\PipelineView.h" />
