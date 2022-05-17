@@ -2,7 +2,7 @@
 
 #include <MapBuilderCore.h>
 
-const char* pipelineStageToString(mbc::PipelineStage stage)
+inline const char* pipelineStageToString(mbc::PipelineStage stage)
 {
   switch (stage)
   {
@@ -24,7 +24,7 @@ const char* pipelineStageToString(mbc::PipelineStage stage)
 }
 
 
-int pipelineStageToInt(mbc::PipelineStage stage)
+inline int pipelineStageToInt(mbc::PipelineStage stage)
 {
   switch (stage)
   {
