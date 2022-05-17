@@ -8,5 +8,6 @@ constructing a valid UI based on CollapsingHeader sections.
 class ModuleHandle
 {
 public:
-  virtual void showHandle() = 0;  // Must be implemented by derived.
+  // If returns true, then flag the module for deletion.
+  virtual bool showHandle() = 0;  // Must be implemented by derived.
 };

@@ -11,7 +11,7 @@ class CanvasHandle : public ModuleHandle
 public:
   CanvasHandle(ModuleWrapper);
 
-  void showHandle();
+  bool showHandle();
 
 private:
   int& _width;
