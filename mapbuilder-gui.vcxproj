@@ -119,6 +119,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\modules\ModuleInfo.h" />
+    <ClInclude Include="src\util\api_helpers.h" />
     <ClInclude Include="src\windows\AddModuleView.h" />
     <ClInclude Include="src\modules\CanvasHandle.h" />
     <ClInclude Include="src\windows\PipelineView.h" />
