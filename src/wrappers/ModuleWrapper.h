@@ -13,7 +13,7 @@ and updated correctly.
 */
 struct ModuleWrapper
 {
-  mbc::ModulePtr module;
+  mbc::Module::Ptr module;
   ModuleHandle::Ptr handle;
 
   using Ptr = std::shared_ptr<ModuleWrapper>;
