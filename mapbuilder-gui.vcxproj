@@ -103,6 +103,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\modules\PerlinGenHandle.cpp" />
     <ClCompile Include="src\windows\AddModuleView.cpp" />
     <ClCompile Include="src\modules\CanvasHandle.cpp" />
     <ClCompile Include="src\windows\PipelineView.cpp" />
@@ -119,7 +120,9 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\modules\ModuleInfo.h" />
+    <ClInclude Include="src\modules\PerlinGenHandle.h" />
     <ClInclude Include="src\util\api_helpers.h" />
+    <ClInclude Include="src\util\imgui_helpers.h" />
     <ClInclude Include="src\util\module_info_helper.h" />
     <ClInclude Include="src\windows\AddModuleView.h" />
     <ClInclude Include="src\modules\CanvasHandle.h" />

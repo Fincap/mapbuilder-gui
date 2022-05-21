@@ -11,11 +11,14 @@ void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
 {
   ImGui::Begin("Add Module");
 
+  int count = 0;
+
   // TODO properly sort this out by Pipeline Stage.
   if (ImGui::CollapsingHeader("1 Generation", ImGuiTreeNodeFlags_DefaultOpen))
   {
     for (auto& info : loadedModules_)
     {
+      ImGui::PushID(count);
       ImGui::BeginGroup();
 
       ImGui::Text(info->name);
@@ -35,6 +38,9 @@ void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
       }
 
       ImGui::Separator();
+
+      ImGui::PopID();
+      count++;
     }
   }
 
@@ -54,6 +60,12 @@ void AddModuleView::loadCoreModules()
 a basic heightmap of the given dimensions where each height value is set to \
 the highest possible (255).\nNote that having more than one of these modules \
 may lead to undefined behaviour.",
+    mbc::PipelineStage::GENERATION
+  ));
+
+  // Perlin Noise
+  loadedModules_.push_back(new ManualInfo<mbc::PerlinGen, PerlinGenHandle>("Perlin Noise",
+    "TODO - complete description",
     mbc::PipelineStage::GENERATION
   ));
 

@@ -10,6 +10,7 @@
 #include "modules\ModuleInfo.h"
 #include "wrappers\ModuleWrapper.h"
 #include "modules\CanvasHandle.h"
+#include "modules\PerlinGenHandle.h"
 #include "util\api_helpers.h"
 #include "util\module_info_helper.h"
 
