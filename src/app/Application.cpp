@@ -37,6 +37,18 @@ void Application::showWindow()
 
   showPlaceholderModal();
 
+  ImGui::Begin("Execute");
+  if (ImGui::Button("Run pipeline"))
+  {
+    for (auto& mod : context_->modules)
+    {
+      context_->pipeline.addModule(mod->module);
+    }
+    context_->pipeline.execute();
+  }
+
+  ImGui::End();
+
   // Pop style vars
   ImGui::PopStyleVar(2);
 
