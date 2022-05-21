@@ -11,6 +11,7 @@
 #include "wrappers\ModuleWrapper.h"
 #include "modules\CanvasHandle.h"
 #include "util\api_helpers.h"
+#include "util\module_info_helper.h"
 
 /*
 This window provides a view of all modules that can be added to the Pipeline
