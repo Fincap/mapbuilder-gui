@@ -15,10 +15,6 @@ bool PerlinGenHandle::showHandle(int pipelineNum)
   ImGui::PushID(pipelineNum);
   if (ImGui::CollapsingHeader(label.c_str(), &alive_, ImGuiTreeNodeFlags_DefaultOpen))
   {
-    // Copy original params to temporary locations to allow UI modification.
-    float frequencyTemp = frequency_;
-    int octavesTemp = octaves_;
-
     // Processing params - Seed
     ImGui::InputScalar("Seed", ImGuiDataType_U32, &seed_, NULL, NULL, "%u");
     ImGui::SameLine();
@@ -28,12 +24,12 @@ bool PerlinGenHandle::showHandle(int pipelineNum)
     }
 
     // Processing params - Frequency and Octaves
-    ImGui::DragFloat("Frequency", &frequencyTemp, 0.07f, 0.2f, 8.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
-    ImGui::DragInt("Octaves", &octavesTemp, 0.1f, 1, 10, "%d", ImGuiSliderFlags_AlwaysClamp);
+    const double frequencyMin = 0.2;  const double frequencyMax = 8.0;
+    const uint32_t octavesMin = 1;    const uint32_t octavesMax = 10;
 
-    // Apply modified params (implicit cast back to original type).
-    frequency_ = frequencyTemp;
-    octaves_ = octavesTemp;
+    ImGui::SliderScalar("Frequency", ImGuiDataType_Double, &frequency_, &frequencyMin, &frequencyMax, "%.1f");
+    ImGui::SliderScalar("Octaves", ImGuiDataType_U32, &octaves_, &octavesMin, &octavesMax, "%d");
+
   }
   ImGui::PopID();
 
