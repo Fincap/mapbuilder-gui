@@ -7,6 +7,7 @@ void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
   // Refer to lines 2319 through 2343 in imgui_demo.cpp
   ImGui::Begin("Pipeline");
 
+  ImGui::PushItemWidth(100);
   int count = 1;
   for (auto mod = modules.begin(); mod != modules.end();)
   {
@@ -18,6 +19,7 @@ void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
 
     count++;
   }
+  ImGui::PopItemWidth();
 
   ImGui::End();
 }
