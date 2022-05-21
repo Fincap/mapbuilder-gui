@@ -16,6 +16,10 @@ void Application::showWindow()
 {
   showPlaceholderModal_ = false;
 
+  // Push style vars
+  ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 4);
+  ImGui::PushStyleVar(ImGuiStyleVar_TabRounding, 4);
+
   showMainMenuBar();
 
   pipelineView_.showWindow(context_->modules);
@@ -32,6 +36,9 @@ void Application::showWindow()
     ImGui::OpenPopup("Placeholder");
 
   showPlaceholderModal();
+
+  // Pop style vars
+  ImGui::PopStyleVar(2);
 
 }
 
