@@ -17,5 +17,5 @@ public:
   virtual bool showHandle(int) = 0;  // Must be implemented by derived.
 
 protected:
-  bool _alive;    // Determines if the Module should be deleted.
+  bool alive_;    // Determines if the Module should be deleted.
 };

@@ -15,8 +15,8 @@ public:
   bool showHandle(int);
 
 private:
-  int& _width;
-  int& _height;
+  int& width_;
+  int& height_;
 };
 
 

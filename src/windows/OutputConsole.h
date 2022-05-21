@@ -22,21 +22,21 @@ public:
 
 private:
   // Store old buffers so that they can be reset on class destruction.
-  std::streambuf* _oldCout;
-  std::streambuf* _oldClog;
-  std::streambuf* _oldCerr;
+  std::streambuf* oldCout_;
+  std::streambuf* oldClog_;
+  std::streambuf* oldCerr_;
 
   // Captured string streams
-  ofunctionstream* _coutStream;
-  ofunctionstream* _clogStream;
-  ofunctionstream* _cerrStream;
+  ofunctionstream* coutStream_;
+  ofunctionstream* clogStream_;
+  ofunctionstream* cerrStream_;
 
   // Internal string log
-  std::vector<std::pair<std::string, int>> _pastOutputs;
+  std::vector<std::pair<std::string, int>> pastOutputs_;
 
   // Window options
-  bool _autoScroll = true;
-  bool _visibleLevels[3] = {true, true, true};
+  bool autoScroll_ = true;
+  bool visibleLevels_[3] = {true, true, true};
 
   // For converting message level to string
   const std::string MESSAGE_LEVELS[3] =

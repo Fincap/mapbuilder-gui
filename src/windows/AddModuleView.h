@@ -29,7 +29,7 @@ private:
   void loadCoreModules();     // Load Modules defined by mapbuilder-core.
   void loadAddonModules();    // Load Modules defined by user add-on.
 
-  std::vector<ModuleInfo*> _loadedModules;   // Loaded-in Modules.
+  std::vector<ModuleInfo*> loadedModules_;   // Loaded-in Modules.
 
 };
 

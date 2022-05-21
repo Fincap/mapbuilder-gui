@@ -2,33 +2,33 @@
 
 Application::Application()
 {
-  _context = new ApplicationContext();
+  context_ = new ApplicationContext();
 }
 
 
 Application::~Application()
 {
-  delete _context;
+  delete context_;
 }
 
 
 void Application::showWindow()
 {
-  _showPlaceholderModal = false;
+  showPlaceholderModal_ = false;
 
   showMainMenuBar();
 
-  _pipelineView.showWindow(_context->modules);
-  _addModuleView.showWindow(_context->modules);
-  _outputConsole.showWindow();
+  pipelineView_.showWindow(context_->modules);
+  addModuleView_.showWindow(context_->modules);
+  outputConsole_.showWindow();
 
 #ifdef _DEBUG // Show demo window in Debug build
-  if (_showDemoWindow)
-    ImGui::ShowDemoWindow(&_showDemoWindow);
+  if (showDemoWindow_)
+    ImGui::ShowDemoWindow(&showDemoWindow_);
 #endif
 
   // Show placeholder if necessary
-  if (_showPlaceholderModal)
+  if (showPlaceholderModal_)
     ImGui::OpenPopup("Placeholder");
 
   showPlaceholderModal();
@@ -56,17 +56,17 @@ void Application::showMainMenuBar()
   {
     if (ImGui::BeginMenu("File"))
     {
-      if (ImGui::MenuItem("New", "CTRL+N")) { _showPlaceholderModal = true; std::cout << "New!" << std::endl; }
-      if (ImGui::MenuItem("Open", "CTRL+O")) { _showPlaceholderModal = true; std::clog << "Open!" << std::endl; }
-      if (ImGui::MenuItem("Save", "CTRL+S")) { _showPlaceholderModal = true; std::cerr << "Save!" << std::endl; }
-      if (ImGui::MenuItem("Save As", "F12")) { _showPlaceholderModal = true; std::cout << "Save As!" << std::endl; }
+      if (ImGui::MenuItem("New", "CTRL+N")) { showPlaceholderModal_ = true; std::cout << "New!" << std::endl; }
+      if (ImGui::MenuItem("Open", "CTRL+O")) { showPlaceholderModal_ = true; std::clog << "Open!" << std::endl; }
+      if (ImGui::MenuItem("Save", "CTRL+S")) { showPlaceholderModal_ = true; std::cerr << "Save!" << std::endl; }
+      if (ImGui::MenuItem("Save As", "F12")) { showPlaceholderModal_ = true; std::cout << "Save As!" << std::endl; }
       ImGui::EndMenu();
     }
     if (ImGui::BeginMenu("Help"))
     {
-      if (ImGui::MenuItem("About MapBuilder")) { _showPlaceholderModal = true; std::cout << "About!" << std::endl; }
+      if (ImGui::MenuItem("About MapBuilder")) { showPlaceholderModal_ = true; std::cout << "About!" << std::endl; }
 #ifdef _DEBUG // Only show menu option in Debug build
-      if (ImGui::MenuItem("Show ImGui Demo")) { _showDemoWindow = true; }
+      if (ImGui::MenuItem("Show ImGui Demo")) { showDemoWindow_ = true; }
 #endif
       ImGui::EndMenu();
     }

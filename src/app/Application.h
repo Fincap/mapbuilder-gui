@@ -22,20 +22,20 @@ public:
 private:
 #ifdef _DEBUG
   // Demo window toggle if compiled in Debug mode.
-  bool _showDemoWindow = false;
+  bool showDemoWindow_ = false;
 #endif
 
   // Placeholder popup
-  bool _showPlaceholderModal = false;
+  bool showPlaceholderModal_ = false;
   void showPlaceholderModal();
 
   void showMainMenuBar();           // Main menu bar
 
-  ApplicationContext* _context;     // Application context
+  ApplicationContext* context_;     // Application context
 
   // Windows
-  PipelineView _pipelineView;       // Pipeline view
-  AddModuleView _addModuleView;     // Add Module view
-  OutputConsole _outputConsole;     // Output console
+  PipelineView pipelineView_;       // Pipeline view
+  AddModuleView addModuleView_;     // Add Module view
+  OutputConsole outputConsole_;     // Output console
 };
 

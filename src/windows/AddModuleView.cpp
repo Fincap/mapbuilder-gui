@@ -14,7 +14,7 @@ void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
   // TODO properly sort this out by Pipeline Stage.
   if (ImGui::CollapsingHeader("1 Generation", ImGuiTreeNodeFlags_DefaultOpen))
   {
-    for (auto& info : _loadedModules)
+    for (auto& info : loadedModules_)
     {
       ImGui::BeginGroup();
 
@@ -72,7 +72,7 @@ void AddModuleView::loadCoreModules()
       return wrapper;
     }
   };
-  _loadedModules.push_back(new CanvasInfo());
+  loadedModules_.push_back(new CanvasInfo());
 
 }
 

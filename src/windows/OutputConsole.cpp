@@ -8,14 +8,14 @@ OutputConsole::OutputConsole()
     this->addToOutputs(value, level);
   };
 
-  _coutStream = new ofunctionstream(boundFunc, 0);
-  _clogStream = new ofunctionstream(boundFunc, 1);
-  _cerrStream = new ofunctionstream(boundFunc, 2);
+  coutStream_ = new ofunctionstream(boundFunc, 0);
+  clogStream_ = new ofunctionstream(boundFunc, 1);
+  cerrStream_ = new ofunctionstream(boundFunc, 2);
 
   // Redirect stdout/stderr to string streams
-  _oldCout = std::cout.rdbuf(_coutStream->rdbuf());
-  _oldClog = std::clog.rdbuf(_clogStream->rdbuf());
-  _oldCerr = std::cerr.rdbuf(_cerrStream->rdbuf());
+  oldCout_ = std::cout.rdbuf(coutStream_->rdbuf());
+  oldClog_ = std::clog.rdbuf(clogStream_->rdbuf());
+  oldCerr_ = std::cerr.rdbuf(cerrStream_->rdbuf());
 
   // Disable automatic flushing for cerr
   // This is done to have consistency in how the output is treated by the stream
@@ -28,14 +28,14 @@ OutputConsole::OutputConsole()
 OutputConsole::~OutputConsole()
 {
   // Delete captured string streams
-  delete _coutStream;
-  delete _clogStream;
-  delete _cerrStream;
+  delete coutStream_;
+  delete clogStream_;
+  delete cerrStream_;
 
   // Redirect stdout/stderr back to original buffers
-  std::cout.rdbuf(_oldCout);
-  std::clog.rdbuf(_oldClog);
-  std::cerr.rdbuf(_oldCerr);
+  std::cout.rdbuf(oldCout_);
+  std::clog.rdbuf(oldClog_);
+  std::cerr.rdbuf(oldCerr_);
 
   // Re-enable automatic flushing for cerr
   std::cerr << std::unitbuf;
@@ -47,18 +47,18 @@ void OutputConsole::showWindow()
   ImGui::Begin("Output");
 
   // Options bar
-  ImGui::Checkbox("Auto-scroll", &_autoScroll);
+  ImGui::Checkbox("Auto-scroll", &autoScroll_);
   ImGui::SameLine();
   if (ImGui::Button("Clear"))
-    _pastOutputs.clear();
+    pastOutputs_.clear();
 
   // Filters menu
   ImGui::SameLine();
   if (ImGui::BeginPopup("Filters"))
   {
-    ImGui::Checkbox("Info", &_visibleLevels[0]);
-    ImGui::Checkbox("Debug", &_visibleLevels[1]);
-    ImGui::Checkbox("Error", &_visibleLevels[2]);
+    ImGui::Checkbox("Info", &visibleLevels_[0]);
+    ImGui::Checkbox("Debug", &visibleLevels_[1]);
+    ImGui::Checkbox("Error", &visibleLevels_[2]);
     ImGui::EndPopup();
   }
 
@@ -69,9 +69,9 @@ void OutputConsole::showWindow()
 
   // Text output
   ImGui::BeginChild("scrolling", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
-  for (auto& [line, level] :_pastOutputs)
+  for (auto& [line, level] :pastOutputs_)
   {
-    if (_visibleLevels[level])
+    if (visibleLevels_[level])
     {
       std::string levelText = MESSAGE_LEVELS[level];
       std::string output = levelText += line;
@@ -80,7 +80,7 @@ void OutputConsole::showWindow()
   }
 
   // Auto-scroll to bottom
-  if (_autoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
+  if (autoScroll_ && ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
     ImGui::SetScrollHereY(1.0f);
 
   ImGui::EndChild();
@@ -93,5 +93,5 @@ void OutputConsole::addToOutputs(std::string const& value, int level)
   if (value.length() == 0)
     return;
 
-  _pastOutputs.push_back(std::make_pair(value, level));
+  pastOutputs_.push_back(std::make_pair(value, level));
 }
