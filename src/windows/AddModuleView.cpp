@@ -69,6 +69,17 @@ may lead to undefined behaviour.",
     mbc::PipelineStage::GENERATION
   ));
 
+
+  //////////////////
+  // MANIPULATION //
+  //////////////////
+
+  // Elevation slope
+  loadedModules_.push_back(new ManualInfo<mbc::ElevationSlope, ElevationSlopeHandle>("Elevation Slope",
+    "TODO - complete description",
+    mbc::PipelineStage::MANIPULATION
+    ));
+
 }
 
 

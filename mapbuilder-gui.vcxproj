@@ -103,6 +103,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\modules\ElevationSlopeHandle.cpp" />
     <ClCompile Include="src\modules\PerlinGenHandle.cpp" />
     <ClCompile Include="src\windows\AddModuleView.cpp" />
     <ClCompile Include="src\modules\CanvasHandle.cpp" />
@@ -119,6 +120,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClCompile Include="src\windows\OutputConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\modules\ElevationSlopeHandle.h" />
     <ClInclude Include="src\modules\ModuleInfo.h" />
     <ClInclude Include="src\modules\PerlinGenHandle.h" />
     <ClInclude Include="src\util\api_helpers.h" />

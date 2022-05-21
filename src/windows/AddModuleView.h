@@ -7,12 +7,13 @@
 #include <imgui.h>
 #include <MapBuilderCore.h>
 
+#include "util\api_helpers.h"
+#include "util\module_info_helper.h"
 #include "modules\ModuleInfo.h"
 #include "wrappers\ModuleWrapper.h"
 #include "modules\CanvasHandle.h"
 #include "modules\PerlinGenHandle.h"
-#include "util\api_helpers.h"
-#include "util\module_info_helper.h"
+#include "modules\ElevationSlopeHandle.h"
 
 /*
 This window provides a view of all modules that can be added to the Pipeline
