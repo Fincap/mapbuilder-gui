@@ -78,7 +78,18 @@ may lead to undefined behaviour.",
   loadedModules_.push_back(new ManualInfo<mbc::ElevationSlope, ElevationSlopeHandle>("Elevation Slope",
     "TODO - complete description",
     mbc::PipelineStage::MANIPULATION
-    ));
+  ));
+
+
+  ////////////
+  // OUTPUT //
+  ////////////
+
+  // BMP8Out
+  loadedModules_.push_back(new ManualInfo<mbc::BMP8Out, BMP8OutHandle>("8-bit .bmp file",
+    "TODO - complete description",
+    mbc::PipelineStage::OUTPUT
+  ));
 
 }
 

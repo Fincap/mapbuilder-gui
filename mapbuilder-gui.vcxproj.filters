@@ -60,6 +60,9 @@
     <ClCompile Include="src\modules\ElevationSlopeHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\modules\BMP8OutHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\Application.h">
@@ -105,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\modules\ElevationSlopeHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\BMP8OutHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

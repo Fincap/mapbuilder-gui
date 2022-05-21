@@ -14,6 +14,7 @@
 #include "modules\CanvasHandle.h"
 #include "modules\PerlinGenHandle.h"
 #include "modules\ElevationSlopeHandle.h"
+#include "modules\BMP8OutHandle.h"
 
 /*
 This window provides a view of all modules that can be added to the Pipeline
