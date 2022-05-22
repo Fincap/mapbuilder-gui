@@ -71,7 +71,7 @@
     <ClInclude Include="src\windows\OutputConsole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\functionbuf.h">
+    <ClInclude Include="src\util\FunctionBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\app\ApplicationContext.h">
@@ -95,16 +95,16 @@
     <ClInclude Include="src\modules\ModuleInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\api_helpers.h">
+    <ClInclude Include="src\util\APIHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\module_info_helper.h">
+    <ClInclude Include="src\util\ModuleInfoHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\modules\PerlinGenHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\imgui_helpers.h">
+    <ClInclude Include="src\util\ImGuiHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\modules\ElevationSlopeHandle.h">

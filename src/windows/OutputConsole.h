@@ -5,7 +5,7 @@
 
 #include <imgui.h>
 
-#include "util\functionbuf.h"
+#include "util\FunctionBuffer.h"
 
 
 class OutputConsole

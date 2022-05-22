@@ -7,8 +7,8 @@
 #include <imgui.h>
 #include <MapBuilderCore.h>
 
-#include "util\api_helpers.h"
-#include "util\module_info_helper.h"
+#include "util\APIHelpers.h"
+#include "util\ModuleInfoHelpers.h"
 #include "modules\ModuleInfo.h"
 #include "wrappers\ModuleWrapper.h"
 #include "modules\CanvasHandle.h"
