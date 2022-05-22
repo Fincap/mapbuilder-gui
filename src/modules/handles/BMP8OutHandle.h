@@ -6,6 +6,7 @@
 
 #include "modules\ModuleHandle.h"
 #include "modules\ModuleWrapper.h"
+#include "util\FileDialogHelpers.h"
 
 class BMP8OutHandle : public ModuleHandle
 {

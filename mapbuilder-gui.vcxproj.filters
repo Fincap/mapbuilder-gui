@@ -116,5 +116,8 @@
     <ClInclude Include="src\modules\handles\AllHandles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\FileDialogHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -14,9 +14,12 @@ bool BMP8OutHandle::showHandle(int pipelineNum)
   {
     // Processing params
     ImGui::SetNextItemWidth(-125);
-    ImGui::InputText("Filepath", &*outputFilepath_, 256);
+    ImGui::InputText("Filepath", &*outputFilepath_, _MAX_PATH);
     ImGui::SameLine();
-    ImGui::Button("Browse...");   // TODO add file select window
+    if (ImGui::Button("Browse..."))
+    {
+      getSaveFilepathWIN32(outputFilepath_, L"Bitmap (*.bmp)\0*.bmp\0", L"bmp");
+    }
 
   }
   ImGui::PopID();
