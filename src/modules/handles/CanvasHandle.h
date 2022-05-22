@@ -5,17 +5,18 @@
 #include <imgui.h>
 
 #include "modules\ModuleHandle.h"
-#include "wrappers\ModuleWrapper.h"
+#include "modules\ModuleWrapper.h"
 
-class BMP8OutHandle : public ModuleHandle
+class CanvasHandle : public ModuleHandle
 {
 public:
-  BMP8OutHandle(ModuleWrapper::Ptr);
+  CanvasHandle(ModuleWrapper::Ptr);
 
   bool showHandle(int);
 
 private:
-  char*& outputFilepath_;
+  int& width_;
+  int& height_;
 };
 
 

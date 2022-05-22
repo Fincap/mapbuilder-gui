@@ -3,7 +3,7 @@
 
 #include <MapBuilderCore.h>
 
-#include "wrappers\ModuleWrapper.h"
+#include "modules\ModuleWrapper.h"
 
 struct ApplicationContext
 {

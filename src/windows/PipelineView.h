@@ -3,7 +3,7 @@
 
 #include <imgui.h>
 
-#include "wrappers\ModuleWrapper.h"
+#include "modules\ModuleWrapper.h"
 
 /*
 Displays a view of all Modules in the application's pipeline. For each module

@@ -6,7 +6,7 @@
 #include <imgui.h>
 
 #include "modules\ModuleHandle.h"
-#include "wrappers\ModuleWrapper.h"
+#include "modules\ModuleWrapper.h"
 
 /*
 Handle for PerlinGen module.

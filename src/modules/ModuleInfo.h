@@ -3,7 +3,7 @@
 
 #include <MapBuilderCore.h>
 
-#include "wrappers\ModuleWrapper.h"
+#include "modules\ModuleWrapper.h"
 
 /*
 This structure contains information about Modules, and a virtual create

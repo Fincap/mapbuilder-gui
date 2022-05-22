@@ -10,11 +10,8 @@
 #include "util\APIHelpers.h"
 #include "util\ModuleInfoHelpers.h"
 #include "modules\ModuleInfo.h"
-#include "wrappers\ModuleWrapper.h"
-#include "modules\CanvasHandle.h"
-#include "modules\PerlinGenHandle.h"
-#include "modules\ElevationSlopeHandle.h"
-#include "modules\BMP8OutHandle.h"
+#include "modules\ModuleWrapper.h"
+#include "modules\handles\AllHandles.h"
 
 /*
 This window provides a view of all modules that can be added to the Pipeline
