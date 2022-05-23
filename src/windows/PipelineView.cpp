@@ -13,7 +13,7 @@ void PipelineView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
   for (int i = 0; i < MBC_NUM_STAGES; i++)
   {
     if (modules.getAll(i).size() == 0) continue;   // Don't show stages with no modules.
-    if (ImGui::CollapsingHeader(pipelineStageToStringExtended((mbc::PipelineStage)i)))
+    if (ImGui::CollapsingHeader(pipelineStageToStringExtended((mbc::PipelineStage)i), ImGuiTreeNodeFlags_DefaultOpen))
     {
       for (auto mod = modules.getAll(i).begin(); mod != modules.getAll(i).end();)
       {
