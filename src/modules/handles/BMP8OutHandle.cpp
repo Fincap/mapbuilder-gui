@@ -14,7 +14,7 @@ bool BMP8OutHandle::showHandle(int pipelineNum)
   {
     // Processing params
     ImGui::SetNextItemWidth(-125);
-    ImGui::InputText("Filepath", &*outputFilepath_, _MAX_PATH);
+    ImGui::InputText("Filepath", &*outputFilepath_, MBC_MAX_PATH);
     ImGui::SameLine();
     if (ImGui::Button("Browse..."))
     {
