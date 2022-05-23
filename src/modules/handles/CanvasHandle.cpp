@@ -8,17 +8,21 @@ CanvasHandle::CanvasHandle(ModuleWrapper::Ptr wrapper) :
 
 bool CanvasHandle::showHandle(int pipelineNum)
 {
-  auto label = std::to_string(pipelineNum) + " Canvas";
+  auto label = std::to_string(pipelineNum) + ": Canvas";
 
   ImGui::PushID(pipelineNum);
   // This particular module isn't attached to alive flag because it should not
   // be deletable.
-  if (ImGui::CollapsingHeader(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+  ImGui::AlignTextToFramePadding();
+  if (ImGui::TreeNodeEx(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
   {
     // Processing params
     ImGui::DragInt("Width", &width_, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
     ImGui::DragInt("Height", &height_, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
+
+    ImGui::TreePop();
   }
+  ImGui::Spacing();
   ImGui::PopID();
 
   return alive_;

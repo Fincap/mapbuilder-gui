@@ -10,11 +10,14 @@ PerlinGenHandle::PerlinGenHandle(ModuleWrapper::Ptr wrapper) :
 
 bool PerlinGenHandle::showHandle(int pipelineNum)
 {
-  auto label = std::to_string(pipelineNum) + " Perlin Noise";
+  auto label = std::to_string(pipelineNum) + ": Perlin Noise";
 
   ImGui::PushID(pipelineNum);
-  if (ImGui::CollapsingHeader(label.c_str(), &alive_, ImGuiTreeNodeFlags_DefaultOpen))
+  ImGui::AlignTextToFramePadding();
+  if (ImGui::TreeNodeEx(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_AllowItemOverlap))
   {
+    showDeleteButton();
+
     // Processing params - Seed
     ImGui::InputScalar("Seed", ImGuiDataType_U32, &seed_, NULL, NULL, "%u");
     ImGui::SameLine();
@@ -30,7 +33,14 @@ bool PerlinGenHandle::showHandle(int pipelineNum)
     ImGui::SliderScalar("Frequency", ImGuiDataType_Double, &frequency_, &frequencyMin, &frequencyMax, "%.1f");
     ImGui::SliderScalar("Octaves", ImGuiDataType_U32, &octaves_, &octavesMin, &octavesMax, "%d");
 
+    ImGui::TreePop();
   }
+  else
+  {
+    showDeleteButton();
+  }
+
+  ImGui::Spacing();
   ImGui::PopID();
 
   return alive_;
