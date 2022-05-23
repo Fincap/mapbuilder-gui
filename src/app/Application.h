@@ -23,10 +23,6 @@ private:
   bool showDemoWindow_ = false;
 #endif
 
-  // Placeholder popup
-  bool showPlaceholderModal_ = false;
-  void showPlaceholderModal();
-
   void showMainMenuBar();           // Main menu bar
 
   ApplicationContext* context_;     // Application context
