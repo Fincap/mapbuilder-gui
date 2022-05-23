@@ -8,10 +8,15 @@
 struct ApplicationContext
 {
   mbc::Pipeline pipeline;
-  std::vector<ModuleWrapper::Ptr>* modules;
+  mbc::StageMap<ModuleWrapper::Ptr> modules;
 
-  ApplicationContext()
+  /*ApplicationContext()
   {
-    modules = new std::vector<ModuleWrapper::Ptr>[MBC_NUM_STAGES];
+    modules = new mbc::StageMap<ModuleWrapper::Ptr>();
   }
+
+  ~ApplicationContext()
+  {
+    delete modules;
+  }*/
 };

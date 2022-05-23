@@ -40,12 +40,9 @@ void Application::showWindow()
   ImGui::Begin("Execute");
   if (ImGui::Button("Run pipeline"))
   {
-    for (int stage = 0; stage < MBC_NUM_STAGES; stage++)
+    for (auto& mod : context_->modules.getAll())
     {
-      for (auto& mod : context_->modules[stage])
-      {
-        context_->pipeline.addModule(mod->module);
-      }
+      context_->pipeline.addModule(mod->module);
     }
     context_->pipeline.execute();
     context_->pipeline.clear(); // Clear Pipeline on completion

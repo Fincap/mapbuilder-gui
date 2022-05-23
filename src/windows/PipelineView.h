@@ -15,7 +15,7 @@ implementation of this UI is offloaded to each derived class of ModuleHandle.
 class PipelineView
 {
 public:
-  void showWindow(std::vector<ModuleWrapper::Ptr>*);
+  void showWindow(mbc::StageMap<ModuleWrapper::Ptr>&);
 
 };
 

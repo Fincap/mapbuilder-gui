@@ -8,13 +8,13 @@ AddModuleView::AddModuleView()
 }
 
 
-void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>* modules)
+void AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 {
   // Add default Canvas if one doesn't exist already
   // TODO this is more of a bandaid solution than a properly elegant one.
-  if (modules[0].size() == 0)
+  if (modules.getAll(0).size() == 0)
   {
-    modules[0].push_back(loadedModules_[0].at(0)->create());
+    modules.add(loadedModules_[0].at(0)->create(), 0);
   }
 
   ImGui::Begin("Add Module");
@@ -32,7 +32,7 @@ void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>* modules)
         if (i == 0 && info == loadedModules_[0].begin())
           info++;
 
-        displayModuleInfo(modules[i], *info, count);
+        displayModuleInfo(modules.getAll(i), *info, count);
       }
     }
   }

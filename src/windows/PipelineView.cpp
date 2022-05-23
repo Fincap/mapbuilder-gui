@@ -1,6 +1,6 @@
 #include "PipelineView.h"
 
-void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>* modules)
+void PipelineView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 {
   // TODO Add drag-and-drop reordering of Modules (ideally within their
   // respective Pipeline Stages).
@@ -9,18 +9,19 @@ void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>* modules)
 
   ImGui::PushItemWidth(100);
   int count = 1;
+
   for (int i = 0; i < MBC_NUM_STAGES; i++)
   {
-    if (modules[i].size() == 0) continue;   // Don't show stages with no modules.
+    if (modules.getAll(i).size() == 0) continue;   // Don't show stages with no modules.
     if (ImGui::CollapsingHeader(pipelineStageToStringExtended((mbc::PipelineStage)i)))
     {
-      for (auto mod = modules[i].begin(); mod != modules[i].end();)
+      for (auto mod = modules.getAll(i).begin(); mod != modules.getAll(i).end();)
       {
         if ((*mod)->handle->showHandle(count))
           mod++;
         else
           // Delete module if handle returns false (no longer alive).
-          mod = modules[i].erase(mod);
+          mod = modules.getAll(i).erase(mod);
 
         count++;
       }
