@@ -30,7 +30,10 @@ private:
   void loadCoreModules();     // Load Modules defined by mapbuilder-core.
   void loadAddonModules();    // Load Modules defined by user add-on.
 
-  std::vector<ModuleInfo*> loadedModules_;   // Loaded-in Modules.
+  void displayModuleInfo(std::vector<ModuleWrapper::Ptr>&, ModuleInfo*, int&);
+
+  // Loaded-in Modules grouped by Pipeline stage.
+  std::vector<ModuleInfo*>* loadedModules_;
 
 };
 
