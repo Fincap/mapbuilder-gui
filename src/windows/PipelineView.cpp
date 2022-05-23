@@ -11,6 +11,7 @@ void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>* modules)
   int count = 1;
   for (int i = 0; i < MBC_NUM_STAGES; i++)
   {
+    if (modules[i].size() == 0) continue;   // Don't show stages with no modules.
     if (ImGui::CollapsingHeader(pipelineStageToStringExtended((mbc::PipelineStage)i)))
     {
       for (auto mod = modules[i].begin(); mod != modules[i].end();)
