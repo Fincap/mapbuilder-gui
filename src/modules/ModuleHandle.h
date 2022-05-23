@@ -26,11 +26,11 @@ protected:
 inline void ModuleHandle::showDeleteButton()
 {
   // Delete button
-  ImGui::SameLine(ImGui::GetWindowContentRegionWidth() - 10);
+  ImGui::SameLine(ImGui::GetWindowContentRegionWidth() - 12);
   ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(7.0f, 0.6f, 0.6f));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7.0f, 0.7f, 0.7f));
   ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(7.0f, 0.8f, 0.8f));
-  if (ImGui::Button("X"))
+  if (ImGui::Button("X", ImVec2(23, 23)))
     alive_ = false;
   ImGui::PopStyleColor(3);
 }
