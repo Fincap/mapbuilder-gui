@@ -11,15 +11,18 @@ void PipelineView::showWindow(std::vector<ModuleWrapper::Ptr>* modules)
   int count = 1;
   for (int i = 0; i < MBC_NUM_STAGES; i++)
   {
-    for (auto mod = modules[i].begin(); mod != modules[i].end();)
+    if (ImGui::CollapsingHeader(pipelineStageToStringExtended((mbc::PipelineStage)i)))
     {
-      if ((*mod)->handle->showHandle(count))
-        mod++;
-      else
-        // Delete module if handle returns false (no longer alive).
-        mod = modules[i].erase(mod);
+      for (auto mod = modules[i].begin(); mod != modules[i].end();)
+      {
+        if ((*mod)->handle->showHandle(count))
+          mod++;
+        else
+          // Delete module if handle returns false (no longer alive).
+          mod = modules[i].erase(mod);
 
-      count++;
+        count++;
+      }
     }
   }
   ImGui::PopItemWidth();

@@ -4,6 +4,7 @@
 #include <imgui.h>
 
 #include "modules\ModuleWrapper.h"
+#include "util\APIHelpers.h"
 
 /*
 Displays a view of all Modules in the application's pipeline. For each module
