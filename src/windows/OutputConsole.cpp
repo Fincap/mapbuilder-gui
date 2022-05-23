@@ -2,6 +2,9 @@
 
 OutputConsole::OutputConsole()
 {
+  // Turn off sync with standard IO
+  std::ios_base::sync_with_stdio(false);
+
   // Initialise captured string streams
   std::function<void(std::string, int)> boundFunc = [this](const std::string& value, int level)
   {
