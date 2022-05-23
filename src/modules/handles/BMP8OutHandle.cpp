@@ -30,7 +30,7 @@ bool BMP8OutHandle::showHandle(int pipelineNum)
     showDeleteButton();
   }
 
-  ImGui::Spacing();
+  ImGui::Separator();
   ImGui::PopID();
 
   return alive_;

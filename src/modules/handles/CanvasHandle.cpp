@@ -22,7 +22,7 @@ bool CanvasHandle::showHandle(int pipelineNum)
 
     ImGui::TreePop();
   }
-  ImGui::Spacing();
+  ImGui::Separator();
   ImGui::PopID();
 
   return alive_;
