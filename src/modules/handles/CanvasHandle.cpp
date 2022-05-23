@@ -11,7 +11,9 @@ bool CanvasHandle::showHandle(int pipelineNum)
   auto label = std::to_string(pipelineNum) + " Canvas";
 
   ImGui::PushID(pipelineNum);
-  if (ImGui::CollapsingHeader(label.c_str(), &alive_, ImGuiTreeNodeFlags_DefaultOpen))
+  // This particular module isn't attached to alive flag because it should not
+  // be deletable.
+  if (ImGui::CollapsingHeader(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
   {
     // Processing params
     ImGui::DragInt("Width", &width_, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);

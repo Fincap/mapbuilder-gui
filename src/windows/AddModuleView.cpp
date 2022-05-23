@@ -9,6 +9,13 @@ AddModuleView::AddModuleView()
 
 void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
 {
+  // Add default Canvas if one doesn't exist already
+  // TODO this is more of a bandaid solution than a properly elegant one.
+  if (modules.size() == 0)
+  {
+    modules.push_back(loadedModules_[0]->create());
+  }
+
   ImGui::Begin("Add Module");
 
   int count = 0;
@@ -16,23 +23,23 @@ void AddModuleView::showWindow(std::vector<ModuleWrapper::Ptr>& modules)
   // TODO properly sort this out by Pipeline Stage.
   if (ImGui::CollapsingHeader("1 Generation", ImGuiTreeNodeFlags_DefaultOpen))
   {
-    for (auto& info : loadedModules_)
+    for (auto info = ++loadedModules_.begin(); info != loadedModules_.end(); info++)
     {
       ImGui::PushID(count);
       ImGui::BeginGroup();
 
-      ImGui::Text(info->name);
+      ImGui::Text((*info)->name);
 
       ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 50);
       if (ImGui::Button("Add"))
-        modules.push_back(info->create());
+        modules.push_back((*info)->create());
 
       ImGui::EndGroup();
       if (ImGui::IsItemHovered())
       {
         ImGui::BeginTooltip();
         ImGui::PushTextWrapPos(ImGui::GetFontSize() * 25.0f);
-        ImGui::TextUnformatted(info->description);
+        ImGui::TextUnformatted((*info)->description);
         ImGui::PopTextWrapPos();
         ImGui::EndTooltip();
       }
