@@ -32,9 +32,9 @@ Overloaded to take in char filename.
 */
 inline void getSaveFilepathWIN32(char* filename, LPCWSTR filter = L"Any File (*.*)\0*.*\0", LPCWSTR defExt = nullptr)
 {
-	wchar_t wideFilepath[_MAX_PATH];
+	wchar_t wideFilepath[_MAX_PATH] = {0};
 	getSaveFilepathWIN32(wideFilepath, filter, defExt);
-	if (wideFilepath != L"")  // Only update if new filepath was chosen
+	if (wideFilepath[0] != L'\0')  // Only update if new filepath was chosen
 		sprintf_s(filename, _MAX_PATH, "%ws", wideFilepath); // Copy wchar to char
 }
 
