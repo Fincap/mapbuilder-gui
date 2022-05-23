@@ -96,7 +96,6 @@ void AddModuleView::loadAddonModules()
 void AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, ModuleInfo* info, int& count)
 {
   ImGui::PushID(count);
-  ImGui::Separator();
   ImGui::BeginGroup();
 
   ImGui::Text(info->name);
@@ -114,6 +113,8 @@ void AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, 
     ImGui::PopTextWrapPos();
     ImGui::EndTooltip();
   }
+
+  ImGui::Separator();
 
   ImGui::PopID();
   count++;
