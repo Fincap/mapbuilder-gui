@@ -18,7 +18,7 @@ public:
 
   /* Display Handle view on screen.
   int parameter is Module's order in the pipeline.*/
-  bool showHandle(int);
+  bool showHandle(int, bool&) override;
 
 private:
   // Processing parameters

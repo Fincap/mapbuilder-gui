@@ -6,8 +6,12 @@ CanvasHandle::CanvasHandle(ModuleWrapper::Ptr wrapper) :
 {}
 
 
-bool CanvasHandle::showHandle(int pipelineNum)
+bool CanvasHandle::showHandle(int pipelineNum, bool& changed)
 {
+  // Set previous values
+  auto oldWidth = width_;
+  auto oldHeight = height_;
+
   auto label = std::to_string(pipelineNum) + ": Canvas";
 
   ImGui::PushID(pipelineNum);
@@ -24,6 +28,13 @@ bool CanvasHandle::showHandle(int pipelineNum)
   }
   ImGui::Separator();
   ImGui::PopID();
+
+  // Update changed flag if any values have changes
+  changed = (
+    width_ != oldWidth ||
+    height_ != oldHeight ||
+    !alive_
+  );
 
   return alive_;
 }

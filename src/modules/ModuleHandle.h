@@ -11,10 +11,12 @@ class ModuleHandle
 public:
   using Ptr = std::shared_ptr<ModuleHandle>;
 
-  // Return Handle's alive status. If false, then Wrapper should delete.
-  // int parameter is a number representing the order which the related
-  // Module is executed in the Pipeline.
-  virtual bool showHandle(int) = 0;  // Must be implemented by derived.
+  /* Return Handle's alive status. If false, then Wrapper should delete.
+  int parameter is a number representing the order which the related
+  Module is executed in the Pipeline.
+  bool ref parameter should be set to true if there are any changes to the
+  handle's paramteres, or if the handle is to be deleted. */
+  virtual bool showHandle(int, bool&) = 0;  // Must be implemented by derived.
 
 protected:
   bool alive_;    // Determines if the Module should be deleted.

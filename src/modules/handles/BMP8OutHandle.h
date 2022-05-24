@@ -13,7 +13,7 @@ class BMP8OutHandle : public ModuleHandle
 public:
   BMP8OutHandle(ModuleWrapper::Ptr);
 
-  bool showHandle(int);
+  bool showHandle(int, bool&) override;
 
 private:
   char*& outputFilepath_;

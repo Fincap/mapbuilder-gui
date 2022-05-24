@@ -5,8 +5,11 @@ BMP8OutHandle::BMP8OutHandle(ModuleWrapper::Ptr wrapper) :
 {}
 
 
-bool BMP8OutHandle::showHandle(int pipelineNum)
+bool BMP8OutHandle::showHandle(int pipelineNum, bool& changed)
 {
+  // Set previous values
+  auto oldFilepath = std::string(outputFilepath_);
+
   auto label = std::to_string(pipelineNum) + ": 8-bit .bmp file";
 
   ImGui::PushID(pipelineNum);
@@ -32,6 +35,11 @@ bool BMP8OutHandle::showHandle(int pipelineNum)
 
   ImGui::Separator();
   ImGui::PopID();
+  // Update changed flag if any values have changes
+  changed = (
+    std::string(outputFilepath_) != oldFilepath ||
+    !alive_
+  );
 
   return alive_;
 }

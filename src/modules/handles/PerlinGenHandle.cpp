@@ -8,8 +8,13 @@ PerlinGenHandle::PerlinGenHandle(ModuleWrapper::Ptr wrapper) :
 {}
 
 
-bool PerlinGenHandle::showHandle(int pipelineNum)
+bool PerlinGenHandle::showHandle(int pipelineNum, bool& changed)
 {
+  // Set previous values
+  auto oldSeed = seed_;
+  auto oldFrequency = frequency_;
+  auto oldOctaves = octaves_;
+
   auto label = std::to_string(pipelineNum) + ": Perlin Noise";
 
   ImGui::PushID(pipelineNum);
@@ -42,6 +47,14 @@ bool PerlinGenHandle::showHandle(int pipelineNum)
 
   ImGui::Separator();
   ImGui::PopID();
+
+  // Update changed flag if any values have changes
+  changed = (
+    seed_ != oldSeed ||
+    frequency_ != oldFrequency ||
+    octaves_ != oldOctaves ||
+    !alive_
+  );
 
   return alive_;
 }

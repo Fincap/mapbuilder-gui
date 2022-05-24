@@ -12,7 +12,7 @@ class ElevationSlopeHandle : public ModuleHandle
 public:
   ElevationSlopeHandle(ModuleWrapper::Ptr);
 
-  bool showHandle(int);
+  bool showHandle(int, bool&) override;
 
 private:
   double& slope_;

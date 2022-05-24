@@ -5,8 +5,11 @@ ElevationSlopeHandle::ElevationSlopeHandle(ModuleWrapper::Ptr wrapper) :
 {}
 
 
-bool ElevationSlopeHandle::showHandle(int pipelineNum)
+bool ElevationSlopeHandle::showHandle(int pipelineNum, bool& changed)
 {
+  // Set previous values
+  auto oldSlope = slope_;
+
   auto label = std::to_string(pipelineNum) + ": Elevation Slope";
 
   ImGui::PushID(pipelineNum);
@@ -30,6 +33,12 @@ bool ElevationSlopeHandle::showHandle(int pipelineNum)
 
   ImGui::Separator();
   ImGui::PopID();
+
+  // Update changed flag if any values have changes
+  changed = (
+    slope_ != oldSlope ||
+    !alive_
+  );
 
   return alive_;
 }

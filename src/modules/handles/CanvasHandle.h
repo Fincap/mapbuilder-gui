@@ -12,7 +12,7 @@ class CanvasHandle : public ModuleHandle
 public:
   CanvasHandle(ModuleWrapper::Ptr);
 
-  bool showHandle(int);
+  bool showHandle(int, bool&) override;
 
 private:
   int& width_;
