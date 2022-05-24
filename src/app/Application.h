@@ -19,11 +19,6 @@ public:
   void showWindow();      // Show all active Application views.
 
 private:
-#ifdef _DEBUG
-  // Demo window toggle if compiled in Debug mode.
-  bool showDemoWindow_ = false;
-#endif
-
   ApplicationContext* context_;     // Application context
 
   // Windows

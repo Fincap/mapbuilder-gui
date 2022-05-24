@@ -37,8 +37,8 @@ void Application::showWindow()
   }
 
 #ifdef _DEBUG // Show demo window in Debug build
-  if (showDemoWindow_)
-    ImGui::ShowDemoWindow(&showDemoWindow_);
+  if (context_->showDemoWindow_)
+    ImGui::ShowDemoWindow(&context_->showDemoWindow_);
 #endif
 
   ImGui::End();
@@ -67,7 +67,7 @@ void Application::showMainMenuBar()
     {
       if (ImGui::MenuItem("About MapBuilder")) { std::cout << "About!" << std::endl; }
 #ifdef _DEBUG // Only show menu option in Debug build
-      if (ImGui::MenuItem("Show ImGui Demo")) { showDemoWindow_ = true; }
+      if (ImGui::MenuItem("Show ImGui Demo")) { context_->showDemoWindow_ = true; }
 #endif
       ImGui::EndMenu();
     }
