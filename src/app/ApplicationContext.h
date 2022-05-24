@@ -11,4 +11,5 @@ struct ApplicationContext
   mbc::Pipeline pipeline;
   mbc::StageMap<ModuleWrapper::Ptr> modules;
   std::filesystem::path filename;
+  bool isUnsaved = false;
 };
