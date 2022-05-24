@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <filesystem>
 
 #include <MapBuilderCore.h>
 
@@ -9,14 +10,5 @@ struct ApplicationContext
 {
   mbc::Pipeline pipeline;
   mbc::StageMap<ModuleWrapper::Ptr> modules;
-
-  /*ApplicationContext()
-  {
-    modules = new mbc::StageMap<ModuleWrapper::Ptr>();
-  }
-
-  ~ApplicationContext()
-  {
-    delete modules;
-  }*/
+  std::filesystem::path filename;
 };
