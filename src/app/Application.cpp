@@ -18,13 +18,15 @@ void Application::showWindow()
   ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 4);
   ImGui::PushStyleVar(ImGuiStyleVar_TabRounding, 4);
 
-  showMainMenuBar();
+  // Show windows
+  mainMenuBar_.showWindow(*context_);
 
   context_->isUnsaved |= pipelineView_.showWindow(context_->modules);
   context_->isUnsaved |= addModuleView_.showWindow(context_->modules);
 
   outputConsole_.showWindow();
 
+  // Show execute window
   ImGui::Begin("Execute");
   if (ImGui::Button("Run pipeline"))
   {
@@ -48,31 +50,6 @@ void Application::showWindow()
 
   refreshWindowTitle();
 
-}
-
-
-void Application::showMainMenuBar()
-{
-  if (ImGui::BeginMainMenuBar())
-  {
-    if (ImGui::BeginMenu("File"))
-    {
-      if (ImGui::MenuItem("New", "CTRL+N")) { std::cout << "New!" << std::endl; }
-      if (ImGui::MenuItem("Open", "CTRL+O")) { std::clog << "Open!" << std::endl; }
-      if (ImGui::MenuItem("Save", "CTRL+S")) { std::cerr << "Save!" << std::endl; context_->isUnsaved = false; }
-      if (ImGui::MenuItem("Save As", "F12")) { std::cout << "Save As!" << std::endl; }
-      ImGui::EndMenu();
-    }
-    if (ImGui::BeginMenu("Help"))
-    {
-      if (ImGui::MenuItem("About MapBuilder")) { std::cout << "About!" << std::endl; }
-#ifdef _DEBUG // Only show menu option in Debug build
-      if (ImGui::MenuItem("Show ImGui Demo")) { context_->showDemoWindow_ = true; }
-#endif
-      ImGui::EndMenu();
-    }
-    ImGui::EndMainMenuBar();
-  }
 }
 
 

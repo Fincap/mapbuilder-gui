@@ -108,6 +108,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClCompile Include="src\modules\handles\PerlinGenHandle.cpp" />
     <ClCompile Include="src\windows\AddModuleView.cpp" />
     <ClCompile Include="src\modules\handles\CanvasHandle.cpp" />
+    <ClCompile Include="src\windows\MainMenuBar.cpp" />
     <ClCompile Include="src\windows\PipelineView.cpp" />
     <ClCompile Include="src\app\Application.cpp" />
     <ClCompile Include="lib\imgui\imgui.cpp" />
@@ -132,6 +133,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClInclude Include="src\util\ModuleInfoHelpers.h" />
     <ClInclude Include="src\windows\AddModuleView.h" />
     <ClInclude Include="src\modules\handles\CanvasHandle.h" />
+    <ClInclude Include="src\windows\MainMenuBar.h" />
     <ClInclude Include="src\windows\PipelineView.h" />
     <ClInclude Include="src\modules\ModuleHandle.h" />
     <ClInclude Include="src\modules\ModuleWrapper.h" />
