@@ -20,8 +20,9 @@ void Application::showWindow()
 
   showMainMenuBar();
 
-  pipelineView_.showWindow(context_->modules);
-  addModuleView_.showWindow(context_->modules);
+  context_->isUnsaved |= pipelineView_.showWindow(context_->modules);
+  context_->isUnsaved |= addModuleView_.showWindow(context_->modules);
+
   outputConsole_.showWindow();
 
   ImGui::Begin("Execute");
@@ -58,7 +59,7 @@ void Application::showMainMenuBar()
     {
       if (ImGui::MenuItem("New", "CTRL+N")) { std::cout << "New!" << std::endl; }
       if (ImGui::MenuItem("Open", "CTRL+O")) { std::clog << "Open!" << std::endl; }
-      if (ImGui::MenuItem("Save", "CTRL+S")) { std::cerr << "Save!" << std::endl; }
+      if (ImGui::MenuItem("Save", "CTRL+S")) { std::cerr << "Save!" << std::endl; context_->isUnsaved = false; }
       if (ImGui::MenuItem("Save As", "F12")) { std::cout << "Save As!" << std::endl; }
       ImGui::EndMenu();
     }
