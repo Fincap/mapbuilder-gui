@@ -3,6 +3,7 @@
 #include <imgui.h>
 
 #include <MapBuilderCore.h>
+#include <Windows.h>
 
 #include "windows\AddModuleView.h"
 #include "windows\OutputConsole.h"
@@ -23,13 +24,15 @@ private:
   bool showDemoWindow_ = false;
 #endif
 
-  void showMainMenuBar();           // Main menu bar
-
   ApplicationContext* context_;     // Application context
 
   // Windows
   PipelineView pipelineView_;       // Pipeline view
   AddModuleView addModuleView_;     // Add Module view
   OutputConsole outputConsole_;     // Output console
+
+  void showMainMenuBar();           // Main menu bar
+
+  void refreshWindowTitle();        // Show open file in window title
 };
 

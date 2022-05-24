@@ -45,6 +45,8 @@ void Application::showWindow()
   // Pop style vars
   ImGui::PopStyleVar(2);
 
+  refreshWindowTitle();
+
 }
 
 
@@ -70,4 +72,19 @@ void Application::showMainMenuBar()
     }
     ImGui::EndMainMenuBar();
   }
+}
+
+
+void Application::refreshWindowTitle()
+{
+  std::wstring windowText = L"MapBuilder - ";
+  if (context_->filename.empty())
+    windowText += L"Untitled";
+  else
+    windowText += context_->filename.c_str();
+
+  if (context_->isUnsaved)
+    windowText += L"*";
+
+  SetWindowText(GetActiveWindow(), windowText.c_str());
 }
