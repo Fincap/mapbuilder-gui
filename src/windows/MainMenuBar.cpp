@@ -6,10 +6,12 @@ void MainMenuBar::showWindow(ApplicationContext& context)
   {
     if (ImGui::BeginMenu("File"))
     {
-      if (ImGui::MenuItem("New", "CTRL+N")) { std::cout << "New!" << std::endl; }
-      if (ImGui::MenuItem("Open", "CTRL+O")) { std::clog << "Open!" << std::endl; }
-      if (ImGui::MenuItem("Save", "CTRL+S")) { std::cerr << "Save!" << std::endl; context.isUnsaved = false; }
-      if (ImGui::MenuItem("Save As", "F12")) { std::cout << "Save As!" << std::endl; }
+      if (ImGui::MenuItem("New", "CTRL+N")) contextNew(context);
+      if (ImGui::MenuItem("Open", "CTRL+O")) contextOpen(context);
+      if (ImGui::MenuItem("Save", "CTRL+S")) contextSave(context);
+      if (ImGui::MenuItem("Save As", "F12")) contextSaveAs(context);
+      ImGui::Separator();
+      if (ImGui::MenuItem("Exit", "ALT+F4")) exitApplication();
       ImGui::EndMenu();
     }
     if (ImGui::BeginMenu("Help"))
@@ -51,5 +53,5 @@ void MainMenuBar::contextSaveAs(ApplicationContext& context)
 
 void MainMenuBar::exitApplication()
 {
-
+  exit(0);
 }
