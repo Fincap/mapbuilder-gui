@@ -8,7 +8,7 @@ AddModuleView::AddModuleView()
 }
 
 
-void AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
+bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 {
   // Add default Canvas if one doesn't exist already
   // TODO this is more of a bandaid solution than a properly elegant one.
@@ -19,6 +19,7 @@ void AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 
   ImGui::Begin("Add Module");
 
+  bool newModule = false;
   int count = 0;
 
   for (int i = 0; i < MBC_NUM_STAGES; i++)
@@ -32,12 +33,15 @@ void AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
         if (i == 0 && info == loadedModules_[0].begin())
           info++;
 
-        displayModuleInfo(modules.getAll(i), *info, count);
+        if (displayModuleInfo(modules.getAll(i), *info, count))
+          newModule = true;
       }
     }
   }
 
   ImGui::End();
+
+  return newModule;
 }
 
 
@@ -93,8 +97,10 @@ void AddModuleView::loadAddonModules()
 }
 
 
-void AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, ModuleInfo* info, int& count)
+bool AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, ModuleInfo* info, int& count)
 {
+  bool newModule = false;
+
   ImGui::PushID(count);
   ImGui::BeginGroup();
 
@@ -102,7 +108,10 @@ void AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, 
 
   ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 50);
   if (ImGui::Button("Add"))
+  {
     modules.push_back(info->create());
+    newModule = true;
+  }
 
   ImGui::EndGroup();
   if (ImGui::IsItemHovered())
@@ -118,4 +127,6 @@ void AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, 
 
   ImGui::PopID();
   count++;
+
+  return newModule;
 }

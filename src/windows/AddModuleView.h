@@ -24,13 +24,13 @@ class AddModuleView
 public:
   AddModuleView();
 
-  void showWindow(mbc::StageMap<ModuleWrapper::Ptr>&);   // Display ImGui window.
+  bool showWindow(mbc::StageMap<ModuleWrapper::Ptr>&);   // Display ImGui window.
 
 private:
   void loadCoreModules();     // Load Modules defined by mapbuilder-core.
   void loadAddonModules();    // Load Modules defined by user add-on.
 
-  void displayModuleInfo(std::vector<ModuleWrapper::Ptr>&, ModuleInfo*, int&);
+  bool displayModuleInfo(std::vector<ModuleWrapper::Ptr>&, ModuleInfo*, int&);
 
   // Loaded-in Modules grouped by Pipeline stage.
   std::vector<ModuleInfo*>* loadedModules_;
