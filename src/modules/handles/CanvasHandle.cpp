@@ -44,3 +44,10 @@ bool CanvasHandle::showHandle(int pipelineNum, bool& changed)
 
   return alive_;
 }
+
+
+void CanvasHandle::pointAt(mbc::Module::Ptr mod)
+{
+  width_ = std::ref(std::dynamic_pointer_cast<mbc::Canvas>(mod)->width);
+  height_ = std::ref(std::dynamic_pointer_cast<mbc::Canvas>(mod)->height);
+}

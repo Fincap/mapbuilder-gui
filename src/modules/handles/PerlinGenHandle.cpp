@@ -66,3 +66,11 @@ bool PerlinGenHandle::showHandle(int pipelineNum, bool& changed)
 
   return alive_;
 }
+
+
+void PerlinGenHandle::pointAt(mbc::Module::Ptr mod)
+{
+  seed_ = std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(mod)->seed);
+  frequency_ = std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(mod)->frequency);
+  octaves_ = std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(mod)->octaves);
+}

@@ -47,3 +47,9 @@ bool ElevationSlopeHandle::showHandle(int pipelineNum, bool& changed)
 
   return alive_;
 }
+
+
+void ElevationSlopeHandle::pointAt(mbc::Module::Ptr mod)
+{
+  slope_ = std::ref(std::dynamic_pointer_cast<mbc::ElevationSlope>(mod)->slope);
+}

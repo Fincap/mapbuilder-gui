@@ -3,6 +3,7 @@
 
 #include <cereal\types\memory.hpp>
 #include <cereal\types\polymorphic.hpp>
+#include <MapBuilderCore.h>
 
 /*
 Interface for displaying module handles. Derived classes are responsible for
@@ -20,6 +21,8 @@ public:
   bool ref parameter should be set to true if there are any changes to the
   handle's paramteres, or if the handle is to be deleted. */
   virtual bool showHandle(int, bool&) = 0;  // Must be implemented by derived.
+
+  virtual void pointAt(mbc::Module::Ptr) = 0;
 
 protected:
   bool alive_;    // Determines if the Module should be deleted.
