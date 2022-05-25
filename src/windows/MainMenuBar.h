@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 
 #include <imgui.h>
 #include <MapBuilderCore.h>
@@ -16,10 +17,27 @@ public:
   void showWindow(ApplicationContext&);
 
 private:
-  void contextNew(ApplicationContext&);
-  void contextOpen(ApplicationContext&);
+  /* Triggered by menu items. */
+  void menuNew(ApplicationContext&);
+  void menuOpen(ApplicationContext&);
+  void menuSave(ApplicationContext&);
+  void menuSaveAs(ApplicationContext&);
+  void exitApplication(ApplicationContext&);
+
+  /* Controls the prompt asking the user if they want to save any changes.
+  Executes the callback if there are no unsaved changes. */
+  void unsavedChangesPrompt(ApplicationContext&);
+
+  /* Save/load files */
   void contextSave(ApplicationContext&);
-  void contextSaveAs(ApplicationContext&);
-  void exitApplication();
+  void contextOpen(ApplicationContext&);
+
+  /* Callback that will be executed if Save/Don't Save selected on unsaved
+  changes prompt, or if there are no unsaved changes. */
+  std::function<void(ApplicationContext&)> callback_;
+
+  /* This is necessary as displaying of modal popups in menubar currently
+  does not work. */
+  bool displayUnsavedPrompt = false;
 
 };
