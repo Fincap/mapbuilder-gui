@@ -20,6 +20,17 @@ public:
   int parameter is Module's order in the pipeline.*/
   bool showHandle(int, bool&) override;
 
+  template <typename Archive>
+  void serialize(Archive& archive) {};
+
+  template <class Archive>
+  static void load_and_construct(Archive& ar, cereal::construct<PerlinGenHandle>& construct)
+  {
+    ModuleWrapper::Ptr x;
+    ar(x);
+    construct(x);
+  }
+
 private:
   // Processing parameters
   uint32_t& seed_;
@@ -32,3 +43,5 @@ private:
 };
 
 
+CEREAL_REGISTER_TYPE(PerlinGenHandle);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(ModuleHandle, PerlinGenHandle);

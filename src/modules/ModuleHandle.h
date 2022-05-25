@@ -1,6 +1,9 @@
 #pragma once
 #include <memory>
 
+#include <cereal\types\memory.hpp>
+#include <cereal\types\polymorphic.hpp>
+
 /*
 Interface for displaying module handles. Derived classes are responsible for
 constructing and maintaining the references to the wrapped module, as well as

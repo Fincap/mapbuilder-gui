@@ -15,8 +15,21 @@ public:
 
   bool showHandle(int, bool&) override;
 
+  template <typename Archive>
+  void serialize(Archive& archive) {};
+
+  template <class Archive>
+  static void load_and_construct(Archive& ar, cereal::construct<BMP8OutHandle>& construct)
+  {
+    ModuleWrapper::Ptr x;
+    ar(x);
+    construct(x);
+  }
+
 private:
   char*& outputFilepath_;
 };
 
 
+CEREAL_REGISTER_TYPE(BMP8OutHandle);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(ModuleHandle, BMP8OutHandle);
