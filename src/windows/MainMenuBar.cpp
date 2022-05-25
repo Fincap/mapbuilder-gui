@@ -126,6 +126,7 @@ void MainMenuBar::contextOpen(ApplicationContext& context)
 {
   std::filesystem::path openedFile;
   char* buffer = new char[MBC_MAX_PATH];
+  memset(buffer, 0, MBC_MAX_PATH);
   getOpenFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0");
   openedFile = buffer;
 
@@ -162,6 +163,7 @@ void MainMenuBar::contextSave(ApplicationContext& context, bool newPath)
   {
     // Open Save file dialog
     char* buffer = new char[MBC_MAX_PATH];
+    memset(buffer, 0, MBC_MAX_PATH);
     getSaveFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0", L"mbc");
     context.filename = buffer;
   }
