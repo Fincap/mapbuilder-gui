@@ -25,7 +25,7 @@ public:
   virtual void pointAt(mbc::Module::Ptr) = 0;
 
 protected:
-  bool alive_;    // Determines if the Module should be deleted.
+  bool alive_ = true;    // Determines if the Module should be deleted.
 
   virtual void showDeleteButton() final;    // Displays a delete button for the tree node.
 };
