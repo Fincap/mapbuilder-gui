@@ -129,6 +129,7 @@ void MainMenuBar::contextOpen(ApplicationContext& context)
   memset(buffer, 0, MBC_MAX_PATH);
   getOpenFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0");
   openedFile = buffer;
+  delete[] buffer;
 
   if (openedFile.empty())   // If no filepath was selected, exit early
   {
@@ -166,6 +167,7 @@ void MainMenuBar::contextSave(ApplicationContext& context, bool newPath)
     memset(buffer, 0, MBC_MAX_PATH);
     getSaveFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0", L"mbc");
     context.filename = buffer;
+    delete[] buffer;
   }
 
   // Serialize 

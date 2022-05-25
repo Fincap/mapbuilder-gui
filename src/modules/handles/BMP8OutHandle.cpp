@@ -2,9 +2,7 @@
 
 BMP8OutHandle::BMP8OutHandle() :
   outputFilepath_(std::ref(std::make_shared<mbc::BMP8Out>()->outputFilepath))
-{
-  outputFilepath_ = new char[MBC_MAX_PATH];
-}
+{}
 
 
 BMP8OutHandle::BMP8OutHandle(mbc::Module::Ptr mod) :

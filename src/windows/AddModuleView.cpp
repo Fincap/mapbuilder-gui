@@ -8,6 +8,12 @@ AddModuleView::AddModuleView()
 }
 
 
+AddModuleView::~AddModuleView()
+{
+  delete[] loadedModules_;
+}
+
+
 bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 {
   // Add default Canvas if one doesn't exist already

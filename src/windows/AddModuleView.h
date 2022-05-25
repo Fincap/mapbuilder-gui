@@ -23,6 +23,7 @@ class AddModuleView
 {
 public:
   AddModuleView();
+  ~AddModuleView();
 
   bool showWindow(mbc::StageMap<ModuleWrapper::Ptr>&);   // Display ImGui window.
 
