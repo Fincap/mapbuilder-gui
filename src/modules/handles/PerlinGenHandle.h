@@ -14,6 +14,7 @@ Handle for PerlinGen module.
 class PerlinGenHandle : public ModuleHandle
 {
 public:
+  PerlinGenHandle();
   PerlinGenHandle(ModuleWrapper::Ptr);
 
   /* Display Handle view on screen.
@@ -22,14 +23,6 @@ public:
 
   template <typename Archive>
   void serialize(Archive& archive) {};
-
-  template <class Archive>
-  static void load_and_construct(Archive& ar, cereal::construct<PerlinGenHandle>& construct)
-  {
-    ModuleWrapper::Ptr x;
-    ar(x);
-    construct(x);
-  }
 
 private:
   // Processing parameters

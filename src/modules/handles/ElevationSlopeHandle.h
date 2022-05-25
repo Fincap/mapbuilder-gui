@@ -10,20 +10,13 @@
 class ElevationSlopeHandle : public ModuleHandle
 {
 public:
+  ElevationSlopeHandle();
   ElevationSlopeHandle(ModuleWrapper::Ptr);
 
   bool showHandle(int, bool&) override;
 
   template <typename Archive>
   void serialize(Archive& archive) {};
-
-  template <class Archive>
-  static void load_and_construct(Archive& ar, cereal::construct<ElevationSlopeHandle>& construct)
-  {
-    ModuleWrapper::Ptr x;
-    ar(x);
-    construct(x);
-  }
 
 private:
   double& slope_;

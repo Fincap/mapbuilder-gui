@@ -11,20 +11,13 @@
 class BMP8OutHandle : public ModuleHandle
 {
 public:
+  BMP8OutHandle();
   BMP8OutHandle(ModuleWrapper::Ptr);
 
   bool showHandle(int, bool&) override;
 
   template <typename Archive>
   void serialize(Archive& archive) {};
-
-  template <class Archive>
-  static void load_and_construct(Archive& ar, cereal::construct<BMP8OutHandle>& construct)
-  {
-    ModuleWrapper::Ptr x;
-    ar(x);
-    construct(x);
-  }
 
 private:
   char*& outputFilepath_;

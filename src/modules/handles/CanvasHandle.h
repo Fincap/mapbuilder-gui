@@ -10,20 +10,13 @@
 class CanvasHandle : public ModuleHandle
 {
 public:
+  CanvasHandle();
   CanvasHandle(ModuleWrapper::Ptr);
 
   bool showHandle(int, bool&) override;
 
   template <typename Archive>
   void serialize(Archive& archive) {};
-
-  template <class Archive>
-  static void load_and_construct( Archive & ar, cereal::construct<CanvasHandle> & construct )
-  {
-    ModuleWrapper::Ptr x;
-    ar( x );
-    construct( x );
-  }
 
 private:
   int& width_;

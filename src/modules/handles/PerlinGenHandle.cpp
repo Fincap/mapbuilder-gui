@@ -1,5 +1,13 @@
 #include "PerlinGenHandle.h"
 
+PerlinGenHandle::PerlinGenHandle() :
+  seed_(std::ref(std::make_shared<mbc::PerlinGen>()->seed)),
+  frequency_(std::ref(std::make_shared<mbc::PerlinGen>()->frequency)),
+  octaves_(std::ref(std::make_shared<mbc::PerlinGen>()->octaves)),
+  seedDistribution_(1, UINT32_MAX)
+{}
+
+
 PerlinGenHandle::PerlinGenHandle(ModuleWrapper::Ptr wrapper) :
   seed_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(wrapper->module)->seed)),
   frequency_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(wrapper->module)->frequency)),

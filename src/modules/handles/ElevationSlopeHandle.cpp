@@ -1,5 +1,10 @@
 #include "ElevationSlopeHandle.h"
 
+ElevationSlopeHandle::ElevationSlopeHandle() :
+  slope_(std::ref(std::make_shared<mbc::ElevationSlope>()->slope))
+{}
+
+
 ElevationSlopeHandle::ElevationSlopeHandle(ModuleWrapper::Ptr wrapper) :
   slope_(std::ref(std::dynamic_pointer_cast<mbc::ElevationSlope>(wrapper->module)->slope))
 {}
