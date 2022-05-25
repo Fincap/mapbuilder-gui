@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 
+#include <cereal\cereal.hpp>
+#include <cereal\archives\xml.hpp>
+#include <cereal\types\memory.hpp>
 #include <MapBuilderCore.h>
 
 #include "modules\ModuleHandle.h"
@@ -17,4 +20,10 @@ struct ModuleWrapper
   ModuleHandle::Ptr handle;
 
   using Ptr = std::shared_ptr<ModuleWrapper>;
+
+  template <typename Archive>
+  void serialize(Archive& archive)
+  {
+    archive(module, handle);
+  }
 };
