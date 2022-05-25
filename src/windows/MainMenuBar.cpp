@@ -70,9 +70,12 @@ void MainMenuBar::showWindow(ApplicationContext& context)
 
 void MainMenuBar::menuNew(ApplicationContext& context)
 {
-  callback_ = [](ApplicationContext& context)
+  callback_ = [&](ApplicationContext& context)
   {
-    std::cout << "New!" << std::endl;
+    context.pipeline.clear();
+    context.modules.clear();
+    context.filename.clear();
+    context.isUnsaved = false;
   };
   unsavedChangesPrompt(context);
 }
@@ -86,19 +89,19 @@ void MainMenuBar::menuOpen(ApplicationContext& context)
 
 void MainMenuBar::menuSave(ApplicationContext& context)
 {
-
+  contextSave(context);
 }
 
 
 void MainMenuBar::menuSaveAs(ApplicationContext& context)
 {
-
+  contextSave(context, true);
 }
 
 
 void MainMenuBar::exitApplication(ApplicationContext& context)
 {
-  callback_ = [](ApplicationContext& context)
+  callback_ = [&](ApplicationContext& context)
   {
     exit(0);
   };
@@ -121,7 +124,29 @@ void MainMenuBar::contextOpen(ApplicationContext& context)
 }
 
 
-void MainMenuBar::contextSave(ApplicationContext& context)
+void MainMenuBar::contextSave(ApplicationContext& context, bool newPath)
 {
-  std::cout << "Save!" << std::endl;
+  if (newPath || context.filename.empty())
+  {
+    // Open Save file dialog
+    char* buffer = new char[MBC_MAX_PATH];
+    getSaveFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0", L"mbc");
+    context.filename = buffer;
+  }
+
+  // Serialize 
+  {
+    std::ofstream os(context.filename);
+    if (!os.is_open())
+    {
+      std::cerr << "Could not save to selected output file\n";
+      return;
+    }
+
+    cereal::XMLOutputArchive archive(os);
+    archive(context.modules);
+  }
+
+  // Clean up
+  context.isUnsaved = false;
 }

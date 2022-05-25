@@ -1,10 +1,14 @@
 #pragma once
 #include <functional>
+#include <filesystem>
+#include <fstream>
 
 #include <imgui.h>
+#include <cereal\archives\xml.hpp>
 #include <MapBuilderCore.h>
 
 #include "app\ApplicationContext.h"
+#include "util\FileDialogHelpers.h"
 
 /*
 This window displays the main menu bar across the top of the application, and
@@ -29,7 +33,7 @@ private:
   void unsavedChangesPrompt(ApplicationContext&);
 
   /* Save/load files */
-  void contextSave(ApplicationContext&);
+  void contextSave(ApplicationContext&, bool = false);
   void contextOpen(ApplicationContext&);
 
   /* Callback that will be executed if Save/Don't Save selected on unsaved
