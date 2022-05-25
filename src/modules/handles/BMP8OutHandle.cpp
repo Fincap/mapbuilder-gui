@@ -7,8 +7,8 @@ BMP8OutHandle::BMP8OutHandle() :
 }
 
 
-BMP8OutHandle::BMP8OutHandle(ModuleWrapper::Ptr wrapper) :
-  outputFilepath_(std::ref(std::dynamic_pointer_cast<mbc::BMP8Out>(wrapper->module)->outputFilepath))
+BMP8OutHandle::BMP8OutHandle(mbc::Module::Ptr mod) :
+  outputFilepath_(std::ref(std::dynamic_pointer_cast<mbc::BMP8Out>(mod)->outputFilepath))
 {}
 
 

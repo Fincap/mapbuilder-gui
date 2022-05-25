@@ -6,9 +6,9 @@ CanvasHandle::CanvasHandle() :
 {}
 
 
-CanvasHandle::CanvasHandle(ModuleWrapper::Ptr wrapper) :
-  width_(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(wrapper->module)->width)),
-  height_(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(wrapper->module)->height))
+CanvasHandle::CanvasHandle(mbc::Module::Ptr mod) :
+  width_(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(mod)->width)),
+  height_(std::ref(std::dynamic_pointer_cast<mbc::Canvas>(mod)->height))
 {}
 
 

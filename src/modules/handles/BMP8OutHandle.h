@@ -12,7 +12,7 @@ class BMP8OutHandle : public ModuleHandle
 {
 public:
   BMP8OutHandle();
-  BMP8OutHandle(ModuleWrapper::Ptr);
+  BMP8OutHandle(mbc::Module::Ptr);
 
   bool showHandle(int, bool&) override;
 

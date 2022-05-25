@@ -5,8 +5,8 @@ ElevationSlopeHandle::ElevationSlopeHandle() :
 {}
 
 
-ElevationSlopeHandle::ElevationSlopeHandle(ModuleWrapper::Ptr wrapper) :
-  slope_(std::ref(std::dynamic_pointer_cast<mbc::ElevationSlope>(wrapper->module)->slope))
+ElevationSlopeHandle::ElevationSlopeHandle(mbc::Module::Ptr mod) :
+  slope_(std::ref(std::dynamic_pointer_cast<mbc::ElevationSlope>(mod)->slope))
 {}
 
 

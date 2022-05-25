@@ -15,7 +15,7 @@ class PerlinGenHandle : public ModuleHandle
 {
 public:
   PerlinGenHandle();
-  PerlinGenHandle(ModuleWrapper::Ptr);
+  PerlinGenHandle(mbc::Module::Ptr);
 
   /* Display Handle view on screen.
   int parameter is Module's order in the pipeline.*/

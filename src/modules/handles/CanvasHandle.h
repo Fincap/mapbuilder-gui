@@ -11,7 +11,7 @@ class CanvasHandle : public ModuleHandle
 {
 public:
   CanvasHandle();
-  CanvasHandle(ModuleWrapper::Ptr);
+  CanvasHandle(mbc::Module::Ptr);
 
   bool showHandle(int, bool&) override;
 

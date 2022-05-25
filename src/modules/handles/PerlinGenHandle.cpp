@@ -8,10 +8,10 @@ PerlinGenHandle::PerlinGenHandle() :
 {}
 
 
-PerlinGenHandle::PerlinGenHandle(ModuleWrapper::Ptr wrapper) :
-  seed_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(wrapper->module)->seed)),
-  frequency_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(wrapper->module)->frequency)),
-  octaves_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(wrapper->module)->octaves)),
+PerlinGenHandle::PerlinGenHandle(mbc::Module::Ptr mod) :
+  seed_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(mod)->seed)),
+  frequency_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(mod)->frequency)),
+  octaves_(std::ref(std::dynamic_pointer_cast<mbc::PerlinGen>(mod)->octaves)),
   seedDistribution_(1, UINT32_MAX)
 {}
 

@@ -11,7 +11,7 @@ class ElevationSlopeHandle : public ModuleHandle
 {
 public:
   ElevationSlopeHandle();
-  ElevationSlopeHandle(ModuleWrapper::Ptr);
+  ElevationSlopeHandle(mbc::Module::Ptr);
 
   bool showHandle(int, bool&) override;
 

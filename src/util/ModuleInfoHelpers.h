@@ -24,7 +24,7 @@ struct ManualInfo : public ModuleInfo
   {
     auto wrapper = std::make_shared<ModuleWrapper>();
     wrapper->module = std::make_shared<M>();;
-    wrapper->handle = std::make_shared<H>(wrapper);
+    wrapper->handle = std::make_shared<H>(wrapper->module);
     std::clog << name << " module address: " << &wrapper->module << std::endl;
     std::clog << name << " handle address: " << &wrapper->handle << std::endl;
     std::clog << "Finished adding " << name << std::endl;
