@@ -83,7 +83,11 @@ void MainMenuBar::menuNew(ApplicationContext& context)
 
 void MainMenuBar::menuOpen(ApplicationContext& context)
 {
-
+  callback_ = [&](ApplicationContext& context)
+  {
+    contextOpen(context);
+  };
+  unsavedChangesPrompt(context);
 }
 
 
@@ -120,7 +124,35 @@ void MainMenuBar::unsavedChangesPrompt(ApplicationContext& context)
 
 void MainMenuBar::contextOpen(ApplicationContext& context)
 {
+  std::filesystem::path openedFile;
+  char* buffer = new char[MBC_MAX_PATH];
+  getOpenFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0");
+  openedFile = buffer;
 
+  if (openedFile.empty())   // If no filepath was selected, exit early
+  {
+    return;
+  }
+
+  // Deserialize
+  {
+    std::ifstream is(openedFile);
+
+    cereal::XMLInputArchive archive(is);
+    try {
+      archive(context.modules);
+    }
+    catch (cereal::Exception)
+    {
+      std::cerr << "Could not open selected file\n";
+      return;
+    }
+  }
+
+  // Clean up
+  context.filename = openedFile;
+  context.isUnsaved = false;
+  context.pipeline.clear();
 }
 
 
@@ -139,7 +171,7 @@ void MainMenuBar::contextSave(ApplicationContext& context, bool newPath)
     std::ofstream os(context.filename);
     if (!os.is_open())
     {
-      std::cerr << "Could not save to selected output file\n";
+      std::cerr << "Could not save to selected file\n";
       return;
     }
 
