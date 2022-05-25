@@ -58,3 +58,12 @@ inline void getOpenFilepathWIN32(wchar_t* filename, LPCWSTR filter = L"Any File 
 		wcscpy_s(filename, MBC_MAX_PATH, loadedFilepath);
 	}
 }
+
+// Overloaded to take in char filename
+inline void getOpenFilepathWIN32(char* filename, LPCWSTR filter = L"Any File (*.*)\0*.*\0")
+{
+	wchar_t wideFilepath[MBC_MAX_PATH] = { 0 };
+	getOpenFilepathWIN32(wideFilepath, filter);
+	if (wideFilepath[0] != L'\0')  // Only update if new filepath was chosen
+		sprintf_s(filename, MBC_MAX_PATH, "%ws", wideFilepath); // Copy wchar to char
+}
