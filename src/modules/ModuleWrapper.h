@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <typeindex>
 
 #include <cereal\cereal.hpp>
 #include <cereal\archives\xml.hpp>
@@ -22,8 +23,28 @@ struct ModuleWrapper
   using Ptr = std::shared_ptr<ModuleWrapper>;
 
   template <typename Archive>
-  void serialize(Archive& archive)
-  {
-    archive(module, handle);
-  }
+  void save(Archive& archive) const;
+
+  template <typename Archive>
+  void load(Archive& archive);
 };
+
+
+template <typename Archive>
+inline void ModuleWrapper::save(Archive& archive) const
+{
+  archive(module, handle);
+}
+
+
+template <typename Archive>
+inline void ModuleWrapper::load(Archive& archive)
+{
+  archive(module, handle);
+
+  auto type = std::type_index(typeid(module));
+  std::cout << type.name() << " " << type.hash_code() << std::endl;
+
+  handle->pointAt(module);
+
+}
