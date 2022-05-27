@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
+#include <memory>
 
-#include <MapBuilderCore.h>
+#include <core\PipelineStage.h>
 
 #include "modules\ModuleWrapper.h"
 
@@ -20,5 +21,8 @@ struct ModuleInfo
   // Returns a pointer to a new ModuleWrapper for the relevant Module. This
   // must be implemented by the derived class.
   virtual ModuleWrapper::Ptr create() = 0;
+
+  // Convenience typing
+  using Ptr = std::shared_ptr<ModuleInfo>;
 
 };
