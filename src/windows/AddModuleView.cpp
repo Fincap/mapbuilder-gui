@@ -2,7 +2,13 @@
 
 AddModuleView::AddModuleView()
 {
-  loadedModules_ = new std::vector<ModuleInfo*>[MBC_NUM_STAGES];
+  loadedModules_ = new std::vector<ModuleInfo::Ptr>[MBC_NUM_STAGES];
+
+  // Sort modules loaded by Provider instance into their respective stages.
+  for (const auto& mod : ModuleProvider::instance().getInfoAll())
+  {
+    loadedModules_[(int)mod->stage].push_back(mod);
+  }
 }
 
 
@@ -49,7 +55,7 @@ bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 }
 
 
-bool AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, ModuleInfo* info, int& count)
+bool AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, ModuleInfo::Ptr info, int& count)
 {
   bool newModule = false;
 

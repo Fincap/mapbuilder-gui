@@ -11,6 +11,7 @@
 #include "util\ModuleInfoHelpers.h"
 #include "modules\ModuleInfo.h"
 #include "modules\ModuleWrapper.h"
+#include "modules\ModuleProvider.h"
 #include "modules\handles\AllHandles.h"
 
 /*
@@ -28,10 +29,10 @@ public:
   bool showWindow(mbc::StageMap<ModuleWrapper::Ptr>&);   // Display ImGui window.
 
 private:
-  bool displayModuleInfo(std::vector<ModuleWrapper::Ptr>&, ModuleInfo*, int&);
+  bool displayModuleInfo(std::vector<ModuleWrapper::Ptr>&, ModuleInfo::Ptr, int&);
 
   // Loaded-in Modules grouped by Pipeline stage.
-  std::vector<ModuleInfo*>* loadedModules_;
+  std::vector<ModuleInfo::Ptr>* loadedModules_;
 
 };
 
