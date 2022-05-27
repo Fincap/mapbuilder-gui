@@ -127,6 +127,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClInclude Include="src\modules\handles\ElevationSlopeHandle.h" />
     <ClInclude Include="src\modules\ModuleInfo.h" />
     <ClInclude Include="src\modules\handles\PerlinGenHandle.h" />
+    <ClInclude Include="src\modules\ModuleProvider.h" />
     <ClInclude Include="src\util\APIHelpers.h" />
     <ClInclude Include="src\util\FileDialogHelpers.h" />
     <ClInclude Include="src\util\ImGuiHelpers.h" />
