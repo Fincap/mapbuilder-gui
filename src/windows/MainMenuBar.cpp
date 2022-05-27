@@ -125,11 +125,9 @@ void MainMenuBar::unsavedChangesPrompt(ApplicationContext& context)
 void MainMenuBar::contextOpen(ApplicationContext& context)
 {
   std::filesystem::path openedFile;
-  char* buffer = new char[MBC_MAX_PATH];
-  memset(buffer, 0, MBC_MAX_PATH);
+  char buffer[MBC_MAX_PATH] = {0};
   getOpenFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0");
   openedFile = buffer;
-  delete[] buffer;
 
   if (openedFile.empty())   // If no filepath was selected, exit early
   {
@@ -163,11 +161,9 @@ void MainMenuBar::contextSave(ApplicationContext& context, bool newPath)
   if (newPath || context.filename.empty())
   {
     // Open Save file dialog
-    char* buffer = new char[MBC_MAX_PATH];
-    memset(buffer, 0, MBC_MAX_PATH);
+    char buffer[MBC_MAX_PATH] = {0};
     getSaveFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0", L"mbc");
     context.filename = buffer;
-    delete[] buffer;
   }
 
   // Serialize 
