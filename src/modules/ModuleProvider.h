@@ -33,6 +33,6 @@ private:
   void loadCoreModules();     // Load Modules defined by mapbuilder-core.
   void loadAddonModules();    // Load Modules defined by user add-on.
 
-  std::map<std::string, ModuleInfo> loadedModules_;
+  std::map<std::string, ModuleInfo::Ptr> loadedModules_;
 
 };
