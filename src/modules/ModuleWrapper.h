@@ -42,9 +42,6 @@ inline void ModuleWrapper::load(Archive& archive)
 {
   archive(module, handle);
 
-  auto type = std::type_index(typeid(module));
-  std::cout << type.name() << " " << type.hash_code() << std::endl;
-
   handle->pointAt(module);
 
 }
