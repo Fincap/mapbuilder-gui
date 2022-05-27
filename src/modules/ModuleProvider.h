@@ -5,6 +5,8 @@
 
 #include "modules\ModuleInfo.h"
 #include "modules\ModuleHandle.h"
+#include "modules\handles\AllHandles.h"
+#include "util\ModuleInfoHelpers.h"
 
 class ModuleProvider
 {
@@ -22,7 +24,8 @@ public:
     return moduleProvider;
   }
 
-  ModuleHandle::Ptr getNewHandle(mbc::Module::Ptr);
+  /* Instantiate a new ModuleHandle to the given Module pointer. */
+  ModuleHandle::Ptr getNewHandle(const mbc::Module::Ptr&);
 
 private:
   ModuleProvider();   // Private constructor

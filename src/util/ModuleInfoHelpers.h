@@ -20,7 +20,7 @@ struct ManualInfo : public ModuleInfo
     stage = _stage;
   }
 
-  ModuleWrapper::Ptr create()
+  ModuleWrapper::Ptr createModule()
   {
     auto wrapper = std::make_shared<ModuleWrapper>();
     wrapper->module = std::make_shared<M>();;

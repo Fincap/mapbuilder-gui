@@ -3,8 +3,6 @@
 AddModuleView::AddModuleView()
 {
   loadedModules_ = new std::vector<ModuleInfo*>[MBC_NUM_STAGES];
-  loadCoreModules();
-  loadAddonModules();
 }
 
 
@@ -20,7 +18,7 @@ bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
   // TODO this is more of a bandaid solution than a properly elegant one.
   if (modules.getAll(0).size() == 0)
   {
-    modules.add(loadedModules_[0].at(0)->create(), 0);
+    modules.add(loadedModules_[0].at(0)->createModule(), 0);
   }
 
   ImGui::Begin("Add Module");
@@ -51,58 +49,6 @@ bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 }
 
 
-void AddModuleView::loadCoreModules()
-{
-  ////////////////
-  // GENERATION //
-  ////////////////
-  
-  // Canvas
-  loadedModules_[0].push_back(new ManualInfo<mbc::Canvas, CanvasHandle>("Canvas",
-    "Specifies the map's width and height and generates \
-a basic heightmap of the given dimensions where each height value is set to \
-the highest possible (255).\nNote that having more than one of these modules \
-may lead to undefined behaviour.",
-    mbc::PipelineStage::GENERATION
-  ));
-
-  // Perlin Noise
-  loadedModules_[0].push_back(new ManualInfo<mbc::PerlinGen, PerlinGenHandle>("Perlin Noise",
-    "TODO - complete description",
-    mbc::PipelineStage::GENERATION
-  ));
-
-
-  //////////////////
-  // MANIPULATION //
-  //////////////////
-
-  // Elevation slope
-  loadedModules_[1].push_back(new ManualInfo<mbc::ElevationSlope, ElevationSlopeHandle>("Elevation Slope",
-    "TODO - complete description",
-    mbc::PipelineStage::MANIPULATION
-  ));
-
-
-  ////////////
-  // OUTPUT //
-  ////////////
-
-  // BMP8Out
-  loadedModules_[3].push_back(new ManualInfo<mbc::BMP8Out, BMP8OutHandle>("8-bit .bmp file",
-    "TODO - complete description",
-    mbc::PipelineStage::OUTPUT
-  ));
-
-}
-
-
-void AddModuleView::loadAddonModules()
-{
-  // Stub
-}
-
-
 bool AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, ModuleInfo* info, int& count)
 {
   bool newModule = false;
@@ -115,7 +61,7 @@ bool AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, 
   ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 50);
   if (ImGui::Button("Add"))
   {
-    modules.push_back(info->create());
+    modules.push_back(info->createModule());
     newModule = true;
   }
 

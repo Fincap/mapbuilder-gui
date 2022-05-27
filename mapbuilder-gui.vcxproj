@@ -106,6 +106,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClCompile Include="src\modules\handles\BMP8OutHandle.cpp" />
     <ClCompile Include="src\modules\handles\ElevationSlopeHandle.cpp" />
     <ClCompile Include="src\modules\handles\PerlinGenHandle.cpp" />
+    <ClCompile Include="src\modules\ModuleProvider.cpp" />
     <ClCompile Include="src\windows\AddModuleView.cpp" />
     <ClCompile Include="src\modules\handles\CanvasHandle.cpp" />
     <ClCompile Include="src\windows\MainMenuBar.cpp" />
