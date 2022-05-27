@@ -4,7 +4,7 @@
 #include <vector>
 #include <exception>
 
-#include <core\Module.h>
+#include <MapBuilderCore\Module.h>
 
 #include "modules\ModuleInfo.h"
 #include "modules\ModuleHandle.h"

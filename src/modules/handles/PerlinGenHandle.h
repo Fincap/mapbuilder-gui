@@ -4,7 +4,7 @@
 #include <random>
 
 #include <imgui.h>
-#include <modules\PerlinGen.h>
+#include <MapBuilderCore\modules\PerlinGen.h>
 
 #include "modules\ModuleHandle.h"
 

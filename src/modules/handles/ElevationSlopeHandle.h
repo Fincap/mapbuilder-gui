@@ -3,7 +3,7 @@
 #include <string>
 
 #include <imgui.h>
-#include <modules\ElevationSlope.h>
+#include <MapBuilderCore\modules\ElevationSlope.h>
 
 #include "modules\ModuleHandle.h"
 

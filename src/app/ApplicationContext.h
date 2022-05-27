@@ -2,7 +2,7 @@
 #include <vector>
 #include <filesystem>
 
-#include <core\Pipeline.h>
+#include <MapBuilderCore\Pipeline.h>
 
 #include "modules\ModuleWrapper.h"
 

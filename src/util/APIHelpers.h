@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core\PipelineStage.h>
+#include <MapBuilderCore\PipelineStage.h>
 
 inline const char* pipelineStageToString(mbc::PipelineStage stage)
 {

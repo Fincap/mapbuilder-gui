@@ -3,7 +3,7 @@
 #include <string>
 
 #include <imgui.h>
-#include <modules\Canvas.h>
+#include <MapBuilderCore\modules\Canvas.h>
 
 #include "modules\ModuleHandle.h"
 

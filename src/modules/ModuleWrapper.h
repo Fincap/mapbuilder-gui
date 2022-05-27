@@ -6,7 +6,7 @@
 #include <cereal\cereal.hpp>
 #include <cereal\archives\xml.hpp>
 #include <cereal\types\memory.hpp>
-#include <core\Module.h>
+#include <MapBuilderCore\Module.h>
 
 #include "modules\ModuleHandle.h"
 

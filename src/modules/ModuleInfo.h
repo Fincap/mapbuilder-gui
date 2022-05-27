@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 
-#include <core\PipelineStage.h>
+#include <MapBuilderCore\PipelineStage.h>
 
 #include "modules\ModuleWrapper.h"
 

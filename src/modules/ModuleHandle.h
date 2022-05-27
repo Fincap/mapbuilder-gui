@@ -4,7 +4,7 @@
 #include <imgui.h>
 #include <cereal\types\memory.hpp>
 #include <cereal\types\polymorphic.hpp>
-#include <core\Module.h>
+#include <MapBuilderCore\Module.h>
 
 /*
 Interface for displaying module handles. Derived classes are responsible for

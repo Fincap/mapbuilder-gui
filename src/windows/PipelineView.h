@@ -2,7 +2,7 @@
 #include <vector>
 
 #include <imgui.h>
-#include <core\StageMap.h>
+#include <MapBuilderCore\StageMap.h>
 
 #include "modules\ModuleWrapper.h"
 #include "util\APIHelpers.h"

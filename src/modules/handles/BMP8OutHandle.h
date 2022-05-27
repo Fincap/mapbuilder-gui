@@ -3,7 +3,7 @@
 #include <string>
 
 #include <imgui.h>
-#include <modules\BMP8Out.h>
+#include <MapBuilderCore\modules\BMP8Out.h>
 
 #include "modules\ModuleHandle.h"
 #include "util\FileDialogHelpers.h"
