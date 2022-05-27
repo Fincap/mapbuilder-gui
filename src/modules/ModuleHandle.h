@@ -1,6 +1,8 @@
 #pragma once
 #include <memory>
 
+#include <imgui.h>
+
 #include <cereal\types\memory.hpp>
 #include <cereal\types\polymorphic.hpp>
 #include <MapBuilderCore.h>
