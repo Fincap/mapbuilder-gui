@@ -8,9 +8,43 @@ ModuleProvider::ModuleProvider()
 }
 
 
+ModuleInfo::Ptr ModuleProvider::getInfo(const std::string& moduleName)
+{
+  try {
+    return loadedModules_.at(moduleName);
+  }
+  catch (const std::out_of_range& e)
+  {
+    std::cerr << e.what() << std::endl;
+    return std::shared_ptr<ModuleInfo>(nullptr);
+  }
+}
+
+
+std::vector<ModuleInfo::Ptr> ModuleProvider::getInfoAll()
+{
+  std::vector<ModuleInfo::Ptr> infoAll;
+
+  for (const auto& [name, info] : loadedModules_)
+  {
+    infoAll.push_back(info);
+  }
+
+  return infoAll;
+
+}
+
+
 ModuleHandle::Ptr ModuleProvider::getNewHandle(const mbc::Module::Ptr& mod)
 {
-    return ModuleHandle::Ptr();
+  try {
+    return loadedModules_.at(mod->getModuleName())->getHandleToModule(mod);
+  }
+  catch (const std::out_of_range& e)
+  {
+    std::cerr << e.what() << std::endl;
+    return std::shared_ptr<ModuleHandle>(nullptr);
+  }
 }
 
 
