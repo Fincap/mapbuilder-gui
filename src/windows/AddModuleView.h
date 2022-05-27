@@ -5,7 +5,8 @@
 #include <string>
 
 #include <imgui.h>
-#include <MapBuilderCore.h>
+#include <core\StageMap.h>
+#include <core\PipelineStage.h>
 
 #include "util\APIHelpers.h"
 #include "util\ModuleInfoHelpers.h"

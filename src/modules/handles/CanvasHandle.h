@@ -3,9 +3,9 @@
 #include <string>
 
 #include <imgui.h>
+#include <modules\Canvas.h>
 
 #include "modules\ModuleHandle.h"
-#include "modules\ModuleWrapper.h"
 
 class CanvasHandle : public ModuleHandle
 {

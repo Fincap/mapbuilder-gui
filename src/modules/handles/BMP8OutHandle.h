@@ -3,9 +3,9 @@
 #include <string>
 
 #include <imgui.h>
+#include <modules\BMP8Out.h>
 
 #include "modules\ModuleHandle.h"
-#include "modules\ModuleWrapper.h"
 #include "util\FileDialogHelpers.h"
 
 class BMP8OutHandle : public ModuleHandle

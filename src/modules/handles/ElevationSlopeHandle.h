@@ -3,9 +3,9 @@
 #include <string>
 
 #include <imgui.h>
+#include <modules\ElevationSlope.h>
 
 #include "modules\ModuleHandle.h"
-#include "modules\ModuleWrapper.h"
 
 class ElevationSlopeHandle : public ModuleHandle
 {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Windows.h>
-#include <MapBuilderCore.h>
 
 /*
 Opens a Win32 'Save File' dialog.

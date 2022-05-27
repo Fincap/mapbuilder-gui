@@ -5,7 +5,6 @@
 
 #include <imgui.h>
 #include <cereal\archives\xml.hpp>
-#include <MapBuilderCore.h>
 
 #include "app\ApplicationContext.h"
 #include "util\FileDialogHelpers.h"

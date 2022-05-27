@@ -4,9 +4,9 @@
 #include <random>
 
 #include <imgui.h>
+#include <modules\PerlinGen.h>
 
 #include "modules\ModuleHandle.h"
-#include "modules\ModuleWrapper.h"
 
 /*
 Handle for PerlinGen module.

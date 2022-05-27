@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
 #include <typeindex>
+#include <memory>
 
 #include <cereal\cereal.hpp>
 #include <cereal\archives\xml.hpp>
 #include <cereal\types\memory.hpp>
-#include <MapBuilderCore.h>
+#include <core\Module.h>
 
 #include "modules\ModuleHandle.h"
 

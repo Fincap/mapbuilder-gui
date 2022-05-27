@@ -2,7 +2,6 @@
 
 #include <imgui.h>
 
-#include <MapBuilderCore.h>
 #include <Windows.h>
 
 #include "windows\AddModuleView.h"

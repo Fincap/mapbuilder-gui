@@ -1,8 +1,12 @@
 #pragma once
+#include <memory>
 
-#include <MapBuilderCore.h>
+#include <core\Module.h>
+#include <core\PipelineStage.h>
 
 #include "modules\ModuleInfo.h"
+#include "modules\ModuleWrapper.h"
+#include "modules\ModuleHandle.h"
 
 
 /*
