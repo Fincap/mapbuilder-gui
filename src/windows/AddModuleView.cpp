@@ -24,7 +24,10 @@ bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
   // TODO this is more of a bandaid solution than a properly elegant one.
   if (modules.getAll(0).size() == 0)
   {
-    modules.add(loadedModules_[0].at(0)->createModule(), 0);
+    auto defaultCanvas = std::make_shared<ModuleWrapper>();
+    defaultCanvas->module = loadedModules_[0].at(0)->createModule();
+    defaultCanvas->handle = ModuleProvider::instance().getNewHandle(defaultCanvas->module);
+    modules.add(defaultCanvas, 0);
   }
 
   ImGui::Begin("Add Module");
@@ -67,7 +70,10 @@ bool AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, 
   ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 50);
   if (ImGui::Button("Add"))
   {
-    modules.push_back(info->createModule());
+    auto mod = std::make_shared<ModuleWrapper>();
+    mod->module = info->createModule();
+    mod->handle = ModuleProvider::instance().getNewHandle(mod->module);
+    modules.push_back(mod);
     newModule = true;
   }
 

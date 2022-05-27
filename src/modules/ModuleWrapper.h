@@ -9,6 +9,7 @@
 #include <MapBuilderCore\Module.h>
 
 #include "modules\ModuleHandle.h"
+#include "modules\ModuleProvider.h"
 
 /*
 ModuleWrapper is a handle to a Module and ModuleHandle window, both of
@@ -34,15 +35,15 @@ struct ModuleWrapper
 template <typename Archive>
 inline void ModuleWrapper::save(Archive& archive) const
 {
-  archive(module, handle);
+  archive(module);
 }
 
 
 template <typename Archive>
 inline void ModuleWrapper::load(Archive& archive)
 {
-  archive(module, handle);
+  archive(module);
 
-  handle->pointAt(module);
+  handle = ModuleProvider::instance().getNewHandle(module);
 
 }

@@ -5,7 +5,6 @@
 #include <MapBuilderCore\PipelineStage.h>
 
 #include "modules\ModuleInfo.h"
-#include "modules\ModuleWrapper.h"
 #include "modules\ModuleHandle.h"
 
 
@@ -24,15 +23,9 @@ struct ManualInfo : public ModuleInfo
     stage = _stage;
   }
 
-  ModuleWrapper::Ptr createModule()
+  mbc::Module::Ptr createModule()
   {
-    auto wrapper = std::make_shared<ModuleWrapper>();
-    wrapper->module = std::make_shared<M>();;
-    wrapper->handle = std::make_shared<H>(wrapper->module);
-    std::clog << name << " module address: " << &wrapper->module << std::endl;
-    std::clog << name << " handle address: " << &wrapper->handle << std::endl;
-    std::clog << "Finished adding " << name << std::endl;
-    return wrapper;
+    return std::make_shared<M>();
   }
 
   ModuleHandle::Ptr getHandleToModule(mbc::Module::Ptr mod)

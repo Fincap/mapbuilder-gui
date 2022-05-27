@@ -3,8 +3,9 @@
 #include <memory>
 
 #include <MapBuilderCore\PipelineStage.h>
+#include <MapBuilderCore\Module.h>
 
-#include "modules\ModuleWrapper.h"
+#include "modules\ModuleHandle.h"
 
 /*
 This structure contains information about Modules, and a virtual create
@@ -20,7 +21,7 @@ struct ModuleInfo
 
   /* Returns a pointer to a new ModuleWrapper for the relevant Module. This
   must be implemented by the derived class. */
-  virtual ModuleWrapper::Ptr createModule() = 0;
+  virtual mbc::Module::Ptr createModule() = 0;
 
   /* Returns a pointer to a new ModuleHandle for the relevent module. This is
   useful for when a new ModueHandle needs to be instantiated separately to its
