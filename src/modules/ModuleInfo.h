@@ -18,9 +18,14 @@ struct ModuleInfo
   const char* description;        // Short description of module.
   mbc::PipelineStage stage;       // Module's PipelineStage.
 
-  // Returns a pointer to a new ModuleWrapper for the relevant Module. This
-  // must be implemented by the derived class.
-  virtual ModuleWrapper::Ptr create() = 0;
+  /* Returns a pointer to a new ModuleWrapper for the relevant Module. This
+  must be implemented by the derived class. */
+  virtual ModuleWrapper::Ptr createModule() = 0;
+
+  /* Returns a pointer to a new ModuleHandle for the relevent module. This is
+  useful for when a new ModueHandle needs to be instantiated separately to its
+  related Module. This must be implemented by the derived class. */
+  virtual ModuleHandle::Ptr getHandleToModule(mbc::Module::Ptr) = 0;
 
   // Convenience typing
   using Ptr = std::shared_ptr<ModuleInfo>;

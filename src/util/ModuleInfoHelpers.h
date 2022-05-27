@@ -30,4 +30,9 @@ struct ManualInfo : public ModuleInfo
     std::clog << "Finished adding " << name << std::endl;
     return wrapper;
   }
+
+  ModuleHandle::Ptr getHandleToModule(mbc::Module::Ptr mod)
+  {
+    return std::make_shared<H>(mod);
+  }
 };
