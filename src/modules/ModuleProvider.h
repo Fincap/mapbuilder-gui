@@ -44,6 +44,6 @@ private:
 
   /* Map of Module name (from the Module's class definition) to instance of
   ModuleInfo class.*/
-  std::map<std::string, ModuleInfo::Ptr> loadedModules_;
+  std::unordered_map<std::string, ModuleInfo::Ptr> loadedModules_;
 
 };
