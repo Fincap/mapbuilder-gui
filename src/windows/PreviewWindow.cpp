@@ -43,9 +43,9 @@ void PreviewWindow::showWindow(ApplicationContext& context)
     // Copy generation stage to preview pipeline
     for (auto& wrapper : contextPipeGenModules)
     {
-      // TODO: this is adding a refence, need to add a copy.
-      lastModules_.add(wrapper->module, 0);
-      previewPipeline_.addModule(wrapper->module);
+      auto modCopy = wrapper->module->clone();
+      lastModules_.add(modCopy, 0);
+      previewPipeline_.addModule(modCopy);
     }
 
     // Execute
@@ -57,8 +57,6 @@ void PreviewWindow::showWindow(ApplicationContext& context)
 
     // Clear pipeline
     previewPipeline_.clear();
-
-    std::cerr << "NEW HEIGHTMAP GENERATED" << std::endl;
   }
 
 
@@ -68,17 +66,19 @@ void PreviewWindow::showWindow(ApplicationContext& context)
   lastModules_.getAll(2).clear();
 
   // Copy manipulation stage modules across
-  for (auto& manipWrapper : context.modules.getAll(1))
+  for (auto& wrapper : context.modules.getAll(1))
   {
-    lastModules_.add(manipWrapper->module, 1);
-    previewPipeline_.addModule(manipWrapper->module);
+    auto modCopy = wrapper->module->clone();
+    lastModules_.add(modCopy, 1);
+    previewPipeline_.addModule(modCopy);
   }
 
   // Copy render stage modules across
-  for (auto& renderWrapper : context.modules.getAll(2))
+  for (auto& wrapper : context.modules.getAll(2))
   {
-    lastModules_.add(renderWrapper->module, 2);
-    previewPipeline_.addModule(renderWrapper->module);
+    auto modCopy = wrapper->module->clone();
+    lastModules_.add(modCopy, 2);
+    previewPipeline_.addModule(modCopy);
   }
 
   // Inject heightmap into pipeline
