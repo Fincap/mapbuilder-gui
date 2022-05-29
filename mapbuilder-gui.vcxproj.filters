@@ -131,5 +131,8 @@
     <ClInclude Include="src\modules\ModuleProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\ContextHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

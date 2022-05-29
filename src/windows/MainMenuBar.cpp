@@ -45,7 +45,7 @@ void MainMenuBar::showWindow(ApplicationContext& context)
     if (ImGui::Button("Save", ImVec2(120, 0)))
     {
       // Save context and then do callback.
-      contextSave(context);
+      saveContextIntoFile(context);
       callback_(context);
       ImGui::CloseCurrentPopup();
     }
@@ -85,7 +85,7 @@ void MainMenuBar::menuOpen(ApplicationContext& context)
 {
   callback_ = [&](ApplicationContext& context)
   {
-    contextOpen(context);
+    loadFileIntoContext(context);
   };
   unsavedChangesPrompt(context);
 }
@@ -93,13 +93,13 @@ void MainMenuBar::menuOpen(ApplicationContext& context)
 
 void MainMenuBar::menuSave(ApplicationContext& context)
 {
-  contextSave(context);
+  saveContextIntoFile(context);
 }
 
 
 void MainMenuBar::menuSaveAs(ApplicationContext& context)
 {
-  contextSave(context, true);
+  saveContextIntoFile(context, true);
 }
 
 
@@ -119,66 +119,4 @@ void MainMenuBar::unsavedChangesPrompt(ApplicationContext& context)
     displayUnsavedPrompt = true;
   else
     callback_(context);
-}
-
-
-void MainMenuBar::contextOpen(ApplicationContext& context)
-{
-  std::filesystem::path openedFile;
-  char buffer[MBC_MAX_PATH] = {0};
-  getOpenFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0");
-  openedFile = buffer;
-
-  if (openedFile.empty())   // If no filepath was selected, exit early
-  {
-    return;
-  }
-
-  // Deserialize
-  {
-    std::ifstream is(openedFile);
-
-    cereal::XMLInputArchive archive(is);
-    try {
-      archive(context.modules);
-    }
-    catch (cereal::Exception)
-    {
-      std::cerr << "Could not open selected file\n";
-      return;
-    }
-  }
-
-  // Clean up
-  context.filename = openedFile;
-  context.isUnsaved = false;
-  context.pipeline.clear();
-}
-
-
-void MainMenuBar::contextSave(ApplicationContext& context, bool newPath)
-{
-  if (newPath || context.filename.empty())
-  {
-    // Open Save file dialog
-    char buffer[MBC_MAX_PATH] = {0};
-    getSaveFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0", L"mbc");
-    context.filename = buffer;
-  }
-
-  // Serialize 
-  {
-    std::ofstream os(context.filename);
-    if (!os.is_open())
-    {
-      std::cerr << "Could not save to selected file\n";
-      return;
-    }
-
-    cereal::XMLOutputArchive archive(os);
-    archive(context.modules);
-  }
-
-  // Clean up
-  context.isUnsaved = false;
 }

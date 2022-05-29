@@ -4,10 +4,9 @@
 #include <fstream>
 
 #include <imgui.h>
-#include <cereal\archives\xml.hpp>
 
 #include "app\ApplicationContext.h"
-#include "util\FileDialogHelpers.h"
+#include "util\ContextHelpers.h"
 
 /*
 This window displays the main menu bar across the top of the application, and
@@ -30,10 +29,6 @@ private:
   /* Controls the prompt asking the user if they want to save any changes.
   Executes the callback if there are no unsaved changes. */
   void unsavedChangesPrompt(ApplicationContext&);
-
-  /* Save/load files */
-  void contextSave(ApplicationContext&, bool = false);
-  void contextOpen(ApplicationContext&);
 
   /* Callback that will be executed if Save/Don't Save selected on unsaved
   changes prompt, or if there are no unsaved changes. */
