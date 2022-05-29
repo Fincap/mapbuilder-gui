@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <typeindex>
+#include <exception>
 
 #include <imgui.h>
 #include <imgui_impl_dx11.h>
@@ -25,17 +26,16 @@ class PreviewWindow
 {
 public:
   PreviewWindow();
-  ~PreviewWindow();
 
-  void showWindow(ApplicationContext&);   // Display the Preview window.
+  void showWindow(ApplicationContext&);           // Display the Preview window.
 
 private:
-  void regeneratePreview(ApplicationContext&);  // Update the window's state.
+  void regeneratePreview(ApplicationContext&);    // Update the window's state.
 
   mbc::StageMap<mbc::Module::Ptr> lastModules_;   // Previous Modules state.
-  mbc::Pipeline previewPipeline_;     // Pipeline used to generate Previews.
-  mbc::Heightmap lastHeightmap_;      // Previous state of the Heightmap.
+  mbc::Pipeline previewPipeline_;                 // Pipeline used to generate Previews.
+  std::shared_ptr<mbc::Heightmap> lastHeightmap_; // Previous state of the Heightmap.
 
-  ID3D11ShaderResourceView* heightmapSrv_;
-
+  ID3D11ShaderResourceView* heightmapSrv_;        // Texture of heightmap.
+  std::shared_ptr<mbc::Heightmap> resHeightmap_;  // Resulting Heightmap from the Pipeline.
 };

@@ -5,12 +5,6 @@ PreviewWindow::PreviewWindow() :
 { }
 
 
-PreviewWindow::~PreviewWindow()
-{
-  delete heightmapSrv_;
-}
-
-
 void PreviewWindow::showWindow(ApplicationContext& context)
 {
   regeneratePreview(context);
@@ -20,8 +14,8 @@ void PreviewWindow::showWindow(ApplicationContext& context)
   if (heightmapSrv_ != nullptr)
   {
     ImGui::Text("pointer = %p", heightmapSrv_);
-    ImGui::Text("size = %d x %d", lastHeightmap_.width, lastHeightmap_.height);
-    ImGui::Image((void*)heightmapSrv_, ImVec2(lastHeightmap_.width, lastHeightmap_.height));
+    ImGui::Text("size = %d x %d", resHeightmap_->width, resHeightmap_->height);
+    ImGui::Image((void*)heightmapSrv_, ImVec2(resHeightmap_->width, resHeightmap_->height));
   }
 
   ImGui::End();
@@ -81,7 +75,7 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
 
     // Extract generated heightmap from Pipeline
     auto payloadPtr = previewPipeline_.getPayload(std::type_index(typeid(mbc::Heightmap)));
-    lastHeightmap_ = *std::dynamic_pointer_cast<mbc::Heightmap>(payloadPtr);
+    lastHeightmap_ = std::dynamic_pointer_cast<mbc::Heightmap>(payloadPtr);
 
     // Clear pipeline
     previewPipeline_.clear();
@@ -89,7 +83,7 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
 
 
   // 3. Add all the non-generation stage modules into the Pipeline and execute.
-  // Clear stages 2 and 3
+  lastModules_.getAll(0).clear();
   lastModules_.getAll(1).clear();
   lastModules_.getAll(2).clear();
 
@@ -110,13 +104,25 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
   }
 
   // Inject heightmap into pipeline
-  previewPipeline_.setPayload(std::make_shared<mbc::Heightmap>(lastHeightmap_));
+  previewPipeline_.setPayload(lastHeightmap_);
 
   // Execute
   previewPipeline_.execute();
 
 
   // 4. Draw generated payloads
-  util::loadHeightmapTexture(lastHeightmap_, &heightmapSrv_);
+  // Extract final heightmap from Pipeline.
+  try
+  {
+    auto payloadPtr = previewPipeline_.getPayload(std::type_index(typeid(mbc::Heightmap)));
+    resHeightmap_ = std::dynamic_pointer_cast<mbc::Heightmap>(payloadPtr);
+  }
+  catch (const std::out_of_range & e)
+  {
+    resHeightmap_ = lastHeightmap_;
+  }
+
+  // Load payloads into texture.
+  util::loadHeightmapTexture(*resHeightmap_, &heightmapSrv_);
 
 }
