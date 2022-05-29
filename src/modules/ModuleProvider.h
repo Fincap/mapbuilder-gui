@@ -9,7 +9,7 @@
 #include "modules\ModuleInfo.h"
 #include "modules\ModuleHandle.h"
 #include "modules\handles\AllHandles.h"
-#include "util\ModuleInfoHelpers.h"
+#include "util\ManualModuleInfo.h"
 
 class ModuleProvider
 {

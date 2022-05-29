@@ -5,8 +5,6 @@
 #include <MapBuilderCore\PipelineStage.h>
 
 #include "modules\ModuleInfo.h"
-#include "modules\ModuleHandle.h"
-
 
 /*
 Templated ModuleInfo struct used for manual registration of ModuleInfo.

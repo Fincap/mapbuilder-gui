@@ -9,7 +9,7 @@
 #include <MapBuilderCore\PipelineStage.h>
 
 #include "util\APIHelpers.h"
-#include "util\ModuleInfoHelpers.h"
+#include "util\ModuleHelpers.h"
 #include "modules\ModuleInfo.h"
 #include "modules\ModuleWrapper.h"
 #include "modules\ModuleProvider.h"

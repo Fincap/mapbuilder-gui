@@ -104,7 +104,7 @@
     <ClInclude Include="src\util\APIHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\ModuleInfoHelpers.h">
+    <ClInclude Include="src\util\ModuleHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\modules\handles\PerlinGenHandle.h">
@@ -132,6 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\util\ContextHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\ManualModuleInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
