@@ -12,11 +12,13 @@
 
 #include "app\Application.h"
 
+#include "util\D3DGlobals.h"
+
 // Data
-static ID3D11Device*            g_pd3dDevice = NULL;
-static ID3D11DeviceContext*     g_pd3dDeviceContext = NULL;
-static IDXGISwapChain*          g_pSwapChain = NULL;
-static ID3D11RenderTargetView*  g_mainRenderTargetView = NULL;
+ID3D11Device* g_pd3dDevice = NULL;
+ID3D11DeviceContext* g_pd3dDeviceContext = NULL;
+IDXGISwapChain* g_pSwapChain = NULL;
+ID3D11RenderTargetView* g_mainRenderTargetView = NULL;
 
 // Forward declarations of helper functions
 bool CreateDeviceD3D(HWND hwnd);

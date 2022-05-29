@@ -132,10 +132,12 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClInclude Include="src\modules\ModuleProvider.h" />
     <ClInclude Include="src\util\APIHelpers.h" />
     <ClInclude Include="src\util\ContextHelpers.h" />
+    <ClInclude Include="src\util\D3DGlobals.h" />
     <ClInclude Include="src\util\FileDialogHelpers.h" />
     <ClInclude Include="src\util\ImGuiHelpers.h" />
     <ClInclude Include="src\util\ManualModuleInfo.h" />
     <ClInclude Include="src\util\ModuleHelpers.h" />
+    <ClInclude Include="src\util\PreviewHelpers.h" />
     <ClInclude Include="src\windows\AddModuleView.h" />
     <ClInclude Include="src\modules\handles\CanvasHandle.h" />
     <ClInclude Include="src\windows\MainMenuBar.h" />

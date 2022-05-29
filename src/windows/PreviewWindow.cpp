@@ -1,12 +1,28 @@
 #include "PreviewWindow.h"
 
+PreviewWindow::PreviewWindow() :
+  heightmapSrv_(nullptr)
+{ }
+
+
+PreviewWindow::~PreviewWindow()
+{
+  delete heightmapSrv_;
+}
+
+
 void PreviewWindow::showWindow(ApplicationContext& context)
 {
   regeneratePreview(context);
 
   ImGui::Begin("Preview");
 
-
+  if (heightmapSrv_ != nullptr)
+  {
+    ImGui::Text("pointer = %p", heightmapSrv_);
+    ImGui::Text("size = %d x %d", lastHeightmap_.width, lastHeightmap_.height);
+    ImGui::Image((void*)heightmapSrv_, ImVec2(lastHeightmap_.width, lastHeightmap_.height));
+  }
 
   ImGui::End();
 }
@@ -101,6 +117,6 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
 
 
   // 4. Draw generated payloads
-
+  util::loadHeightmapTexture(lastHeightmap_, &heightmapSrv_);
 
 }

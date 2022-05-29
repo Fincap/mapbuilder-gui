@@ -3,6 +3,8 @@
 #include <typeindex>
 
 #include <imgui.h>
+#include <imgui_impl_dx11.h>
+#include <d3d11.h>
 #include <MapBuilderCore\Pipeline.h>
 #include <MapBuilderCore\PipelineStage.h>
 #include <MapBuilderCore\Payload.h>
@@ -10,6 +12,7 @@
 #include <MapBuilderCore\util\ModuleHelpers.h>
 
 #include "app\ApplicationContext.h"
+#include "util\PreviewHelpers.h"
 
 /*
 This window contains the various previews for each specific type of payloads,
@@ -21,6 +24,9 @@ will be executed and displayed to the preview windows.
 class PreviewWindow
 {
 public:
+  PreviewWindow();
+  ~PreviewWindow();
+
   void showWindow(ApplicationContext&);   // Display the Preview window.
 
 private:
@@ -29,5 +35,7 @@ private:
   mbc::StageMap<mbc::Module::Ptr> lastModules_;   // Previous Modules state.
   mbc::Pipeline previewPipeline_;     // Pipeline used to generate Previews.
   mbc::Heightmap lastHeightmap_;      // Previous state of the Heightmap.
+
+  ID3D11ShaderResourceView* heightmapSrv_;
 
 };
