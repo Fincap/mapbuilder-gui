@@ -14,7 +14,7 @@ namespace util
   inline bool loadHeightmapTexture(mbc::Heightmap& map, ID3D11ShaderResourceView** outSrv)
   {
     // Exit early if g_pd3dDevice not yet initialized.
-    if (g_pd3dDevice == NULL)
+    if (g_pd3dDevice == NULL || map.points == NULL)
       return false;
 
     // Load heightmap data into raw RGBA buffer
