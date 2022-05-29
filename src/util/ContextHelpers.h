@@ -49,6 +49,8 @@ inline void saveContextIntoFile(ApplicationContext& context, bool newPath = fals
     // Open Save file dialog
     char buffer[MBC_MAX_PATH] = { 0 };
     getSaveFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0", L"mbc");
+    if (buffer[0] == '\0')  // If "Cancel" in file dialog pressed, exit early.
+      return;
     context.filename = buffer;
   }
 
