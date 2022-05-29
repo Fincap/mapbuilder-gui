@@ -11,9 +11,9 @@ OutputConsole::OutputConsole()
     this->addToOutputs(value, level);
   };
 
-  coutStream_ = new ofunctionstream(boundFunc, 0);
-  clogStream_ = new ofunctionstream(boundFunc, 1);
-  cerrStream_ = new ofunctionstream(boundFunc, 2);
+  coutStream_ = new util::ofunctionstream(boundFunc, 0);
+  clogStream_ = new util::ofunctionstream(boundFunc, 1);
+  cerrStream_ = new util::ofunctionstream(boundFunc, 2);
 
   // Redirect stdout/stderr to string streams
   oldCout_ = std::cout.rdbuf(coutStream_->rdbuf());

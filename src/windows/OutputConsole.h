@@ -27,9 +27,9 @@ private:
   std::streambuf* oldCerr_;
 
   // Captured string streams
-  ofunctionstream* coutStream_;
-  ofunctionstream* clogStream_;
-  ofunctionstream* cerrStream_;
+  util::ofunctionstream* coutStream_;
+  util::ofunctionstream* clogStream_;
+  util::ofunctionstream* cerrStream_;
 
   // Internal string log
   std::vector<std::pair<std::string, int>> pastOutputs_;

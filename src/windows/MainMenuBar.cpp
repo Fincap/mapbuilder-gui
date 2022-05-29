@@ -45,7 +45,7 @@ void MainMenuBar::showWindow(ApplicationContext& context)
     if (ImGui::Button("Save", ImVec2(120, 0)))
     {
       // Save context and then do callback.
-      saveContextIntoFile(context);
+      util::saveContextIntoFile(context);
       callback_(context);
       ImGui::CloseCurrentPopup();
     }
@@ -85,7 +85,7 @@ void MainMenuBar::menuOpen(ApplicationContext& context)
 {
   callback_ = [&](ApplicationContext& context)
   {
-    loadFileIntoContext(context);
+    util::loadFileIntoContext(context);
   };
   unsavedChangesPrompt(context);
 }
@@ -93,13 +93,13 @@ void MainMenuBar::menuOpen(ApplicationContext& context)
 
 void MainMenuBar::menuSave(ApplicationContext& context)
 {
-  saveContextIntoFile(context);
+  util::saveContextIntoFile(context);
 }
 
 
 void MainMenuBar::menuSaveAs(ApplicationContext& context)
 {
-  saveContextIntoFile(context, true);
+  util::saveContextIntoFile(context, true);
 }
 
 

@@ -24,7 +24,7 @@ bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
   // TODO this is more of a bandaid solution than a properly elegant one.
   if (modules.getAll(0).size() == 0)
   {
-    auto defaultCanvas = wrapModuleInfo(loadedModules_[0].at(0));
+    auto defaultCanvas = util::wrapModuleInfo(loadedModules_[0].at(0));
     modules.add(defaultCanvas, 0);
   }
 
@@ -35,7 +35,7 @@ bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 
   for (int i = 0; i < MBC_NUM_STAGES; i++)
   {
-    if (ImGui::CollapsingHeader(pipelineStageToStringExtended((mbc::PipelineStage)i)))
+    if (ImGui::CollapsingHeader(util::pipelineStageToStringExtended((mbc::PipelineStage)i)))
     {
       for (auto info = loadedModules_[i].begin(); info != loadedModules_[i].end(); info++)
       {
@@ -68,7 +68,7 @@ bool AddModuleView::displayModuleInfo(std::vector<ModuleWrapper::Ptr>& modules, 
   ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 50);
   if (ImGui::Button("Add"))
   {
-    auto mod = wrapModuleInfo(info);
+    auto mod = util::wrapModuleInfo(info);
     modules.push_back(mod);
     newModule = true;
   }

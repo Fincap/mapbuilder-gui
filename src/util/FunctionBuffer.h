@@ -8,54 +8,57 @@
 #include <string>
 #include <memory>
 
-// Parameters are (message, message_level), where 0 = cout, 1 = clog, 2 = cerr
-using function_type = std::function<void(std::string, int)>;
-
-class functionbuf : public std::streambuf
+namespace util
 {
-public:
-  functionbuf(function_type const& function, int level)
-    : d_function(function),
-    d_level(level)
-  {
-    this->setp(this->d_buffer, this->d_buffer + sizeof(this->d_buffer) - 1);
-  }
+  // Parameters are (message, message_level), where 0 = cout, 1 = clog, 2 = cerr
+  using function_type = std::function<void(std::string, int)>;
 
-private:
-  using traits_type = std::streambuf::traits_type;
-  function_type d_function;
-  int d_level;
-  char d_buffer[1024];
-  
-  int overflow(int c)
+  class functionbuf : public std::streambuf
   {
-    if (!traits_type::eq_int_type(c, traits_type::eof()))
+  public:
+    functionbuf(function_type const& function, int level)
+      : d_function(function),
+      d_level(level)
     {
-      *this->pptr() = traits_type::to_char_type(c);
-      this->pbump(1);
+      this->setp(this->d_buffer, this->d_buffer + sizeof(this->d_buffer) - 1);
     }
-    return this->sync() ? traits_type::not_eof(c) : traits_type::eof();
-  }
 
-  int sync()
-  {
-    if (this->pbase() != this->pptr())
+  private:
+    using traits_type = std::streambuf::traits_type;
+    function_type d_function;
+    int d_level;
+    char d_buffer[1024];
+
+    int overflow(int c)
     {
-      // Execute attached function whenever buffer syncs
-      this->d_function(std::string(this->pbase(), this->pptr()), d_level);
-      this->setp(this->pbase(), this->epptr());
+      if (!traits_type::eq_int_type(c, traits_type::eof()))
+      {
+        *this->pptr() = traits_type::to_char_type(c);
+        this->pbump(1);
+      }
+      return this->sync() ? traits_type::not_eof(c) : traits_type::eof();
     }
-    return 0;
-  }
-};
 
-class ofunctionstream : private virtual functionbuf, public std::ostream
-{
-public:
-  ofunctionstream(function_type const& function, int level)
-    : functionbuf(function, level),
-    std::ostream(static_cast<std::streambuf*>(this))
+    int sync()
+    {
+      if (this->pbase() != this->pptr())
+      {
+        // Execute attached function whenever buffer syncs
+        this->d_function(std::string(this->pbase(), this->pptr()), d_level);
+        this->setp(this->pbase(), this->epptr());
+      }
+      return 0;
+    }
+  };
+
+  class ofunctionstream : private virtual functionbuf, public std::ostream
   {
-    this->flags(std::ios_base::unitbuf);
-  }
-};
+  public:
+    ofunctionstream(function_type const& function, int level)
+      : functionbuf(function, level),
+      std::ostream(static_cast<std::streambuf*>(this))
+    {
+      this->flags(std::ios_base::unitbuf);
+    }
+  };
+}

@@ -29,7 +29,7 @@ bool BMP8OutHandle::showHandle(int pipelineNum, bool& changed)
     ImGui::SameLine();
     if (ImGui::Button("Browse..."))
     {
-      getSaveFilepathWIN32(outputFilepath_, L"Bitmap (*.bmp)\0*.bmp\0", L"bmp");
+      util::getSaveFilepathWIN32(outputFilepath_, L"Bitmap (*.bmp)\0*.bmp\0", L"bmp");
     }
     ImGui::TreePop();
   }
