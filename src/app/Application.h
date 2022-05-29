@@ -8,6 +8,7 @@
 #include "windows\OutputConsole.h"
 #include "windows\PipelineView.h"
 #include "windows\MainMenuBar.h"
+#include "windows\PreviewWindow.h"
 #include "app\ApplicationContext.h"
 
 class Application
@@ -26,6 +27,7 @@ private:
   AddModuleView addModuleView_;     // Add Module view
   OutputConsole outputConsole_;     // Output console
   MainMenuBar mainMenuBar_;         // Main menu bar
+  PreviewWindow previewWindow_;     // Preview window
 
   void refreshWindowTitle();        // Show open file in window title
 };

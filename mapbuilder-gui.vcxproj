@@ -121,6 +121,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\windows\OutputConsole.cpp" />
+    <ClCompile Include="src\windows\PreviewWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\modules\handles\AllHandles.h" />
@@ -145,6 +146,7 @@ xcopy /y /d /s "res" "$(OutDir)res\"</Command>
     <ClInclude Include="src\app\ApplicationContext.h" />
     <ClInclude Include="src\util\FunctionBuffer.h" />
     <ClInclude Include="src\windows\OutputConsole.h" />
+    <ClInclude Include="src\windows\PreviewWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -26,6 +26,8 @@ void Application::showWindow()
 
   outputConsole_.showWindow();
 
+  previewWindow_.showWindow(*context_);
+
   // Show execute window
   ImGui::Begin("Execute");
   if (ImGui::Button("Run pipeline"))
