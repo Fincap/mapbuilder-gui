@@ -24,6 +24,8 @@ public:
   void showWindow(ApplicationContext&);   // Display the Preview window.
 
 private:
+  void regeneratePreview(ApplicationContext&);  // Update the window's state.
+
   mbc::StageMap<mbc::Module::Ptr> lastModules_;   // Previous Modules state.
   mbc::Pipeline previewPipeline_;     // Pipeline used to generate Previews.
   mbc::Heightmap lastHeightmap_;      // Previous state of the Heightmap.

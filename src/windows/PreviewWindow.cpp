@@ -2,6 +2,18 @@
 
 void PreviewWindow::showWindow(ApplicationContext& context)
 {
+  regeneratePreview(context);
+
+  ImGui::Begin("Preview");
+
+
+
+  ImGui::End();
+}
+
+
+void PreviewWindow::regeneratePreview(ApplicationContext& context)
+{
   /*
   1. Compare the generation modules in the context's Pipeline with those in the
       preview Pipeline.
