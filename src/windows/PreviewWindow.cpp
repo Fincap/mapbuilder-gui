@@ -68,21 +68,21 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
 
 
   // 3. Re-execute just the generation stage if there are changes.
-  if (true)
+  if (genStageChanged)
   {
     // Execute
     previewPipeline_.executeStage(0);
 
     // Extract generated heightmap from Pipeline
-    lastHeightmap_ = copyHeightmap(previewPipeline_.getPayload(std::type_index(typeid(mbc::Heightmap))));
+    lastHeightmap_.reset();
+    lastHeightmap_ = copyHeightmap(previewPipeline_.getPayload<mbc::Heightmap>());
   }
 
 
   // 4. Execute Manipulation and Render stages.
-  // Inject heightmap into pipeline
-  /* TODO: this is the actual cause of the issue. Most likely an issue with
-  the setPayload function not downcasting to the correct Payload type.*/
-  previewPipeline_.setPayload(lastHeightmap_);
+  // Inject copy of heightmap into pipeline
+  auto copy = copyHeightmap(lastHeightmap_);
+  previewPipeline_.setPayload<mbc::Heightmap>(copy);
 
   // Execute
   previewPipeline_.executeStage(1);
@@ -91,10 +91,11 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
 
   // 5. Draw generated payloads
   // Extract final heightmap from Pipeline.
-  resHeightmap_ = copyHeightmap(previewPipeline_.getPayload(std::type_index(typeid(mbc::Heightmap))));
+  resHeightmap_.reset();
+  resHeightmap_ = copyHeightmap(previewPipeline_.getPayload<mbc::Heightmap>());
 
-  if (resHeightmap_->width == 0 && resHeightmap_->height == 0)
-    resHeightmap_ = lastHeightmap_;
+  //if (resHeightmap_->width == 0 && resHeightmap_->height == 0)
+  //resHeightmap_ = lastHeightmap_;
 
   // Load payloads into texture.
   util::loadHeightmapTexture(*resHeightmap_, &heightmapSrv_);
