@@ -41,7 +41,7 @@ bool PerlinGenHandle::showHandle(int pipelineNum, bool& changed)
 
     // Processing params - Frequency and Octaves
     const double frequencyMin = 0.2;  const double frequencyMax = 8.0;
-    const uint32_t octavesMin = 1;    const uint32_t octavesMax = 10;
+    const uint32_t octavesMin = 1;    const uint32_t octavesMax = 6;
 
     ImGui::SliderScalar("Frequency", ImGuiDataType_Double, &frequency_, &frequencyMin, &frequencyMax, "%.1f");
     ImGui::SliderScalar("Octaves", ImGuiDataType_U32, &octaves_, &octavesMin, &octavesMax, "%d");
