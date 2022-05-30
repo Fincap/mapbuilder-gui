@@ -95,6 +95,10 @@ void OutputConsole::addToOutputs(std::string const& value, int level)
 {
   if (value.length() == 0)
     return;
+  
+  // Cap the amount of lines in the log.
+  if (pastOutputs_.size() >= 1024)
+    pastOutputs_.erase(pastOutputs_.begin());
 
   pastOutputs_.push_back(std::make_pair(value, level));
 }
