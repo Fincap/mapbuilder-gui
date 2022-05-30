@@ -31,9 +31,10 @@ public:
 
 private:
   void regeneratePreview(ApplicationContext&);    // Update the window's state.
+  std::shared_ptr<mbc::Heightmap> copyHeightmap(mbc::Payload::Ptr);
 
-  mbc::StageMap<mbc::Module::Ptr> lastModules_;   // Previous Modules state.
   mbc::Pipeline previewPipeline_;                 // Pipeline used to generate Previews.
+  mbc::StageMap<mbc::Module::Ptr> lastModules_;   // Previous Modules state.
   std::shared_ptr<mbc::Heightmap> lastHeightmap_; // Previous state of the Heightmap.
 
   ID3D11ShaderResourceView* heightmapSrv_;        // Texture of heightmap.
