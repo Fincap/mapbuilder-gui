@@ -20,6 +20,7 @@ void MainMenuBar::showWindow(ApplicationContext& context)
       if (ImGui::MenuItem("About MapBuilder")) { std::cout << "About!" << std::endl; }
 #ifdef _DEBUG // Only show menu option in Debug build
       if (ImGui::MenuItem("Show ImGui Demo")) { context.showDemoWindow_ = true; }
+      if (ImGui::MenuItem("Show ImGui Metrics")) { context.showMetricsWindow_ = true; }
 #endif
       ImGui::EndMenu();
     }
