@@ -37,7 +37,7 @@ private:
 
   mbc::Pipeline previewPipeline_;                 // Pipeline used to generate Previews.
 
-  ID3D11ShaderResourceView* heightmapSrv_;        // Texture of heightmap.
+  util::SrvProps heightmapProps_;                 // Heightmap D3D properties
   std::shared_ptr<mbc::Heightmap> lastHeightmap_; // Previous state of the Heightmap.
   std::shared_ptr<mbc::Heightmap> resHeightmap_;  // Resulting Heightmap from the Pipeline.
 };

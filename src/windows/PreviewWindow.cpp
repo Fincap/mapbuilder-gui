@@ -1,8 +1,9 @@
 #include "PreviewWindow.h"
 
-PreviewWindow::PreviewWindow() :
-  heightmapSrv_(nullptr)
-{ }
+PreviewWindow::PreviewWindow()
+{
+
+}
 
 
 void PreviewWindow::showWindow(ApplicationContext& context)
@@ -11,11 +12,15 @@ void PreviewWindow::showWindow(ApplicationContext& context)
 
   ImGui::Begin("Preview");
 
-  if (heightmapSrv_ != nullptr)
+  if (heightmapProps_.outSrv != nullptr)
   {
-    ImGui::Text("pointer = %p", heightmapSrv_);
+    ImGui::Text("pointer = %p", heightmapProps_.outSrv);
     ImGui::Text("size = %d x %d", resHeightmap_->width, resHeightmap_->height);
-    ImGui::Image((void*)heightmapSrv_, ImVec2(resHeightmap_->width, resHeightmap_->height));
+    ImGui::Image((void*)heightmapProps_.outSrv, 
+      ImVec2(resHeightmap_->width, resHeightmap_->height),
+      ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f),
+      ImVec4(1.0f, 1.0f, 1.0f, 1.0f),
+      ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
   }
 
   ImGui::End();
@@ -98,7 +103,7 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
   //resHeightmap_ = lastHeightmap_;
 
   // Load payloads into texture.
-  util::loadHeightmapTexture(*resHeightmap_, &heightmapSrv_);
+  util::loadHeightmapTexture(*resHeightmap_, heightmapProps_);
 
 }
 
