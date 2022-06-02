@@ -43,6 +43,9 @@ void Application::showWindow()
 #ifdef _DEBUG // Show demo window in Debug build
   if (context_->showDemoWindow_)
     ImGui::ShowDemoWindow(&context_->showDemoWindow_);
+
+  if (context_->showMetricsWindow_)
+    ImGui::ShowMetricsWindow(&context_->showMetricsWindow_);
 #endif
 
   ImGui::End();

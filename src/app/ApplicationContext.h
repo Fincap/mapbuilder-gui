@@ -16,5 +16,6 @@ struct ApplicationContext
 #ifdef _DEBUG
   // Demo window toggle if compiled in Debug mode.
   bool showDemoWindow_ = false;
+  bool showMetricsWindow_ = false;
 #endif
 };
