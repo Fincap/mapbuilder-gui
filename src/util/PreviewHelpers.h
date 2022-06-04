@@ -6,6 +6,7 @@
 #include <d3d11.h>
 #include <MapBuilderCore\Payload.h>
 #include <MapBuilderCore\payloads\Heightmap.h>
+#include <MapBuilderCore\payloads\ColouredHeightmap.h>
 
 #include "util\D3DGlobals.h"
 
@@ -125,6 +126,37 @@ namespace util
       {
         imageData[i] = point;
       }
+
+    }
+
+    // Map heightmap data to texture
+    props.mapNewTexture(imageWidth, imageHeight, imageData);
+
+    delete[] imageData;
+
+    return true;
+
+  }
+
+
+  inline bool loadColouredHeightmapTexture(mbc::ColouredHeightmap& map, SrvProps& props)
+  {
+    // Exit early if g_pd3dDevice not yet initialized.
+    if (g_pd3dDevice == NULL || map.colouredPoints == NULL)
+      return false;
+
+    // Load heightmap data into raw RGBA buffer
+    int imageWidth = map.width;
+    int imageHeight = map.height;
+    int dataSize = imageWidth * imageHeight;
+
+    uint32_t* imageData = new uint32_t[dataSize] {0};
+
+    for (int i = 0; i < dataSize; i++)
+    {
+      auto point = map.colouredPoints[i];
+
+      imageData[i] = (point << 8) | 0xff;
 
     }
 

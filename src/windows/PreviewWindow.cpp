@@ -12,12 +12,40 @@ void PreviewWindow::showWindow(ApplicationContext& context)
 
   ImGui::Begin("Preview");
 
-  if (heightmapProps_.srv != nullptr)
+  if (previewSrv_.srv != nullptr)
   {
-    ImGui::Text("pointer = %p", heightmapProps_.srv);
-    ImGui::Text("size = %d x %d", resHeightmap_->width, resHeightmap_->height);
-    ImGui::Image((void*)heightmapProps_.srv,
-      ImVec2(resHeightmap_->width, resHeightmap_->height),
+    // Radio buttons
+    static int view = 0;
+    ImGui::RadioButton("Raw Heightmap", &view, 0); ImGui::SameLine();
+    ImGui::BeginDisabled(resClrdHeightmap_ == nullptr);
+    ImGui::RadioButton("Coloured Heightmap", &view, 1);
+    ImGui::EndDisabled();
+
+    int width, height;
+
+    switch (view)
+    {
+    case 0:
+      width = resHeightmap_->width;
+      height = resHeightmap_->height;
+      util::loadHeightmapTexture(*resHeightmap_, previewSrv_);
+      break;
+
+    case 1:
+      width = resClrdHeightmap_->width;
+      height = resClrdHeightmap_->height;
+      util::loadColouredHeightmapTexture(*resClrdHeightmap_, previewSrv_);
+      break;
+
+    }
+
+    // Info
+    ImGui::Text("pointer = %p", previewSrv_.srv);
+    ImGui::Text("size = %d x %d", width, height);
+
+    // Display image
+    ImGui::Image((void*)previewSrv_.srv,
+      ImVec2(width, height),
       ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f),
       ImVec4(1.0f, 1.0f, 1.0f, 1.0f),
       ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
@@ -95,15 +123,14 @@ void PreviewWindow::regeneratePreview(ApplicationContext& context)
 
 
   // 5. Draw generated payloads
-  // Extract final heightmap from Pipeline.
+  // Extract final payloads from Pipeline.
   resHeightmap_.reset();
   resHeightmap_ = copyHeightmap(previewPipeline_.getPayload<mbc::Heightmap>());
 
-  //if (resHeightmap_->width == 0 && resHeightmap_->height == 0)
-  //resHeightmap_ = lastHeightmap_;
-
-  // Load payloads into texture.
-  util::loadHeightmapTexture(*resHeightmap_, heightmapProps_);
+  resClrdHeightmap_.reset();
+  auto colouredHeightmap = previewPipeline_.getPayload<mbc::ColouredHeightmap>();
+  if (colouredHeightmap != nullptr)
+    resClrdHeightmap_ = copyClrdHeightmap(previewPipeline_.getPayload<mbc::ColouredHeightmap>());
 
 }
 
@@ -120,6 +147,24 @@ std::shared_ptr<mbc::Heightmap> PreviewWindow::copyHeightmap(mbc::Payload::Ptr p
   for (int i = 0; i < copy->width * copy->height; i++)
   {
     copy->points[i] = ptr->points[i];
+  }
+
+  return copy;
+}
+
+
+std::shared_ptr<mbc::ColouredHeightmap> PreviewWindow::copyClrdHeightmap(mbc::Payload::Ptr payload)
+{
+  auto copy = std::make_shared<mbc::ColouredHeightmap>();
+  auto ptr = std::dynamic_pointer_cast<mbc::ColouredHeightmap>(payload);
+
+  copy->width = ptr->width;
+  copy->height = ptr->height;
+  copy->colouredPoints = new uint32_t[copy->width * copy->height];
+
+  for (int i = 0; i < copy->width * copy->height; i++)
+  {
+    copy->colouredPoints[i] = ptr->colouredPoints[i];
   }
 
   return copy;
