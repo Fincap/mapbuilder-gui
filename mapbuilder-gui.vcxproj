@@ -109,6 +109,7 @@ xcopy /y /d /s "..\deps\dlls-gui" "$(OutDir)"</Command>
   <ItemGroup>
     <ClCompile Include="src\modules\handles\BMP8OutHandle.cpp" />
     <ClCompile Include="src\modules\handles\ElevationSlopeHandle.cpp" />
+    <ClCompile Include="src\modules\handles\GradientSquareHandle.cpp" />
     <ClCompile Include="src\modules\handles\PerlinGenHandle.cpp" />
     <ClCompile Include="src\modules\ModuleProvider.cpp" />
     <ClCompile Include="src\windows\AddModuleView.cpp" />
@@ -131,6 +132,7 @@ xcopy /y /d /s "..\deps\dlls-gui" "$(OutDir)"</Command>
     <ClInclude Include="src\modules\handles\AllHandles.h" />
     <ClInclude Include="src\modules\handles\BMP8OutHandle.h" />
     <ClInclude Include="src\modules\handles\ElevationSlopeHandle.h" />
+    <ClInclude Include="src\modules\handles\GradientSquareHandle.h" />
     <ClInclude Include="src\modules\ModuleInfo.h" />
     <ClInclude Include="src\modules\handles\PerlinGenHandle.h" />
     <ClInclude Include="src\modules\ModuleProvider.h" />

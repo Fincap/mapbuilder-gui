@@ -80,6 +80,12 @@ mbc::PipelineStage::GENERATION
     mbc::PipelineStage::MANIPULATION
     );
 
+  // Gradient Square
+  loadedModules_["gradient_square"] = std::make_shared<util::ManualInfo<mbc::GradientSquare, GradientSquareHandle>>("Island Gradient - Square",
+    "TODO - complete description",
+    mbc::PipelineStage::MANIPULATION
+    );
+
 
   ////////////
   // RENDER //

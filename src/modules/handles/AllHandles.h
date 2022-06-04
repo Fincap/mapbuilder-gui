@@ -1,5 +1,5 @@
 #pragma once
-// Utility header to include all Handle implementations
+// Utility header to include all Handle implementations - use sparingly.
 
 // Generation
 #include "CanvasHandle.h"
@@ -7,6 +7,7 @@
 
 // Manipulation
 #include "ElevationSlopeHandle.h"
+#include "GradientSquareHandle.h"
 
 // Render
 
