@@ -68,7 +68,7 @@ namespace util
 
     void mapNewTexture(int width, int height, void* imageData)
     {
-      if (width != prevW || width != prevH)
+      if (width != prevW || height != prevH)
         newTexture(width, height);
 
       // Create mapped subresource
