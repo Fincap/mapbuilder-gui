@@ -27,8 +27,8 @@ bool CanvasHandle::showHandle(int pipelineNum, bool& changed)
   if (ImGui::TreeNodeEx(label.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
   {
     // Processing params
-    ImGui::DragInt("Width", &width_, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
-    ImGui::DragInt("Height", &height_, 1, 2, 2048, "%d", ImGuiSliderFlags_AlwaysClamp);
+    ImGui::DragInt("Width", &width_, 1, 2, 512, "%d", ImGuiSliderFlags_AlwaysClamp);
+    ImGui::DragInt("Height", &height_, 1, 2, 512, "%d", ImGuiSliderFlags_AlwaysClamp);
 
     ImGui::TreePop();
   }
