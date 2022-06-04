@@ -12,11 +12,11 @@ void PreviewWindow::showWindow(ApplicationContext& context)
 
   ImGui::Begin("Preview");
 
-  if (heightmapProps_.outSrv != nullptr)
+  if (heightmapProps_.srv != nullptr)
   {
-    ImGui::Text("pointer = %p", heightmapProps_.outSrv);
+    ImGui::Text("pointer = %p", heightmapProps_.srv);
     ImGui::Text("size = %d x %d", resHeightmap_->width, resHeightmap_->height);
-    ImGui::Image((void*)heightmapProps_.outSrv, 
+    ImGui::Image((void*)heightmapProps_.srv,
       ImVec2(resHeightmap_->width, resHeightmap_->height),
       ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f),
       ImVec4(1.0f, 1.0f, 1.0f, 1.0f),

@@ -13,10 +13,10 @@ namespace util
 {
   struct SrvProps
   {
-    ID3D11ShaderResourceView* outSrv;
-    ID3D11Texture2D* pTexture;
-    D3D11_TEXTURE2D_DESC desc;
-    D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
+    ID3D11ShaderResourceView* srv;
+    ID3D11Texture2D* texture;
+    D3D11_TEXTURE2D_DESC descTexture;
+    D3D11_SHADER_RESOURCE_VIEW_DESC descSrv;
     int prevW;
     int prevH;
 
@@ -28,42 +28,42 @@ namespace util
 
     void newTexture(int width, int height)
     {
-      if (pTexture != NULL)
-        pTexture->Release();
+      if (texture != NULL)
+        texture->Release();
 
       prevW = width;
       prevH = height;
 
       // Create dynamic texture description
-      ZeroMemory(&desc, sizeof(desc));
-      desc.Width = width;
-      desc.Height = height;
-      desc.MipLevels = 1;
-      desc.ArraySize = 1;
-      desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-      desc.SampleDesc.Count = 1;
-      desc.Usage = D3D11_USAGE_DYNAMIC;
-      desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-      desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+      ZeroMemory(&descTexture, sizeof(descTexture));
+      descTexture.Width = width;
+      descTexture.Height = height;
+      descTexture.MipLevels = 1;
+      descTexture.ArraySize = 1;
+      descTexture.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+      descTexture.SampleDesc.Count = 1;
+      descTexture.Usage = D3D11_USAGE_DYNAMIC;
+      descTexture.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+      descTexture.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-      pTexture = NULL;
-      g_pd3dDevice->CreateTexture2D(&desc, NULL, &pTexture);
+      texture = NULL;
+      g_pd3dDevice->CreateTexture2D(&descTexture, NULL, &texture);
 
       bindToSrv();
     }
 
     void bindToSrv()
     {
-      if (outSrv != NULL)
-        outSrv->Release();
+      if (srv != NULL)
+        srv->Release();
 
       // Create shader resource view
-      ZeroMemory(&srvDesc, sizeof(srvDesc));
-      srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-      srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
-      srvDesc.Texture2D.MipLevels = desc.MipLevels;
-      srvDesc.Texture2D.MostDetailedMip = 0;
-      g_pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &outSrv);
+      ZeroMemory(&descSrv, sizeof(descSrv));
+      descSrv.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+      descSrv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+      descSrv.Texture2D.MipLevels = descTexture.MipLevels;
+      descSrv.Texture2D.MostDetailedMip = 0;
+      g_pd3dDevice->CreateShaderResourceView(texture, &descSrv, &srv);
     }
 
     void mapNewTexture(int width, int height, void* imageData)
@@ -76,7 +76,7 @@ namespace util
       ZeroMemory(&sub, sizeof(sub));
 
       // Disable GPU access to the texture data.
-      g_pd3dDeviceContext->Map(pTexture, 0, D3D11_MAP_WRITE_DISCARD, 0, &sub);
+      g_pd3dDeviceContext->Map(texture, 0, D3D11_MAP_WRITE_DISCARD, 0, &sub);
 
       // Map to subresource data
       /* You can only memcpy the entire block in one operation if pitch is equal to width * number
@@ -93,7 +93,7 @@ namespace util
       }
 
       // Re-enable GPU access to texture data.
-      g_pd3dDeviceContext->Unmap(pTexture, 0);
+      g_pd3dDeviceContext->Unmap(texture, 0);
     }
 
   };
