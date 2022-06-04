@@ -23,8 +23,6 @@ public:
   handle's paramteres, or if the handle is to be deleted. */
   virtual bool showHandle(int, bool&) = 0;  // Must be implemented by derived.
 
-  virtual void pointAt(mbc::Module::Ptr) = 0;
-
 protected:
   bool alive_ = true;    // Determines if the Module should be deleted.
 

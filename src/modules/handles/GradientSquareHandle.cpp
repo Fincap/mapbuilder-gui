@@ -54,10 +54,3 @@ bool GradientSquareHandle::showHandle(int pipelineNum, bool& changed)
 
   return alive_;
 }
-
-
-void GradientSquareHandle::pointAt(mbc::Module::Ptr mod)
-{
-  fullness_ = std::ref(std::make_shared<mbc::GradientSquare>()->fullness);
-  size_ = std::ref(std::make_shared<mbc::GradientSquare>()->size);
-}

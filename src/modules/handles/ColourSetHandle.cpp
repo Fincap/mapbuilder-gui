@@ -71,9 +71,3 @@ bool ColourSetHandle::showHandle(int pipelineNum, bool& changed)
 
   return alive_;
 }
-
-
-void ColourSetHandle::pointAt(mbc::Module::Ptr mod)
-{
-  colourRanges_ = std::ref(std::dynamic_pointer_cast<mbc::ColourSetModule>(mod)->colourRanges);
-}

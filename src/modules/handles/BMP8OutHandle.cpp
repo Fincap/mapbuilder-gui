@@ -48,9 +48,3 @@ bool BMP8OutHandle::showHandle(int pipelineNum, bool& changed)
 
   return alive_;
 }
-
-
-void BMP8OutHandle::pointAt(mbc::Module::Ptr mod)
-{
-  outputFilepath_ = std::ref(std::dynamic_pointer_cast<mbc::BMP8Out>(mod)->outputFilepath);
-}

@@ -16,8 +16,6 @@ public:
 
   bool showHandle(int, bool&) override;
 
-  void pointAt(mbc::Module::Ptr) override;
-
   template <typename Archive>
   void serialize(Archive& archive) {};
 
