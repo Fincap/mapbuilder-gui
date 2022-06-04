@@ -66,6 +66,36 @@ namespace util
       g_pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &outSrv);
     }
 
+    void mapNewTexture(int width, int height, void* imageData)
+    {
+      if (width != prevW || width != prevH)
+        newTexture(width, height);
+
+      // Create mapped subresource
+      D3D11_MAPPED_SUBRESOURCE sub{};
+      ZeroMemory(&sub, sizeof(sub));
+
+      // Disable GPU access to the texture data.
+      g_pd3dDeviceContext->Map(pTexture, 0, D3D11_MAP_WRITE_DISCARD, 0, &sub);
+
+      // Map to subresource data
+      /* You can only memcpy the entire block in one operation if pitch is equal to width * number
+      of bytes in the format. Otherwise you must memcpy one row at a time.
+      Credit: https://gamedev.stackexchange.com/a/187646 */
+      unsigned* src = (unsigned*)imageData;   // Iterable pointer to image data
+      unsigned* dst = (unsigned*)sub.pData;   // Iterable pointer to subresource data.
+
+      for (int i = 0; i < height; i++)   // Copy row-by-row
+      {
+        memcpy(dst, src, static_cast<size_t>(width) * 4);
+        dst += sub.RowPitch >> 2;   // RowPitch is in bytes so for 32-bit data we divide by 4.
+        src += width;               // Assume pitch of source data is equal to width * 4.
+      }
+
+      // Re-enable GPU access to texture data.
+      g_pd3dDeviceContext->Unmap(pTexture, 0);
+    }
+
   };
 
   inline bool loadHeightmapTexture(mbc::Heightmap& map, SrvProps& props)
@@ -98,32 +128,8 @@ namespace util
 
     }
 
-    if (imageWidth != props.prevW || imageHeight != props.prevH)
-      props.newTexture(imageWidth, imageHeight);
-
-    // Create mapped subresource
-    D3D11_MAPPED_SUBRESOURCE sub{};
-    ZeroMemory(&sub, sizeof(sub));
-
-    // Disable GPU access to the texture data.
-    g_pd3dDeviceContext->Map(props.pTexture, 0, D3D11_MAP_WRITE_DISCARD, 0, &sub);
-
-    // Map to subresource data
-    /* You can only memcpy the entire block in one operation if pitch is equal to width * number 
-    of bytes in the format. Otherwise you must memcpy one row at a time.
-    Credit: https://gamedev.stackexchange.com/a/187646 */
-    unsigned* src = (unsigned*)imageData;   // Iterable pointer to image data
-    unsigned* dst = (unsigned*)sub.pData;   // Iterable pointer to subresource data.
-
-    for (int i = 0; i < imageHeight; i++)   // Copy row-by-row
-    {
-      memcpy(dst, src, static_cast<size_t>(imageWidth) * 4);
-      dst += sub.RowPitch >> 2;   // RowPitch is in bytes so for 32-bit data we divide by 4.
-      src += imageWidth;          // Assume pitch of source data is equal to width * 4.
-    }
-
-    // Re-enable GPU access to texture data.
-    g_pd3dDeviceContext->Unmap(props.pTexture, 0);
+    // Map heightmap data to texture
+    props.mapNewTexture(imageWidth, imageHeight, imageData);
 
     delete[] imageData;
 
