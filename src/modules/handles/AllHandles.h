@@ -10,6 +10,7 @@
 #include "GradientSquareHandle.h"
 
 // Render
+#include "ColourSetHandle.h"
 
 // Output
 #include "BMP8OutHandle.h"

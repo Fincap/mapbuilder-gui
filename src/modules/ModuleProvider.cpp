@@ -91,6 +91,11 @@ mbc::PipelineStage::GENERATION
   // RENDER //
   ////////////
 
+  // Gradient Square
+  loadedModules_["colour_set_module"] = std::make_shared<util::ManualInfo<mbc::ColourSetModule, ColourSetHandle>>("Colour by Height",
+    "TODO - complete description",
+    mbc::PipelineStage::RENDER
+    );
 
 
   ////////////
