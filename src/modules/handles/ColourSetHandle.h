@@ -21,6 +21,9 @@ public:
 
 private:
   std::map<unsigned char, uint32_t>*& colourRanges_;
+
+  unsigned char newHeight_ = 128;
+  uint32_t newColour_ = 0xff00ff;
 };
 
 
