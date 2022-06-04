@@ -82,16 +82,19 @@ namespace util
     unsigned char* imageData = new unsigned char[dataSize] {0};
 
     int index = 0;
-    for (int i = 0; i < imageWidth * imageHeight; i++)
+    for (int i = 0; i < dataSize; i++)
     {
-      auto point = map.points[i];
+      auto point = map.points[index];
 
-      imageData[index + 0] = point;
-      imageData[index + 1] = point;
-      imageData[index + 2] = point;
-      imageData[index + 3] = 255;
-
-      index += 4;
+      if (i % 4 == 3)
+      {
+        imageData[i] = 255;
+        index++;
+      }
+      else
+      {
+        imageData[i] = point;
+      }
 
     }
 
@@ -101,13 +104,23 @@ namespace util
     // Create mapped subresource
     D3D11_MAPPED_SUBRESOURCE sub{};
     ZeroMemory(&sub, sizeof(sub));
-    sub.RowPitch = 1;
 
     // Disable GPU access to the texture data.
     g_pd3dDeviceContext->Map(props.pTexture, 0, D3D11_MAP_WRITE_DISCARD, 0, &sub);
 
     // Map to subresource data
-    memcpy(sub.pData, imageData, dataSize);
+    /* You can only memcpy the entire block in one operation if pitch is equal to width * number 
+    of bytes in the format. Otherwise you must memcpy one row at a time.
+    Credit: https://gamedev.stackexchange.com/a/187646 */
+    unsigned* src = (unsigned*)imageData;   // Iterable pointer to image data
+    unsigned* dst = (unsigned*)sub.pData;   // Iterable pointer to subresource data.
+
+    for (int i = 0; i < imageHeight; i++)   // Copy row-by-row
+    {
+      memcpy(dst, src, static_cast<size_t>(imageWidth) * 4);
+      dst += sub.RowPitch >> 2;   // RowPitch is in bytes so for 32-bit data we divide by 4.
+      src += imageWidth;          // Assume pitch of source data is equal to width * 4.
+    }
 
     // Re-enable GPU access to texture data.
     g_pd3dDeviceContext->Unmap(props.pTexture, 0);
