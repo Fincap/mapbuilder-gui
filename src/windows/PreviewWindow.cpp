@@ -16,8 +16,13 @@ void PreviewWindow::showWindow(ApplicationContext& context)
   {
     // Radio buttons
     static int view = 0;
+    auto isColouredHeightmapNull = resClrdHeightmap_ == nullptr;
+
+    if (isColouredHeightmapNull)
+      view = 0;
+
     ImGui::RadioButton("Raw Heightmap", &view, 0); ImGui::SameLine();
-    ImGui::BeginDisabled(resClrdHeightmap_ == nullptr);
+    ImGui::BeginDisabled(isColouredHeightmapNull);
     ImGui::RadioButton("Coloured Heightmap", &view, 1);
     ImGui::EndDisabled();
 
