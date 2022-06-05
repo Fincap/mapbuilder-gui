@@ -154,10 +154,8 @@ namespace util
 
     for (int i = 0; i < dataSize; i++)
     {
-      auto point = map.colouredPoints[i];
-
-      imageData[i] = (point << 8) | 0xff;
-
+      // Move alpha channel to leftmost byte.
+      imageData[i] = map.colouredPoints[i] + (0xff << 24);
     }
 
     // Map heightmap data to texture
