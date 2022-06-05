@@ -21,6 +21,7 @@ IDXGISwapChain* g_pSwapChain = NULL;
 ID3D11RenderTargetView* g_mainRenderTargetView = NULL;
 
 // Forward declarations of helper functions
+void OnClose();
 bool CreateDeviceD3D(HWND hwnd);
 void CleanupDeviceD3D();
 void CreateRenderTarget();
@@ -77,26 +78,7 @@ int main(int argc, char** argv)
   while (!done)
   {
     // Poll and handle events
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
-    {
-      ImGui_ImplSDL2_ProcessEvent(&event);
-
-      // Window quit
-      if (event.type == SDL_QUIT)
-        done = true;
-      if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window))
-        done = true;
-
-      // Window resize
-      if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED && event.window.windowID == SDL_GetWindowID(window))
-      {
-        // Releaes all outstanding references to the swap chain's buffers before resizing
-        CleanupRenderTarget();
-        g_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
-        CreateRenderTarget();
-      }
-    }
+    app->processEvents(done, window, &OnClose);
 
     // Start the ImGui frame
     ImGui_ImplDX11_NewFrame();
@@ -140,6 +122,14 @@ int main(int argc, char** argv)
 
 
 // Helper functions
+void OnClose()
+{
+  // Releaes all outstanding references to the swap chain's buffers before resizing
+  CleanupRenderTarget();
+  g_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+  CreateRenderTarget();
+}
+
 
 bool CreateDeviceD3D(HWND hWnd)
 {

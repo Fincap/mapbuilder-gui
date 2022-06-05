@@ -12,6 +12,7 @@ struct ApplicationContext
   mbc::StageMap<ModuleWrapper::Ptr> modules;
   std::filesystem::path filename;
   bool isUnsaved = false;
+  float previewZoom = 1.f;
 
 #ifdef _DEBUG
   // Demo window toggle if compiled in Debug mode.

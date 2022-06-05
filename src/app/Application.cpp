@@ -12,6 +12,28 @@ Application::~Application()
 }
 
 
+void Application::processEvents(bool& done, SDL_Window* window, std::function<void()> onClose)
+{
+  SDL_Event event;
+  while (SDL_PollEvent(&event))
+  {
+    ImGui_ImplSDL2_ProcessEvent(&event);
+
+    // Window quit
+    if (event.type == SDL_QUIT)
+      done = true;
+    if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window))
+      done = true;
+
+    // Window resize
+    if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED && event.window.windowID == SDL_GetWindowID(window))
+    {
+      onClose();
+    }
+  }
+}
+
+
 void Application::showWindow()
 {
   // Push style vars
