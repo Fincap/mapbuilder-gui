@@ -35,7 +35,7 @@ bool AddModuleView::showWindow(mbc::StageMap<ModuleWrapper::Ptr>& modules)
 
   for (int i = 0; i < MBC_NUM_STAGES; i++)
   {
-    if (ImGui::CollapsingHeader(util::pipelineStageToStringExtended((mbc::PipelineStage)i)))
+    if (ImGui::CollapsingHeader(util::pipelineStageToStringExtended((mbc::PipelineStage)i), ImGuiTreeNodeFlags_DefaultOpen))
     {
       for (auto info = loadedModules_[i].begin(); info != loadedModules_[i].end(); info++)
       {
