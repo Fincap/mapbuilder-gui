@@ -43,6 +43,5 @@ private:
   std::shared_ptr<mbc::Heightmap> lastHeightmap_; // Previous state of the Heightmap.
   std::shared_ptr<mbc::Heightmap> resHeightmap_;  // Resulting Heightmap from the Pipeline.
 
-  std::shared_ptr<mbc::ColouredHeightmap> lastClrdHeightmap_; // Previous state of the ColouredHeightmap.
   std::shared_ptr<mbc::ColouredHeightmap> resClrdHeightmap_;  // Resulting ColouredHeightmap from the Pipeline.
 };
