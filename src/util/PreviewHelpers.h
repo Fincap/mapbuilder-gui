@@ -28,6 +28,15 @@ namespace util
       bindToSrv();
     }
 
+    void clear()
+    {
+      if (texture != NULL)
+        texture->Release();
+
+      if (srv != NULL)
+        srv->Release();
+    }
+
     void newTexture(int width, int height)
     {
       if (texture != NULL)
