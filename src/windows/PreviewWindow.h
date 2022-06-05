@@ -38,10 +38,10 @@ private:
 
   mbc::Pipeline previewPipeline_;                 // Pipeline used to generate Previews.
 
-  util::SrvProps previewSrv_;   // Preview image D3D properties
+  util::SrvProps previewSrv_;                     // Preview image D3D properties
 
   std::shared_ptr<mbc::Heightmap> lastHeightmap_; // Previous state of the Heightmap.
   std::shared_ptr<mbc::Heightmap> resHeightmap_;  // Resulting Heightmap from the Pipeline.
-
   std::shared_ptr<mbc::ColouredHeightmap> resClrdHeightmap_;  // Resulting ColouredHeightmap from the Pipeline.
+
 };

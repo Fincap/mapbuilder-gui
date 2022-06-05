@@ -52,10 +52,7 @@ void PreviewWindow::showWindow(ApplicationContext& context)
 
     // Display image
     ImGui::Image((void*)previewSrv_.srv,
-      ImVec2(width, height),
-      ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f),
-      ImVec4(1.0f, 1.0f, 1.0f, 1.0f),
-      ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+      ImVec2(width, height));
   }
 
   ImGui::End();
