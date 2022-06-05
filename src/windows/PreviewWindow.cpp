@@ -44,9 +44,11 @@ void PreviewWindow::showWindow(ApplicationContext& context)
 
     }
 
+#ifdef _DEBUG
     // Info
     ImGui::Text("pointer = %p", previewSrv_.srv);
     ImGui::Text("size = %d x %d", width, height);
+#endif // _DEBUG
 
     // Display image
     ImGui::Image((void*)previewSrv_.srv,
