@@ -52,7 +52,7 @@ void PreviewWindow::showWindow(ApplicationContext& context)
 
     // Display image
     ImGui::Image((void*)previewSrv_.srv,
-      ImVec2(width, height));
+      ImVec2(width * context.previewZoom, height * context.previewZoom));
   }
 
   ImGui::End();
