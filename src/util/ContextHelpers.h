@@ -39,6 +39,7 @@ namespace util
     // Clean up
     context.filename = openedFile;
     context.isUnsaved = false;
+    context.previewZoom = 1.f;
     context.pipeline.clear();
   }
 
