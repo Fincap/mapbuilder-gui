@@ -9,6 +9,7 @@
 #include <MapBuilderCore\payloads\ColouredHeightmap.h>
 
 #include "util\D3DGlobals.h"
+#include "util\ImGuiHelpers.h"
 
 namespace util
 {
@@ -155,7 +156,15 @@ namespace util
     for (int i = 0; i < dataSize; i++)
     {
       // Move alpha channel to leftmost byte.
-      imageData[i] = map.colouredPoints[i] + (0xff << 24);
+      //imageData[i] = map.colouredPoints[i] + (0xff << 24);
+
+      // Swap R and B bytes
+      auto point = ConvertRGBToFloat4(map.colouredPoints[i]);
+      std::swap(point.x, point.z);
+      
+      // Move alpha channel to leftmost byte.
+      imageData[i] = ConvertFloat4ToRGB(point) + (0xff << 24);
+
     }
 
     // Map heightmap data to texture

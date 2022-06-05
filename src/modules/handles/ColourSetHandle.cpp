@@ -43,7 +43,7 @@ bool ColourSetHandle::showHandle(int pipelineNum, bool& changed)
       auto newHeight = height;
 
       // Convert colour to ImVec4 then apply after.
-      ImVec4 newColour = ImGui::ColorConvertU32ToFloat4(colour);
+      ImVec4 newColour = util::ConvertRGBToFloat4(colour);
 
       ImGuiInputTextFlags heightFlags = ImGuiInputTextFlags_EnterReturnsTrue;
       if (height == 255)
@@ -95,7 +95,7 @@ bool ColourSetHandle::showHandle(int pipelineNum, bool& changed)
 
         // Move colour into new key
         colourRanges_->insert_or_assign(newHeight, colour);
-        colour = ImGui::ColorConvertFloat4ToU32(newColour);
+        colour = util::ConvertFloat4ToRGB(newColour);
 
         // Delete if no swap
         if (!swapped)
@@ -107,7 +107,7 @@ bool ColourSetHandle::showHandle(int pipelineNum, bool& changed)
       }
       else
       {
-        colour = ImGui::ColorConvertFloat4ToU32(newColour);
+        colour = util::ConvertFloat4ToRGB(newColour);
         it++;
       }
 
@@ -115,7 +115,7 @@ bool ColourSetHandle::showHandle(int pipelineNum, bool& changed)
     }
 
     // Show add new button
-    auto colourBuffer = ImGui::ColorConvertU32ToFloat4(newColour_);
+    auto colourBuffer = util::ConvertRGBToFloat4(newColour_);
 
     ImGui::Spacing();
     ImGui::Text("New value");
@@ -126,7 +126,7 @@ bool ColourSetHandle::showHandle(int pipelineNum, bool& changed)
       ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoOptions
     );
 
-    newColour_ = ImGui::ColorConvertFloat4ToU32(colourBuffer);
+    newColour_ = util::ConvertFloat4ToRGB(colourBuffer);
 
     ImGui::SameLine(0.f, 25.f);
     bool disable = false;

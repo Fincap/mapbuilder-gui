@@ -7,6 +7,7 @@
 #include <MapBuilderCore\modules\ColourSetModule.h>
 
 #include "modules\ModuleHandle.h"
+#include "util\ImGuiHelpers.h"
 
 class ColourSetHandle : public ModuleHandle
 {
