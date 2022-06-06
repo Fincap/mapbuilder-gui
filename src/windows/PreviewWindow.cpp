@@ -26,7 +26,7 @@ void PreviewWindow::showWindow(ApplicationContext& context)
     ImGui::RadioButton("Coloured Heightmap", &view, 1);
     ImGui::EndDisabled();
 
-    int width, height;
+    int width{}, height{};
 
     switch (view)
     {
@@ -49,6 +49,16 @@ void PreviewWindow::showWindow(ApplicationContext& context)
     ImGui::Text("pointer = %p", previewSrv_.srv);
     ImGui::Text("size = %d x %d", width, height);
 #endif // _DEBUG
+
+    ImGui::Text("Zoom = %.0f%%", context.previewZoom * 100);
+    if (ImGui::Button("Zoom In"))
+      context.previewZoom += .2f;
+    ImGui::SameLine();
+    if (ImGui::Button("Zoom Out"))
+      context.previewZoom -= .2f;
+    ImGui::SameLine();
+    if (ImGui::Button("Reset"))
+      context.previewZoom = 1.f;
 
     // Display image
     ImGui::Image((void*)previewSrv_.srv,
