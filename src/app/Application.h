@@ -17,10 +17,10 @@
 class Application
 {
 public:
-  Application(std::function<void()>);
+  Application();
   ~Application();
 
-  void processEvents(SDL_Window*);   // Process SDL events
+  void processEvents(SDL_Window*, std::function<void()>);   // Process SDL events
   void showWindow();      // Show all active Application views.
   bool isDone();          // Returns running state of Application.
 
@@ -34,8 +34,6 @@ private:
   OutputConsole outputConsole_;     // Output console
   MainMenuBar mainMenuBar_;         // Main menu bar
   PreviewWindow previewWindow_;     // Preview window
-
-  std::function<void()> onClose_;   // Exit application callback
 
   void refreshWindowTitle();        // Show open file in window title
 };

@@ -11,7 +11,7 @@
 class ContextController
 {
 public:
-  ContextController(ApplicationContext&, std::function<void()>);
+  ContextController(ApplicationContext&);
 
   ApplicationContext& getContext();
 
@@ -32,10 +32,6 @@ private:
   /* Callback that will be executed if Save/Don't Save selected on unsaved
   changes prompt, or if there are no unsaved changes. */
   std::function<void(ApplicationContext&)> callback_;
-
-  /* Callback that will be executed when the program is requested to be
-  exited. */
-  std::function<void()> onClose_;
 
   ApplicationContext& context_;
   bool displayUnsavedPrompt_ = false;

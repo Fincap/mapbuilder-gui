@@ -1,8 +1,7 @@
 #include "ContextController.h"
 
-ContextController::ContextController(ApplicationContext& context, std::function<void()> onClose) :
-  context_(context),
-  onClose_(onClose)
+ContextController::ContextController(ApplicationContext& context) :
+  context_(context)
 {}
 
 
@@ -97,7 +96,6 @@ void ContextController::exitApplication()
 {
   callback_ = [&](ApplicationContext& context)
   {
-    onClose_();
     context_.isDone = true;
   };
   unsavedChangesPrompt();

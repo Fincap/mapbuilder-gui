@@ -21,7 +21,7 @@ IDXGISwapChain* g_pSwapChain = NULL;
 ID3D11RenderTargetView* g_mainRenderTargetView = NULL;
 
 // Forward declarations of helper functions
-void OnClose();
+void OnResize();
 bool CreateDeviceD3D(HWND hwnd);
 void CleanupDeviceD3D();
 void CreateRenderTarget();
@@ -71,14 +71,14 @@ int main(int argc, char** argv)
   ImVec4 clearColour = ImVec4(0.45f, 0.55f, 0.60f, 1.f);
 
   // Set up application
-  Application* app = new Application(&OnClose);
+  Application* app = new Application();
 
   // Main loop
   bool done = false;
   while (!done)
   {
     // Poll and handle events
-    app->processEvents(window);
+    app->processEvents(window, &OnResize);
 
     // Start the ImGui frame
     ImGui_ImplDX11_NewFrame();
@@ -124,7 +124,7 @@ int main(int argc, char** argv)
 
 
 // Helper functions
-void OnClose()
+void OnResize()
 {
   // Releaes all outstanding references to the swap chain's buffers before resizing
   CleanupRenderTarget();

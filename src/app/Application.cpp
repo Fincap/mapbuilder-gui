@@ -1,10 +1,9 @@
 #include "Application.h"
 
-Application::Application(std::function<void()> onClose) :
-  onClose_(onClose)
+Application::Application()
 {
   context_ = new ApplicationContext();
-  contextController_ = new ContextController(*context_, onClose_);
+  contextController_ = new ContextController(*context_);
 }
 
 
@@ -15,7 +14,7 @@ Application::~Application()
 }
 
 
-void Application::processEvents(SDL_Window* window)
+void Application::processEvents(SDL_Window* window, std::function<void()> onResize)
 {
   SDL_Event event;
   while (SDL_PollEvent(&event))
@@ -24,14 +23,14 @@ void Application::processEvents(SDL_Window* window)
 
     // Window quit
     if (event.type == SDL_QUIT)
-      context_->isDone = true;
+      contextController_->exitApplication();
     if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window))
-      context_->isDone = true;
+      contextController_->exitApplication();
 
     // Window resize
     if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED && event.window.windowID == SDL_GetWindowID(window))
     {
-      contextController_->exitApplication();
+      onResize();
     }
   }
 }
