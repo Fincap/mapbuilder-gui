@@ -73,6 +73,9 @@ void Application::showWindow()
     ImGui::ShowMetricsWindow(&context_->showMetricsWindow_);
 #endif
 
+  // Display unsaved changes modal if necessary
+  contextController_->show();
+
   ImGui::End();
 
   // Pop style vars

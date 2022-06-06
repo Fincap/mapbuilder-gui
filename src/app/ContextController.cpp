@@ -14,6 +14,14 @@ ApplicationContext& ContextController::getContext()
 
 void ContextController::show()
 {
+  // Need to open popup from member bool as otherwise it will not display 
+  // when called from a MainMenuBar.
+  if (displayUnsavedPrompt_)
+  {
+    ImGui::OpenPopup("Unsaved Changes");
+    displayUnsavedPrompt_ = false;
+  }
+
   // Show unsaved changes prompt
   // Always center this window when appearing
   ImVec2 center = ImGui::GetMainViewport()->GetCenter();
@@ -98,7 +106,7 @@ void ContextController::exitApplication()
 void ContextController::unsavedChangesPrompt()
 {
   if (context_.isUnsaved)
-    ImGui::OpenPopup("Unsaved Changes");
+    displayUnsavedPrompt_ = true;
   else
     callback_(context_);
 }

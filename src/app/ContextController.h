@@ -38,9 +38,6 @@ private:
   std::function<void()> onClose_;
 
   ApplicationContext& context_;
-
-  /* This is necessary as displaying of modal popups in menubar currently
-  does not work. */
-  //bool displayUnsavedPrompt = false;
+  bool displayUnsavedPrompt_ = false;
 
 };
