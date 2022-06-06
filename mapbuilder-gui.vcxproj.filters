@@ -81,6 +81,9 @@
     <ClCompile Include="src\modules\handles\GradientCircleHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\app\ContextController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\Application.h">
@@ -165,6 +168,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\modules\handles\GradientCircleHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\app\ContextController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
