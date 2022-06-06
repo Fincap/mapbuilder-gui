@@ -36,9 +36,9 @@ namespace util
   /* Convert ImVec4 to uint32_t 0xRRGGBB for ImGui ColorEdit. */
   inline uint32_t ConvertFloat4ToRGB(ImVec4 in)
   {
-    unsigned char r = in.x * 255.f;
-    unsigned char g = in.y * 255.f;
-    unsigned char b = in.z * 255.f;
+    unsigned char r = static_cast<unsigned char>(in.x * 255.f);
+    unsigned char g = static_cast<unsigned char>(in.y * 255.f);
+    unsigned char b = static_cast<unsigned char>(in.z * 255.f);
 
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
   }
