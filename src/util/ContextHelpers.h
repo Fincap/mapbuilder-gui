@@ -9,7 +9,7 @@
 
 namespace util
 {
-  inline void loadFileIntoContext(ApplicationContext& context)
+  inline bool loadFileIntoContext(ApplicationContext& context)
   {
     std::filesystem::path openedFile;
     char buffer[MBC_MAX_PATH] = { 0 };
@@ -18,7 +18,7 @@ namespace util
 
     if (openedFile.empty())   // If no filepath was selected, exit early
     {
-      return;
+      return false;
     }
 
     // Deserialize
@@ -32,7 +32,7 @@ namespace util
       catch (cereal::Exception)
       {
         std::cerr << "Could not open selected file\n";
-        return;
+        return false;
       }
     }
 
@@ -41,10 +41,12 @@ namespace util
     context.isUnsaved = false;
     context.previewZoom = 1.f;
     context.pipeline.clear();
+
+    return true;
   }
 
 
-  inline void saveContextIntoFile(ApplicationContext& context, bool newPath = false)
+  inline bool saveContextIntoFile(ApplicationContext& context, bool newPath = false)
   {
     if (newPath || context.filename.empty())
     {
@@ -52,7 +54,7 @@ namespace util
       char buffer[MBC_MAX_PATH] = { 0 };
       getSaveFilepathWIN32(buffer, L"MapBuilder File (*.mbc)\0*.mbc\0", L"mbc");
       if (buffer[0] == '\0')  // If "Cancel" in file dialog pressed, exit early.
-        return;
+        return false;
       context.filename = buffer;
     }
 
@@ -62,7 +64,7 @@ namespace util
       if (!os.is_open())
       {
         std::cerr << "Could not save to selected file\n";
-        return;
+        return false;
       }
 
       cereal::XMLOutputArchive archive(os);
@@ -71,5 +73,7 @@ namespace util
 
     // Clean up
     context.isUnsaved = false;
+
+    return true;
   }
 }
