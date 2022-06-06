@@ -35,8 +35,8 @@ void ContextController::show()
     if (ImGui::Button("Save", ImVec2(120, 0)))
     {
       // Save context and then do callback.
-      util::saveContextIntoFile(context_);
-      callback_(context_);
+      if (util::saveContextIntoFile(context_))
+        callback_(context_);
       ImGui::CloseCurrentPopup();
     }
     ImGui::SetItemDefaultFocus();
