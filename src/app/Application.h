@@ -20,8 +20,9 @@ public:
   Application(std::function<void()>);
   ~Application();
 
-  void processEvents(bool&, SDL_Window*);   // Process SDL events
+  void processEvents(SDL_Window*);   // Process SDL events
   void showWindow();      // Show all active Application views.
+  bool isDone();          // Returns running state of Application.
 
 private:
   ApplicationContext* context_;           // Application context

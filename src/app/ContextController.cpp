@@ -98,6 +98,7 @@ void ContextController::exitApplication()
   callback_ = [&](ApplicationContext& context)
   {
     onClose_();
+    context_.isDone = true;
   };
   unsavedChangesPrompt();
 }

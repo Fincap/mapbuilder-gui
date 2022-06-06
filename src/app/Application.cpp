@@ -15,7 +15,7 @@ Application::~Application()
 }
 
 
-void Application::processEvents(bool& done, SDL_Window* window)
+void Application::processEvents(SDL_Window* window)
 {
   SDL_Event event;
   while (SDL_PollEvent(&event))
@@ -24,14 +24,14 @@ void Application::processEvents(bool& done, SDL_Window* window)
 
     // Window quit
     if (event.type == SDL_QUIT)
-      done = true;
+      context_->isDone = true;
     if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window))
-      done = true;
+      context_->isDone = true;
 
     // Window resize
     if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED && event.window.windowID == SDL_GetWindowID(window))
     {
-      onClose_();
+      contextController_->exitApplication();
     }
   }
 }
@@ -83,6 +83,12 @@ void Application::showWindow()
 
   refreshWindowTitle();
 
+}
+
+
+bool Application::isDone()
+{
+  return context_->isDone;
 }
 
 

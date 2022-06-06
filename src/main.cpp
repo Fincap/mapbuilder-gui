@@ -78,7 +78,7 @@ int main(int argc, char** argv)
   while (!done)
   {
     // Poll and handle events
-    app->processEvents(done, window);
+    app->processEvents(window);
 
     // Start the ImGui frame
     ImGui_ImplDX11_NewFrame();
@@ -90,6 +90,8 @@ int main(int argc, char** argv)
 
     // Show MapBuilder window
     app->showWindow();
+
+    done = app->isDone();
 
     // Rendering
     ImGui::Render();
