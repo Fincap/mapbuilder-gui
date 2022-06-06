@@ -86,6 +86,12 @@ mbc::PipelineStage::GENERATION
     mbc::PipelineStage::MANIPULATION
     );
 
+  // Gradient Circle
+  loadedModules_["gradient_circle"] = std::make_shared<util::ManualInfo<mbc::GradientCircle, GradientCircleHandle>>("Island Gradient - Circle",
+    "TODO - complete description",
+    mbc::PipelineStage::MANIPULATION
+    );
+
 
   ////////////
   // RENDER //

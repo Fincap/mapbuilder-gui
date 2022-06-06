@@ -8,6 +8,7 @@
 // Manipulation
 #include "ElevationSlopeHandle.h"
 #include "GradientSquareHandle.h"
+#include "GradientCircleHandle.h"
 
 // Render
 #include "ColourSetHandle.h"
