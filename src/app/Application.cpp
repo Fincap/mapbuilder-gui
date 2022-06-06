@@ -1,18 +1,21 @@
 #include "Application.h"
 
-Application::Application()
+Application::Application(std::function<void()> onClose) :
+  onClose_(onClose)
 {
   context_ = new ApplicationContext();
+  contextController_ = new ContextController(*context_, onClose_);
 }
 
 
 Application::~Application()
 {
   delete context_;
+  delete contextController_;
 }
 
 
-void Application::processEvents(bool& done, SDL_Window* window, std::function<void()> onClose)
+void Application::processEvents(bool& done, SDL_Window* window)
 {
   SDL_Event event;
   while (SDL_PollEvent(&event))
@@ -28,7 +31,7 @@ void Application::processEvents(bool& done, SDL_Window* window, std::function<vo
     // Window resize
     if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED && event.window.windowID == SDL_GetWindowID(window))
     {
-      onClose();
+      onClose_();
     }
   }
 }
@@ -41,7 +44,7 @@ void Application::showWindow()
   ImGui::PushStyleVar(ImGuiStyleVar_TabRounding, 4);
 
   // Show windows
-  mainMenuBar_.showWindow(*context_);
+  mainMenuBar_.showWindow(*contextController_);
 
   context_->isUnsaved |= pipelineView_.showWindow(context_->modules);
   context_->isUnsaved |= addModuleView_.showWindow(context_->modules);

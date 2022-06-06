@@ -71,14 +71,14 @@ int main(int argc, char** argv)
   ImVec4 clearColour = ImVec4(0.45f, 0.55f, 0.60f, 1.f);
 
   // Set up application
-  Application* app = new Application();
+  Application* app = new Application(&OnClose);
 
   // Main loop
   bool done = false;
   while (!done)
   {
     // Poll and handle events
-    app->processEvents(done, window, &OnClose);
+    app->processEvents(done, window);
 
     // Start the ImGui frame
     ImGui_ImplDX11_NewFrame();

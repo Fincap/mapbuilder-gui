@@ -12,19 +12,20 @@
 #include "windows\MainMenuBar.h"
 #include "windows\PreviewWindow.h"
 #include "app\ApplicationContext.h"
-#include "util\ContextHelpers.h"
+#include "app\ContextController.h"
 
 class Application
 {
 public:
-  Application();
+  Application(std::function<void()>);
   ~Application();
 
-  void processEvents(bool&, SDL_Window*, std::function<void()>);   // Process SDL events
+  void processEvents(bool&, SDL_Window*);   // Process SDL events
   void showWindow();      // Show all active Application views.
 
 private:
-  ApplicationContext* context_;     // Application context
+  ApplicationContext* context_;           // Application context
+  ContextController* contextController_;  // Context controller
 
   // Windows
   PipelineView pipelineView_;       // Pipeline view
@@ -32,6 +33,8 @@ private:
   OutputConsole outputConsole_;     // Output console
   MainMenuBar mainMenuBar_;         // Main menu bar
   PreviewWindow previewWindow_;     // Preview window
+
+  std::function<void()> onClose_;   // Exit application callback
 
   void refreshWindowTitle();        // Show open file in window title
 };
