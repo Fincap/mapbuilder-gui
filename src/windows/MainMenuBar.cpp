@@ -14,7 +14,7 @@ void MainMenuBar::showWindow(ContextController& contextController)
       if (ImGui::MenuItem("Save", "CTRL+S")) contextController.saveContext();
       if (ImGui::MenuItem("Save As", "F12")) contextController.saveContextAs();
       ImGui::Separator();
-      if (ImGui::MenuItem("Exit", "ALT+F4")) contextController.exitApplication();
+      if (ImGui::MenuItem("Exit")) contextController.exitApplication();
       ImGui::EndMenu();
     }
     if (ImGui::BeginMenu("Help"))
