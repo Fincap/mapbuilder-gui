@@ -12,7 +12,7 @@ void MainMenuBar::showWindow(ContextController& contextController)
       if (ImGui::MenuItem("New", "CTRL+N")) contextController.newContext();
       if (ImGui::MenuItem("Open", "CTRL+O")) contextController.openContext();
       if (ImGui::MenuItem("Save", "CTRL+S")) contextController.saveContext();
-      if (ImGui::MenuItem("Save As", "F12")) contextController.saveContextAs();
+      if (ImGui::MenuItem("Save As", "CTRL+SHIFT+S")) contextController.saveContextAs();
       ImGui::Separator();
       if (ImGui::MenuItem("Exit")) contextController.exitApplication();
       ImGui::EndMenu();

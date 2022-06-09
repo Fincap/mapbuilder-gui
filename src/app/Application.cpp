@@ -33,6 +33,22 @@ void Application::processEvents(SDL_Window* window, std::function<void()> onResi
       onResize();
     }
   }
+
+  // Poll hotkeys
+  const Uint8* keystate = SDL_GetKeyboardState(NULL);
+  if (keystate[SDL_SCANCODE_LCTRL] && keystate[SDL_SCANCODE_N])
+    contextController_->newContext();    // Ctrl+N = New
+
+  if (keystate[SDL_SCANCODE_LCTRL] && keystate[SDL_SCANCODE_O])
+    contextController_->openContext();    // Ctrl+O = Open
+
+  if (keystate[SDL_SCANCODE_LCTRL] && !keystate[SDL_SCANCODE_LSHIFT] && keystate[SDL_SCANCODE_S])
+    contextController_->saveContext();    // Ctrl+S = Save
+
+  if (keystate[SDL_SCANCODE_LCTRL] && keystate[SDL_SCANCODE_LSHIFT] && keystate[SDL_SCANCODE_S])
+    contextController_->saveContextAs();    // Ctrl+Shift+S = Save As
+
+
 }
 
 
