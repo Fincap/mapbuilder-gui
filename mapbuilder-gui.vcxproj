@@ -113,6 +113,7 @@ xcopy /y /d /s "..\deps\dlls-gui" "$(OutDir)"</Command>
     <ClCompile Include="src\modules\handles\ElevationSlopeHandle.cpp" />
     <ClCompile Include="src\modules\handles\GradientCircleHandle.cpp" />
     <ClCompile Include="src\modules\handles\GradientSquareHandle.cpp" />
+    <ClCompile Include="src\modules\handles\HeightmapOutHandle.cpp" />
     <ClCompile Include="src\modules\handles\PerlinGenHandle.cpp" />
     <ClCompile Include="src\modules\ModuleProvider.cpp" />
     <ClCompile Include="src\windows\AddModuleView.cpp" />
@@ -139,6 +140,7 @@ xcopy /y /d /s "..\deps\dlls-gui" "$(OutDir)"</Command>
     <ClInclude Include="src\modules\handles\ElevationSlopeHandle.h" />
     <ClInclude Include="src\modules\handles\GradientCircleHandle.h" />
     <ClInclude Include="src\modules\handles\GradientSquareHandle.h" />
+    <ClInclude Include="src\modules\handles\HeightmapOutHandle.h" />
     <ClInclude Include="src\modules\ModuleInfo.h" />
     <ClInclude Include="src\modules\handles\PerlinGenHandle.h" />
     <ClInclude Include="src\modules\ModuleProvider.h" />

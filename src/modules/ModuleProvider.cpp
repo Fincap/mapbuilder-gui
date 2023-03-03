@@ -114,6 +114,12 @@ mbc::PipelineStage::GENERATION
     mbc::PipelineStage::OUTPUT
     );
 
+  // HeightmapOut
+  loadedModules_["heightmap_out"] = std::make_shared<util::ManualInfo<mbc::HeightmapOut, HeightmapOutHandle>>("Raw heightmap file",
+    "TODO - complete description",
+    mbc::PipelineStage::OUTPUT
+    );
+
 }
 
 
