@@ -87,6 +87,9 @@
     <ClCompile Include="src\modules\handles\HeightmapOutHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\modules\handles\PNGOutHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\Application.h">
@@ -177,6 +180,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\modules\handles\HeightmapOutHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\handles\PNGOutHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

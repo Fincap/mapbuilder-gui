@@ -120,6 +120,12 @@ mbc::PipelineStage::GENERATION
     mbc::PipelineStage::OUTPUT
     );
 
+  // PNGOut
+  loadedModules_["png_out"] = std::make_shared<util::ManualInfo<mbc::PNGOut, PNGOutHandle>>("PNG file",
+    "TODO - complete description",
+    mbc::PipelineStage::OUTPUT
+    );
+
 }
 
 

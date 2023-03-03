@@ -16,3 +16,4 @@
 // Output
 #include "BMP8OutHandle.h"
 #include "HeightmapOutHandle.h"
+#include "PNGOutHandle.h"
